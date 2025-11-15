@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://55q1r3yev1xf"]
+
+[ext_resource type="Script" uid="uid://b8b3ke08xb1lj" path="res://polygon_2d.gd" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://ckehiy3o15tej" path="res://Untitled2.png" id="2_0e48y"]
+[ext_resource type="Texture2D" uid="uid://cw81d5rdlynfc" path="res://icon.svg" id="3_epypp"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="." node_paths=PackedStringArray("pol")]
+position = Vector2(-1, -9)
+script = ExtResource("1_wtcfe")
+t = ExtResource("2_0e48y")
+pol = NodePath(".")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.69, 1.69)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(214, 93)
+texture = ExtResource("3_epypp")

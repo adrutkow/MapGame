@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://d4nvr5op0ya5v"]
+
+[ext_resource type="Shader" uid="uid://c2dxkamyikwk7" path="res://land.gdshader" id="1_yg2gr"]
+[ext_resource type="Texture2D" uid="uid://b7jxlwkgvj1h" path="res://test3.png" id="2_gsyd3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tcnuu"]
+noise_type = 3
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tuemg"]
+as_normal_map = true
+noise = SubResource("FastNoiseLite_tcnuu")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tuemg"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i0g27"]
+as_normal_map = true
+noise = SubResource("FastNoiseLite_tuemg")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_yg2gr")
+shader_parameter/c = Color(2.76752e-07, 0.213257, 0, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.938
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_tuemg")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_i0g27")
+shader_parameter/albedo_texture = ExtResource("2_gsyd3")

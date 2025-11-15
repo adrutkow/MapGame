@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0wblt2nixjcb"]
+
+[ext_resource type="Script" uid="uid://bb13cs0kvslec" path="res://Prefabs/game_global.gd" id="1_rw7k7"]
+[ext_resource type="Texture2D" uid="uid://b7jxlwkgvj1h" path="res://test3.png" id="2_n4lan"]
+
+[node name="GameGlobal" type="Node"]
+script = ExtResource("1_rw7k7")
+heatmap = ExtResource("2_n4lan")

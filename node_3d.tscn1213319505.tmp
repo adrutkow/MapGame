@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bay5cjhpi13b1"]
+
+[ext_resource type="Texture2D" uid="uid://fouap4s2086t" path="res://Untitled.png" id="1_a202f"]
+[ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="." node_paths=PackedStringArray("polygon")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.84035)
+texture = ExtResource("1_a202f")
+script = ExtResource("2_noarx")
+polygon = NodePath("../CSGPolygon3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.603339)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.56028)
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 1, 1)
