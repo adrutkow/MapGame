@@ -70,11 +70,13 @@ func generate_bitmap(colors: Array[Color] = [], nations: Array[int] = []):
 	for c: Color in colors:
 		valid_colors.append(c);
 		
-	for y in range(0, heatmap.get_height()):
-		for x in range(0, heatmap.get_width()):
-			temp_c = heatmap.get_pixel(x, y);
+	for y in range(0, heatmap_image.get_height()):
+		for x in range(0, heatmap_image.get_width()):
+			temp_c = heatmap_image.get_pixel(x, y);
 			if (temp_c in valid_colors):
 				bitmap.set_bit(x, y, true);
+				
+	return (bitmap);
 
 func get_province_data_by_color(c: Color) -> ProvinceData:
 	for p: ProvinceData in GameGlobal.province_data_list.province_list:
@@ -98,10 +100,31 @@ func select_province(province_id: int):
 	$"../UI/Control/Province/RichTextLabel".text = get_province_data_by_id(province_id).name;
 	$"../UI/Control/Province/RichTextLabel2".text = "ocean access: " + str(get_province_data_by_id(province_id).ocean_access);
 	$"../UI/Control/Province/RichTextLabel3".text = "river access: " + str(get_province_data_by_id(province_id).river_access);
+	$"../UI/Control/Province/ProvinceID".text = str(get_province_data_by_id(province_id).id);
+		
+	var center: Vector2i;
+	
+	center = get_province_center(province_id);
+	$"../MeshInstance3D".position = Vector3(center.x / 10, 0, center.y / 10)
 	
 		
 func unselect_province():
 	$"../UI/Control/Province".visible = false;
+
+func get_province_center(province_id: int):
+	var province: ProvinceData = null;
+	var c: Color;
+	var bitmap: BitMap;
+	
+	for p: ProvinceData in GameGlobal.province_data_list.province_list:
+		if (p.id == province_id):
+			province = p;
+			break;
+	if (not province):
+		return (null);
+	bitmap = generate_bitmap([vector3i_to_color(province.heatmap_color)]);
+	return (Utils.get_bitmap_center(bitmap));
+
 
 static func is_vector3_color(v: Vector3i, c: Color) -> bool:
 	return ((v.x == c.r8) and (v.y == c.g8) and (v.z == c.b8));

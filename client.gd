@@ -10,3 +10,8 @@ func _ready() -> void:
 
 func get_ui_manager() -> UIManager:
 	return $"../UI";
+
+func _process(delta: float) -> void:
+	if (Input.is_action_just_pressed("Space")):
+		GameInstance.game_instance.tick();
+	

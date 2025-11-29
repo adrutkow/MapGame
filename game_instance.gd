@@ -17,9 +17,7 @@ func _ready() -> void:
 	create_nations();
 	create_provinces();
 
-func _process(delta: float) -> void:
-	if (Input.is_action_just_pressed("Space")):
-		tick();
+
 
 func tick():
 	for p: ProvinceState in provinces:

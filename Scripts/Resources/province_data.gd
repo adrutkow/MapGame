@@ -6,3 +6,4 @@ class_name ProvinceData;
 @export var heatmap_color: Vector3i;
 @export var ocean_access: bool = false;
 @export var river_access: bool = false;
+@export var adjacencies: Array[int];

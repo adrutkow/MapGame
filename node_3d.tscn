@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=40 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -106,6 +106,8 @@ shader_parameter/c = Color(2.98411e-06, 0.981192, 0.21933, 1)
 render_priority = 0
 shader = ExtResource("3_jka67")
 shader_parameter/c = Color(0.04, 0.04, 0.04, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lggff"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -574,6 +576,13 @@ offset_right = 601.0
 offset_bottom = 213.0
 text = "river access: false"
 
+[node name="ProvinceID" type="RichTextLabel" parent="UI/Control/Province"]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 3.0
+offset_right = 805.0
+offset_bottom = 60.0
+
 [node name="Misc" type="Control" parent="UI/Control"]
 anchors_preset = 0
 offset_left = 159.0
@@ -584,3 +593,7 @@ offset_bottom = 49.0
 layout_mode = 0
 offset_right = 187.0
 offset_bottom = 44.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_lggff")
