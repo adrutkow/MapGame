@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=39 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -16,9 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://bdxv7tkkhj8yq" path="res://Assets/Icons/science.png" id="10_6iypd"]
 [ext_resource type="Texture2D" uid="uid://djkn6fam336ky" path="res://Assets/Icons/culture.png" id="11_wlxy5"]
 [ext_resource type="Texture2D" uid="uid://bxtex6og3mkq3" path="res://Assets/Icons/gold.png" id="12_3v7ru"]
+[ext_resource type="Script" uid="uid://bvbh4bnra8kns" path="res://client.gd" id="13_jsnrv"]
 [ext_resource type="Texture2D" uid="uid://cvno6vxc7t0wl" path="res://Assets/Icons/happiness.png" id="13_tcnuu"]
 [ext_resource type="Script" uid="uid://w03ck8mg66te" path="res://savefile.gd" id="14_lggff"]
 [ext_resource type="Texture2D" uid="uid://cj21y8gwic7rh" path="res://Assets/Icons/power.png" id="14_tuemg"]
+[ext_resource type="Script" uid="uid://drko2snt08yh3" path="res://ui_manager.gd" id="15_lggff"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jka67"]
 
@@ -238,6 +240,9 @@ script = ExtResource("8_jsk3o")
 [node name="Savefile" type="Node3D" parent="GameInstance"]
 script = ExtResource("14_lggff")
 
+[node name="Client" type="Node3D" parent="."]
+script = ExtResource("13_jsnrv")
+
 [node name="Sprite3D2" type="Sprite3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, 2.50582, -0.000583557, 2.41655)
 
@@ -246,6 +251,7 @@ transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-0
 texture = ExtResource("3_i5arm")
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("15_lggff")
 
 [node name="Control" type="Control" parent="UI"]
 custom_minimum_size = Vector2(1920, 1080)
@@ -567,3 +573,14 @@ offset_top = 150.0
 offset_right = 601.0
 offset_bottom = 213.0
 text = "river access: false"
+
+[node name="Misc" type="Control" parent="UI/Control"]
+anchors_preset = 0
+offset_left = 159.0
+offset_right = 520.0
+offset_bottom = 49.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/Misc"]
+layout_mode = 0
+offset_right = 187.0
+offset_bottom = 44.0

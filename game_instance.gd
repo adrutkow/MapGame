@@ -4,6 +4,12 @@ class_name GameInstance;
 static var game_instance: GameInstance;
 var nations: Array[Nation];
 var provinces: Array[ProvinceState];
+var day: int = 0;
+
+
+# Expanding borders with gold
+# research/civics can reduce that cost
+
 
 func _ready() -> void:
 	GameInstance.game_instance = self;
@@ -11,6 +17,15 @@ func _ready() -> void:
 	create_nations();
 	create_provinces();
 
+func _process(delta: float) -> void:
+	if (Input.is_action_just_pressed("Space")):
+		tick();
+
+func tick():
+	for p: ProvinceState in provinces:
+		p.tick();
+	day += 1;
+	Client.client_instance.get_ui_manager().tick();
 		
 func create_nations():
 	var temp: Nation;
