@@ -1,0 +1,26 @@
+extends Node
+class_name Nation;
+
+@export var owned_provinces: Array[int];
+@export var nation_name: String;
+@export var nation_color: Color;
+var nation_id: int = 0;
+var science: float = 0;
+var culture: float = 0;
+var gold: float = 0;
+var happiness: float = 0;
+var power: float = 0;
+
+func set_values_from_nation_data(nation_data: NationData):
+	owned_provinces = nation_data.owned_provinces.duplicate();
+	nation_name = nation_data.nation_name;
+	nation_color = nation_data.nation_color;
+	science = nation_data.start_science;
+	culture = nation_data.start_culture;
+	gold = nation_data.start_gold;
+	happiness = nation_data.start_happiness;
+	power = nation_data.start_power;
+
+
+func get_owned_provinces_id() -> Array[int]:
+	return (owned_provinces);

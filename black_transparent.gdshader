@@ -12,5 +12,5 @@ void fragment() {
         discard;
     }
     ALBEDO = c;
-    ALPHA = 1.0;
+    ALPHA = 0.3;
 }

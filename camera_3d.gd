@@ -37,13 +37,13 @@ func _process(delta):
 	if Input.is_action_pressed("move_right"):
 		dir += transform.basis.x
 	if Input.is_action_just_pressed("scroll_up"):
-		dir -= transform.basis.z * 10;
+		dir -= transform.basis.z * 1;
 	if Input.is_action_just_pressed("scroll_down"):
-		dir += transform.basis.z * 10;
+		dir += transform.basis.z * 1;
 
 	if dir != Vector3.ZERO:
 		dir = dir.normalized()
-		global_position += dir * move_speed * delta
+		global_position += dir * move_speed * delta * 5
 
 
 
@@ -62,6 +62,7 @@ func _on_click(mouse_pos: Vector2):
 	var result = space_state.intersect_ray(query)
 
 	if result.is_empty():
+		Map.map_instance.unselect_province();
 		return
 
 	print(result)
@@ -91,4 +92,10 @@ func _on_click(mouse_pos: Vector2):
 		if px >= 0 and px < size.x and py >= 0 and py < size.y:
 			var color = img.get_pixel(px, py)
 			print("Clicked color:", color.r8, ",", color.g8, ",", color.b8)
-			$"../Area3D/Sprite3D".highlight_by_color(color);
+			$"../Map/Area3D/Sprite3D".highlight_by_color(color);
+			var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
+			if (p):
+				print(p.name);
+				Map.map_instance.select_province(p.id);
+			else:
+				Map.map_instance.unselect_province();

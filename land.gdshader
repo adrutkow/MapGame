@@ -14,7 +14,7 @@ void vertex() {
 void fragment() {
 	vec3 normal = texture(texture_normal, UV).rgb;
 	vec3 normal_blend = mix(texture(texture_normal, UV).rgb, texture(texture_normal2, UV).rgb, 0.5);
-	
+
 	vec4 color = texture(albedo_texture, UV);
 
 	if (color.a > 0.5) {
@@ -25,7 +25,7 @@ void fragment() {
 	} else {
 		discard;
 	}
-	
+
 	//ALBEDO = c;
 	//METALLIC = metallic;
 	//ROUGHNESS = roughness;

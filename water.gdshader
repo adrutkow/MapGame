@@ -18,8 +18,8 @@ void fragment() {
 	vec2 time = (TIME * wave_direction) * time_scale;
 	vec2 time2 = (TIME * wave_direction2) * time_scale;
 	vec3 normal_blend = mix(texture(texture_normal, UV + time).rgb, texture(texture_normal2, UV + time2).rgb, 0.5);
-	
-	
+
+
 	ALBEDO = c;
 	METALLIC = metallic;
 	ROUGHNESS = roughness;

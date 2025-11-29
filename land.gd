@@ -8,9 +8,9 @@ func _ready() -> void:
 	var image_texture: ImageTexture;
 	var heatmap_image: Image;
 	var map_size: Vector2;
-	image = Image.create_empty(heatmap.get_width(), heatmap.get_height(), false, Image.FORMAT_RGBA8);
-	heatmap_image = Map.map_instance.get_heatmap_image();
 	map_size = Map.map_instance.heatmap_size;
+	image = Image.create_empty(map_size.x, map_size.y, false, Image.FORMAT_RGBA8);
+	heatmap_image = Map.map_instance.get_heatmap_image();
 
 	for y in range(0, map_size.y):
 		for x in range (0, map_size.x):
