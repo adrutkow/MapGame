@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=43 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -21,6 +21,15 @@
 [ext_resource type="Script" uid="uid://w03ck8mg66te" path="res://savefile.gd" id="14_lggff"]
 [ext_resource type="Texture2D" uid="uid://cj21y8gwic7rh" path="res://Assets/Icons/power.png" id="14_tuemg"]
 [ext_resource type="Script" uid="uid://drko2snt08yh3" path="res://ui_manager.gd" id="15_lggff"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lggff"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_s0gvp"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_lggff"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jka67"]
 
@@ -110,7 +119,6 @@ shader_parameter/c = Color(0.04, 0.04, 0.04, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lggff"]
 
 [node name="Node3D" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0126448, 0, 0.000128269)
 
 [node name="GameInstance" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0110288, -0.00527596, 0.00991535)
@@ -157,6 +165,18 @@ modulate = Color(0.270588, 1, 1, 1)
 text = "Province name
 "
 font_size = 12
+
+[node name="ProvinceConnections" type="Node3D" parent="Map/MapViews"]
+
+[node name="ProvinceConnectionLine" type="MeshInstance3D" parent="Map/MapViews/ProvinceConnections"]
+material_override = SubResource("ORMMaterial3D_lggff")
+mesh = SubResource("ImmediateMesh_s0gvp")
+skeleton = NodePath("../../../..")
+
+[node name="ProvinceCenterDot" type="MeshInstance3D" parent="Map/MapViews/ProvinceConnections"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -5.65668, 0, 1.74136)
+material_override = SubResource("ORMMaterial3D_lggff")
+mesh = SubResource("SphereMesh_lggff")
 
 [node name="Decoratives" type="Node3D" parent="Map"]
 
@@ -635,5 +655,3 @@ render_priority = 4
 text = "Province name
 "
 font_size = 16
-
-[node name="Node3D" type="Node3D" parent="."]

@@ -25,9 +25,6 @@ func _ready() -> void:
 	#generate_mapview_province_ids();
 	generate_mapview_connections();
 
-func _process(delta: float) -> void:
-	generate_mapview_connections();
-
 func get_heatmap_image() -> Image:
 	return (heatmap_image);
 	
@@ -199,26 +196,38 @@ func generate_mapview_province_ids():
 		$MapViews/ProvinceIDs.add_child(temp);
 
 func generate_mapview_connections():
+	var center: Vector2i;
+	var center2: Vector2i;
+	var temp: MeshInstance3D;
 	
-	mesh.clear_surfaces();
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED;
-	mat.albedo_color = Color.RED
 	
-	mesh.surface_begin(Mesh.PRIMITIVE_LINES);
+	for i in range(0, len(GameGlobal.province_data_list.province_list)):
+		if (len(GameGlobal.province_data_list.province_list[i].adjacencies) == 0):
+			continue;
+		center = get_province_center(i);
+		temp = $MapViews/ProvinceConnections/ProvinceCenterDot.duplicate();
+		temp.position = bitmap_vector_to_world(center) + Vector3(0, 0.05, 0);
+		$MapViews/ProvinceConnections.add_child(temp);
+		
+		for a: int in GameGlobal.province_data_list.province_list[i].adjacencies:
+			center2 = get_province_center(a);
+			add_line(bitmap_vector_to_world(center) + Vector3(0, 0.05, 0), bitmap_vector_to_world(center2) + Vector3(0, 0.05, 0))
 
+	#for i in range(0, len(GameGlobal.province_data_list.province_list)):
+	#	center = get_province_center(i);
+	#	add_line(Vector3(0, 1, 0), Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0));
 	
-	mesh.surface_set_normal(Vector3.UP);
-	mesh.surface_set_color(Color.RED)
+func add_line(start_pos: Vector3, end_pos: Vector3):
+	var temp: MeshInstance3D;
 	
-	
-	mesh.surface_add_vertex(Vector3.ZERO);
-	mesh.surface_add_vertex(Vector3(1, 1, 1));
-	mesh.surface_add_vertex(Vector3(2, 1.5, 2));
-	mesh.surface_add_vertex(Vector3(200, 30, 2));
-	
-	mesh.surface_end();
-	
-	
+	temp = $MapViews/ProvinceConnections/ProvinceConnectionLine.duplicate();
+	temp.mesh = ImmediateMesh.new()
+	temp.mesh.clear_surfaces();
+	temp.mesh.surface_begin(Mesh.PRIMITIVE_LINES);
+	temp.mesh.surface_add_vertex(start_pos)
+	temp.mesh.surface_add_vertex(end_pos);
+	temp.mesh.surface_end();
+	$MapViews/ProvinceConnections.add_child(temp);
 
 static func is_vector3_color(v: Vector3i, c: Color) -> bool:
 	return ((v.x == c.r8) and (v.y == c.g8) and (v.z == c.b8));
@@ -228,3 +237,6 @@ static func color_to_vector3i(c: Color) -> Vector3i:
 
 static func vector3i_to_color(v: Vector3i) -> Color:
 	return (Color8(v.x, v.y, v.z));
+
+static func bitmap_vector_to_world(v: Vector2i) -> Vector3:
+	return (Vector3(float(v[0]) / 100.0, 0.0, float(v[1]) / 100.0));
