@@ -110,7 +110,7 @@ id = 10
 heatmap_color = Vector3i(160, 70, 97)
 ocean_access = false
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([9, 71, 26, 27])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_4n62n"]
@@ -120,7 +120,7 @@ id = 11
 heatmap_color = Vector3i(119, 19, 74)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([10, 27, 72, 24])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_dmr86"]
@@ -270,7 +270,7 @@ id = 26
 heatmap_color = Vector3i(117, 65, 163)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([28, 10, 27])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_8nr04"]
@@ -280,7 +280,7 @@ id = 27
 heatmap_color = Vector3i(117, 65, 94)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([26, 10, 11, 72, 25])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_cbjkj"]
@@ -290,7 +290,7 @@ id = 28
 heatmap_color = Vector3i(217, 70, 97)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([65, 69, 71, 26])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_tqhvh"]
@@ -620,7 +620,7 @@ id = 61
 heatmap_color = Vector3i(242, 255, 132)
 ocean_access = false
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([60, 33, 31, 62, 64, 69])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_hsj67"]
@@ -629,8 +629,8 @@ name = "Kasana Tetoyska"
 id = 62
 heatmap_color = Vector3i(204, 187, 106)
 ocean_access = true
-river_access = false
-adjacencies = Array[int]([])
+river_access = true
+adjacencies = Array[int]([63, 31, 61, 64])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_25vot"]
@@ -645,12 +645,12 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_gvfxe"]
 script = ExtResource("1_5xjdf")
-name = "Prov64"
+name = "Beowyistock"
 id = 64
 heatmap_color = Vector3i(153, 140, 79)
 ocean_access = false
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([0, 62, 61, 65, 1])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_sfewi"]
@@ -660,7 +660,7 @@ id = 65
 heatmap_color = Vector3i(255, 216, 132)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([28, 69, 64, 1])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_4buer"]
@@ -730,7 +730,7 @@ id = 72
 heatmap_color = Vector3i(119, 19, 120)
 ocean_access = false
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([27, 11, 25, 24])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [resource]
