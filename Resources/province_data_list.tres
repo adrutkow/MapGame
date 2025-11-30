@@ -535,7 +535,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_fssoy"]
 script = ExtResource("1_5xjdf")
-name = "Pop8"
+name = "Mango Phonk"
 id = 53
 heatmap_color = Vector3i(19, 0, 239)
 ocean_access = true
@@ -545,7 +545,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_4qwdi"]
 script = ExtResource("1_5xjdf")
-name = "Prov54"
+name = "Troll face jungle"
 id = 54
 heatmap_color = Vector3i(0, 171, 239)
 ocean_access = true
@@ -555,7 +555,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_54hri"]
 script = ExtResource("1_5xjdf")
-name = "Prov55"
+name = "Jewsrael"
 id = 55
 heatmap_color = Vector3i(0, 63, 239)
 ocean_access = true
@@ -565,7 +565,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_s0oer"]
 script = ExtResource("1_5xjdf")
-name = "Prov56"
+name = "Bricky Desert"
 id = 56
 heatmap_color = Vector3i(0, 96, 24)
 ocean_access = false
@@ -585,7 +585,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_cgpg5"]
 script = ExtResource("1_5xjdf")
-name = "Prov58"
+name = "Raati"
 id = 58
 heatmap_color = Vector3i(0, 142, 35)
 ocean_access = false
@@ -665,7 +665,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_4buer"]
 script = ExtResource("1_5xjdf")
-name = "Prov66"
+name = "Rattichky"
 id = 66
 heatmap_color = Vector3i(0, 255, 33)
 ocean_access = false
@@ -675,7 +675,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_fllsi"]
 script = ExtResource("1_5xjdf")
-name = "Prov67"
+name = "Nose"
 id = 67
 heatmap_color = Vector3i(0, 196, 49)
 ocean_access = false
