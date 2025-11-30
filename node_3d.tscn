@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=44 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://w03ck8mg66te" path="res://savefile.gd" id="14_lggff"]
 [ext_resource type="Texture2D" uid="uid://cj21y8gwic7rh" path="res://Assets/Icons/power.png" id="14_tuemg"]
 [ext_resource type="Script" uid="uid://drko2snt08yh3" path="res://ui_manager.gd" id="15_lggff"]
+[ext_resource type="Script" uid="uid://cand4yd5hgw84" path="res://map_views_ui.gd" id="22_s0gvp"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lggff"]
 shading_mode = 0
@@ -648,6 +649,73 @@ layout_mode = 0
 offset_right = 187.0
 offset_bottom = 44.0
 
+[node name="MapViews" type="Control" parent="UI/Control"]
+anchors_preset = 0
+offset_left = 1725.0
+offset_top = 584.0
+offset_right = 1918.0
+offset_bottom = 1083.0
+script = ExtResource("22_s0gvp")
+
+[node name="ToggleMapViewButtons" type="Button" parent="UI/Control/MapViews"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 136.0
+offset_top = 439.0
+offset_right = 186.0
+offset_bottom = 489.0
+
+[node name="Panel" type="Panel" parent="UI/Control/MapViews/ToggleMapViewButtons"]
+layout_mode = 0
+offset_top = -264.0
+offset_right = 50.0
+offset_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/MapViews/ToggleMapViewButtons/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProvinceNamesToggle" type="Button" parent="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+text = "province
+names"
+
+[node name="ProvinceIDsToggle" type="Button" parent="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+text = "province
+ids"
+
+[node name="NationNamesToggle" type="Button" parent="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+text = "nation
+names
+"
+
+[node name="DiplomaticViewToggle" type="Button" parent="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+text = "Diplo
+"
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 5.00424, 0, 4.825)
 mesh = SubResource("CapsuleMesh_lggff")
@@ -655,3 +723,8 @@ mesh = SubResource("CapsuleMesh_lggff")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 5.00424, 0, 4.825)
 mesh = SubResource("CapsuleMesh_lggff")
+
+[connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceNamesToggle" to="UI/Control/MapViews" method="_on_province_names_toggle_pressed"]
+[connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceIDsToggle" to="UI/Control/MapViews" method="_on_province_ids_toggle_pressed"]
+[connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/NationNamesToggle" to="UI/Control/MapViews" method="_on_nation_names_toggle_pressed"]
+[connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/DiplomaticViewToggle" to="UI/Control/MapViews" method="_on_diplomatic_view_toggle_pressed"]

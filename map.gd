@@ -7,6 +7,7 @@ var heatmap_image_texture: ImageTexture;
 static var map_instance: Map;
 var heatmap_size: Vector2;
 var selected_province_id: int = -1;
+var cached_province_centers: Array[Vector2i];
 
 var mesh: ImmediateMesh;
 var mat: ORMMaterial3D;
@@ -19,13 +20,19 @@ func _enter_tree() -> void:
 	heatmap_size = heatmap.get_size();
 
 func _ready() -> void:
+	init_cache();
 	mesh = ImmediateMesh.new();
 	mat = ORMMaterial3D.new();
 	generate_mapview_nation_names();
 	generate_mapview_province_names();
-	#generate_mapview_province_ids();
+	generate_mapview_province_ids();
 	generate_mapview_connections();
-
+	generate_mapview_diplomacy();
+	
+func init_cache():
+	for i in range(0, len(GameGlobal.province_data_list.province_list)):
+		cached_province_centers.append(Vector2i(-1, -1));
+	
 func get_heatmap_image() -> Image:
 	return (heatmap_image);
 	
@@ -42,24 +49,7 @@ func get_empty_bitmap() -> BitMap:
 	output.create(heatmap.get_size());
 	return (output);
 	
-func generate_image():
-	var image: Image;
-	var n: Nation = null;
-	var c: Color;
-	var pixel_color: Color = Color.BLACK;
-	var nation_color: Color = Color.TRANSPARENT;
-	image = Image.create_empty(heatmap_image.get_width(), heatmap_image.get_height(), false, Image.FORMAT_RGBA8);
-		
-	for y in range(0, heatmap_image.get_height()):
-		for x in range(0, heatmap_image.get_width()):
-			if (pixel_color != heatmap_image.get_pixel(x, y)):
-				n = get_nation_by_heatmap_color(heatmap_image.get_pixel(x, y));
-				pixel_color = heatmap_image.get_pixel(x, y);
-			if (n):
-				c = n.nation_color;
-				c.a8 = 100;
-				image.set_pixel(x, y, c);
-	return (image);
+
 
 func get_nation_by_heatmap_color(c: Color) -> Nation:
 	var pd: ProvinceData;
@@ -157,6 +147,11 @@ func get_province_center(province_id: int):
 	var province: ProvinceData = null;
 	var c: Color;
 	var bitmap: BitMap;
+	var output: Vector2i;
+	
+	if (cached_province_centers[province_id].x != -1):
+		print("used cache")
+		return (cached_province_centers[province_id]);
 	
 	for p: ProvinceData in GameGlobal.province_data_list.province_list:
 		if (p.id == province_id):
@@ -165,13 +160,34 @@ func get_province_center(province_id: int):
 	if (not province):
 		return (null);
 	bitmap = generate_bitmap([vector3i_to_color(province.heatmap_color)]);
-	return (Utils.get_bitmap_center(bitmap));
+	output = Utils.get_bitmap_center(bitmap)
+	Map.map_instance.cached_province_centers[province_id] = output;
+	return (output);
 
 func get_nation_center(nation_id: int):
 	var bitmap: BitMap;
 	
 	bitmap = generate_bitmap([], [nation_id]);
 	return (Utils.get_bitmap_center(bitmap));
+	
+func generate_mapview_diplomacy():
+	var image: Image;
+	var n: Nation = null;
+	var c: Color;
+	var pixel_color: Color = Color.BLACK;
+	var nation_color: Color = Color.TRANSPARENT;
+	image = Image.create_empty(heatmap_image.get_width(), heatmap_image.get_height(), false, Image.FORMAT_RGBA8);
+		
+	for y in range(0, heatmap_image.get_height()):
+		for x in range(0, heatmap_image.get_width()):
+			if (pixel_color != heatmap_image.get_pixel(x, y)):
+				n = get_nation_by_heatmap_color(heatmap_image.get_pixel(x, y));
+				pixel_color = heatmap_image.get_pixel(x, y);
+			if (n):
+				c = n.nation_color;
+				c.a8 = 100;
+				image.set_pixel(x, y, c);
+	$MapViews/Nations.texture = ImageTexture.create_from_image(image);
 	
 func generate_mapview_nation_names():
 	var center: Vector2;

@@ -50,13 +50,6 @@ func get_bitmap_center(bitmap: BitMap) -> Vector2i:
 	var x: int;
 	var y: int;
 	
-	print ("up: " + str(up));
-	print ("down: " + str(down));
-	
-	print ("left: " + str(left));
-	print ("right: " + str(right));
-	
-	
 	if (up == -1 or down == -1 or left == -1 or right == -1):
 		print("FAKE")
 		return (v);

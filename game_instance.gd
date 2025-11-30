@@ -31,6 +31,22 @@ func create_nations():
 		temp = Nation.new();
 		temp.set_values_from_nation_data(n);
 		nations.append(temp);
+		
+	temp = Nation.new();
+	temp.nation_name = "Biters";
+	temp.nation_color = Color.FIREBRICK;
+	temp.owned_provinces.append(69);
+	temp.owned_provinces.append(71);
+	
+	nations.append(temp);
+	
+	temp = Nation.new();
+	temp.nation_name = "Rats";
+	temp.nation_color = Color.DIM_GRAY;
+	temp.owned_provinces.append(58);
+	temp.owned_provinces.append(66);
+	
+	nations.append(temp);
 
 func create_provinces():
 	var temp: ProvinceState;

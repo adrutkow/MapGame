@@ -2,22 +2,6 @@ extends Sprite3D
 
 var current_i: int = 250;
 
-func _ready() -> void:
-	pass;
-	
-func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed("right_click"):
-		#var list: Array[int];
-		#for p: ProvinceData in Map.map_instance.province_data_list.list:
-			#if (p.ocean_access):
-				#list.append(p.id);
-		#highlight_by_id(list);
-	if Input.is_action_just_pressed("right_click"):
-		var image: Image;
-		
-		image = Map.map_instance.generate_image();
-		$"../../MapViews/Nations".texture = ImageTexture.create_from_image(image);
-	
 func get_highlight_sprite() -> Sprite3D:
 	return ($"../../HighlightedProvince/Highlight");
 	
