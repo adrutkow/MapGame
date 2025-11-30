@@ -22,6 +22,7 @@ func _ready() -> void:
 	mesh = ImmediateMesh.new();
 	mat = ORMMaterial3D.new();
 	generate_mapview_nation_names();
+	generate_mapview_province_names();
 	#generate_mapview_province_ids();
 	generate_mapview_connections();
 
@@ -194,6 +195,17 @@ func generate_mapview_province_ids():
 		temp.position = Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0);
 		temp.text = str(i);
 		$MapViews/ProvinceIDs.add_child(temp);
+
+func generate_mapview_province_names():
+	var center: Vector2i;
+	var temp: Label3D;
+	
+	for i in range(0, len(GameGlobal.province_data_list.province_list)):
+		center = get_province_center(i);
+		temp = $MapViews/ProvinceNames/ProvinceNameLabel.duplicate();
+		temp.position = Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0);
+		temp.text = GameGlobal.province_data_list.province_list[i].name;
+		$MapViews/ProvinceNames.add_child(temp);
 
 func generate_mapview_connections():
 	var center: Vector2i;

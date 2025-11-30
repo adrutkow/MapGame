@@ -144,6 +144,14 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.5058
 
 [node name="ProvinceNames" type="Node3D" parent="Map/MapViews"]
 
+[node name="ProvinceNameLabel" type="Label3D" parent="Map/MapViews/ProvinceNames"]
+billboard = 1
+no_depth_test = true
+render_priority = 4
+text = "Province name
+"
+font_size = 10
+
 [node name="NationNames" type="Node3D" parent="Map/MapViews"]
 
 [node name="NationNameLabel" type="Label3D" parent="Map/MapViews/NationNames"]
@@ -647,11 +655,3 @@ mesh = SubResource("CapsuleMesh_lggff")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 5.00424, 0, 4.825)
 mesh = SubResource("CapsuleMesh_lggff")
-
-[node name="Label3D" type="Label3D" parent="."]
-billboard = 1
-no_depth_test = true
-render_priority = 4
-text = "Province name
-"
-font_size = 16
