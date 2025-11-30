@@ -8,6 +8,10 @@ static var map_instance: Map;
 var heatmap_size: Vector2;
 var selected_province_id: int = -1;
 
+var mesh: ImmediateMesh;
+var mat: ORMMaterial3D;
+
+
 func _enter_tree() -> void:
 	Map.map_instance = self;
 	heatmap_image = heatmap.get_image();
@@ -15,8 +19,14 @@ func _enter_tree() -> void:
 	heatmap_size = heatmap.get_size();
 
 func _ready() -> void:
+	mesh = ImmediateMesh.new();
+	mat = ORMMaterial3D.new();
 	generate_mapview_nation_names();
-	generate_mapview_province_ids();
+	#generate_mapview_province_ids();
+	generate_mapview_connections();
+
+func _process(delta: float) -> void:
+	generate_mapview_connections();
 
 func get_heatmap_image() -> Image:
 	return (heatmap_image);
@@ -187,6 +197,28 @@ func generate_mapview_province_ids():
 		temp.position = Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0);
 		temp.text = str(i);
 		$MapViews/ProvinceIDs.add_child(temp);
+
+func generate_mapview_connections():
+	
+	mesh.clear_surfaces();
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED;
+	mat.albedo_color = Color.RED
+	
+	mesh.surface_begin(Mesh.PRIMITIVE_LINES);
+
+	
+	mesh.surface_set_normal(Vector3.UP);
+	mesh.surface_set_color(Color.RED)
+	
+	
+	mesh.surface_add_vertex(Vector3.ZERO);
+	mesh.surface_add_vertex(Vector3(1, 1, 1));
+	mesh.surface_add_vertex(Vector3(2, 1.5, 2));
+	mesh.surface_add_vertex(Vector3(200, 30, 2));
+	
+	mesh.surface_end();
+	
+	
 
 static func is_vector3_color(v: Vector3i, c: Color) -> bool:
 	return ((v.x == c.r8) and (v.y == c.g8) and (v.z == c.b8));

@@ -110,6 +110,7 @@ shader_parameter/c = Color(0.04, 0.04, 0.04, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lggff"]
 
 [node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0126448, 0, 0.000128269)
 
 [node name="GameInstance" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0110288, -0.00527596, 0.00991535)
