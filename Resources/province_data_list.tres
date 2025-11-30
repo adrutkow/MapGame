@@ -125,7 +125,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_dmr86"]
 script = ExtResource("1_5xjdf")
-name = "Slav1"
+name = "Ava's demonopoulos"
 id = 12
 heatmap_color = Vector3i(178, 0, 255)
 ocean_access = true
@@ -135,7 +135,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_iri1x"]
 script = ExtResource("1_5xjdf")
-name = "Slav2"
+name = "Vegeta Leandom"
 id = 13
 heatmap_color = Vector3i(141, 0, 206)
 ocean_access = true
@@ -145,7 +145,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_yj6a3"]
 script = ExtResource("1_5xjdf")
-name = "Slav3"
+name = "Gokupolis"
 id = 14
 heatmap_color = Vector3i(141, 0, 132)
 ocean_access = true
@@ -155,7 +155,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_fkrdb"]
 script = ExtResource("1_5xjdf")
-name = "Slav4"
+name = "Luffy Beach"
 id = 15
 heatmap_color = Vector3i(150, 46, 121)
 ocean_access = true
@@ -165,7 +165,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_o6d5i"]
 script = ExtResource("1_5xjdf")
-name = "Slav5"
+name = "Rosa Avenue"
 id = 16
 heatmap_color = Vector3i(186, 0, 132)
 ocean_access = true
@@ -175,7 +175,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_5ju8n"]
 script = ExtResource("1_5xjdf")
-name = "Slav6"
+name = "Shidou Ryusei Clifs"
 id = 17
 heatmap_color = Vector3i(183, 56, 147)
 ocean_access = true
@@ -185,7 +185,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_mn1cj"]
 script = ExtResource("1_5xjdf")
-name = "Slav7"
+name = "Latina Central"
 id = 18
 heatmap_color = Vector3i(112, 34, 90)
 ocean_access = true
@@ -195,7 +195,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_fr4rt"]
 script = ExtResource("1_5xjdf")
-name = "Slav8"
+name = "Konstantinopolis"
 id = 19
 heatmap_color = Vector3i(120, 0, 132)
 ocean_access = true
@@ -205,7 +205,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_wiah8"]
 script = ExtResource("1_5xjdf")
-name = "Slav9"
+name = "Dwanos Factory"
 id = 20
 heatmap_color = Vector3i(76, 23, 61)
 ocean_access = true
@@ -215,7 +215,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_fbjbr"]
 script = ExtResource("1_5xjdf")
-name = "Slav10"
+name = "Choso Square"
 id = 21
 heatmap_color = Vector3i(76, 50, 167)
 ocean_access = true
@@ -225,7 +225,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_n0m4l"]
 script = ExtResource("1_5xjdf")
-name = "Slav11"
+name = "Furry Porn HQ"
 id = 22
 heatmap_color = Vector3i(112, 97, 165)
 ocean_access = true
@@ -235,7 +235,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_e7ef1"]
 script = ExtResource("1_5xjdf")
-name = "Slav12"
+name = "Basileus of Aedinfell"
 id = 23
 heatmap_color = Vector3i(139, 0, 204)
 ocean_access = true
@@ -245,7 +245,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_6f4rs"]
 script = ExtResource("1_5xjdf")
-name = "Slav13"
+name = "Rape Speed"
 id = 24
 heatmap_color = Vector3i(76, 50, 69)
 ocean_access = false
@@ -255,7 +255,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_vjjhj"]
 script = ExtResource("1_5xjdf")
-name = "Slav14"
+name = "Dr Pepper Biolabs"
 id = 25
 heatmap_color = Vector3i(119, 19, 165)
 ocean_access = true
@@ -295,7 +295,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_tqhvh"]
 script = ExtResource("1_5xjdf")
-name = "Dubstep0"
+name = "Hamptoria"
 id = 29
 heatmap_color = Vector3i(92, 85, 193)
 ocean_access = true
@@ -305,7 +305,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_v8mah"]
 script = ExtResource("1_5xjdf")
-name = "Dubstep1"
+name = "New Duster"
 id = 30
 heatmap_color = Vector3i(109, 102, 196)
 ocean_access = true
@@ -315,7 +315,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_o6khg"]
 script = ExtResource("1_5xjdf")
-name = "Dubstep2"
+name = "Library Of Cat"
 id = 31
 heatmap_color = Vector3i(132, 255, 232)
 ocean_access = true
@@ -325,7 +325,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_p7xci"]
 script = ExtResource("1_5xjdf")
-name = "Dubstep3"
+name = "Dust Breaker"
 id = 32
 heatmap_color = Vector3i(102, 144, 196)
 ocean_access = true
@@ -335,7 +335,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_ulddm"]
 script = ExtResource("1_5xjdf")
-name = "Dubstep4"
+name = "Pea"
 id = 33
 heatmap_color = Vector3i(102, 196, 179)
 ocean_access = true
@@ -595,7 +595,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_2onpy"]
 script = ExtResource("1_5xjdf")
-name = "Prov59"
+name = "Dubstep"
 id = 59
 heatmap_color = Vector3i(102, 177, 196)
 ocean_access = false
@@ -605,7 +605,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_adkdr"]
 script = ExtResource("1_5xjdf")
-name = "Prov60"
+name = "Cat"
 id = 60
 heatmap_color = Vector3i(132, 255, 199)
 ocean_access = false
@@ -615,7 +615,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_koinb"]
 script = ExtResource("1_5xjdf")
-name = "Prov61"
+name = "Griddy Gear"
 id = 61
 heatmap_color = Vector3i(242, 255, 132)
 ocean_access = false
@@ -625,7 +625,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_hsj67"]
 script = ExtResource("1_5xjdf")
-name = "Prov62"
+name = "Kasana Tetoyska"
 id = 62
 heatmap_color = Vector3i(204, 187, 106)
 ocean_access = true
@@ -635,7 +635,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_25vot"]
 script = ExtResource("1_5xjdf")
-name = "Prov63"
+name = "Hatsune Mikuowa"
 id = 63
 heatmap_color = Vector3i(255, 234, 132)
 ocean_access = true
@@ -655,7 +655,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_sfewi"]
 script = ExtResource("1_5xjdf")
-name = "Prov65"
+name = "Rue Peter Benoit"
 id = 65
 heatmap_color = Vector3i(255, 216, 132)
 ocean_access = true
@@ -685,7 +685,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_sv5x6"]
 script = ExtResource("1_5xjdf")
-name = "Prov68"
+name = "Sabaton"
 id = 68
 heatmap_color = Vector3i(142, 255, 132)
 ocean_access = false
@@ -695,7 +695,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_lat8t"]
 script = ExtResource("1_5xjdf")
-name = "Prov69"
+name = "Blaz Black"
 id = 69
 heatmap_color = Vector3i(199, 255, 132)
 ocean_access = false
@@ -705,7 +705,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_73022"]
 script = ExtResource("1_5xjdf")
-name = "Prov70"
+name = "Goy"
 id = 70
 heatmap_color = Vector3i(255, 155, 211)
 ocean_access = false
@@ -715,7 +715,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_0ekr8"]
 script = ExtResource("1_5xjdf")
-name = "Prov71"
+name = "Rice Province"
 id = 71
 heatmap_color = Vector3i(217, 70, 213)
 ocean_access = false
@@ -725,7 +725,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_jna34"]
 script = ExtResource("1_5xjdf")
-name = "Prov72"
+name = "Gogreek"
 id = 72
 heatmap_color = Vector3i(119, 19, 120)
 ocean_access = false
