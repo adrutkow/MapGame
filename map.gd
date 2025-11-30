@@ -114,6 +114,8 @@ func select_province(province_id: int):
 	$"../UI/Control/Province/RichTextLabel3".text = "river access: " + str(get_province_data_by_id(province_id).river_access);
 	$"../UI/Control/Province/ProvinceID".text = str(get_province_data_by_id(province_id).id);
 		
+	return;
+		
 	var center: Vector2i;
 	
 	center = get_province_center(province_id);
