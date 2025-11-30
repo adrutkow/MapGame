@@ -29,6 +29,18 @@ func get_rightmost_bit(bitmap: BitMap) -> int:
 				return (x);
 	return (-1);
 
+func get_bitmap_top_left(bitmap: BitMap) -> Vector2i:
+	var v: Vector2i = Vector2i(-1, -1);
+	var up: int = get_highest_bit(bitmap);
+	var left: int = get_leftmost_bit(bitmap);
+	
+	if (up == -1 or left == -1):
+		return (v);
+		
+	v = Vector2i(left, up);
+	
+	return (v);
+
 func get_bitmap_center(bitmap: BitMap) -> Vector2i:
 	var v: Vector2i = Vector2i(-1, -1);
 	var up: int = get_highest_bit(bitmap);
@@ -38,12 +50,23 @@ func get_bitmap_center(bitmap: BitMap) -> Vector2i:
 	var x: int;
 	var y: int;
 	
+	print ("up: " + str(up));
+	print ("down: " + str(down));
+	
+	print ("left: " + str(left));
+	print ("right: " + str(right));
+	
+	
 	if (up == -1 or down == -1 or left == -1 or right == -1):
+		print("FAKE")
 		return (v);
 		
-	x = abs(left - right) / 2;
-	y = abs(up - down) / 2;
-	v = Vector2i(x, y);
+	x = abs(right - left) / 2;
+	y = abs(down - up) / 2;
+	v = Vector2i(-x, -y);
 	
-	return (v);
+	var top_left = Vector2i(left, up);
+	var offset = Vector2i(x, y);
+	
+	return (top_left + offset);
 	

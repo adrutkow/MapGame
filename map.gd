@@ -105,11 +105,27 @@ func select_province(province_id: int):
 	var center: Vector2i;
 	
 	center = get_province_center(province_id);
-	$"../MeshInstance3D".position = Vector3(center.x / 10, 0, center.y / 10)
-	
+	var top_left = get_province_top_left(province_id);
+	$"../MeshInstance3D".global_position = Vector3(center.x / 100, 0, center.y / 100);
+	$"../MeshInstance3D".position = Vector3(float(top_left[0]) / 100.0, 0.0, float(top_left[1]) / 100.0)
+	$"../MeshInstance3D2".position = Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0)
 		
 func unselect_province():
 	$"../UI/Control/Province".visible = false;
+
+func get_province_top_left(province_id: int):
+	var province: ProvinceData = null;
+	var c: Color;
+	var bitmap: BitMap;
+	
+	for p: ProvinceData in GameGlobal.province_data_list.province_list:
+		if (p.id == province_id):
+			province = p;
+			break;
+	if (not province):
+		return (null);
+	bitmap = generate_bitmap([vector3i_to_color(province.heatmap_color)]);
+	return (Utils.get_bitmap_top_left(bitmap));
 
 func get_province_center(province_id: int):
 	var province: ProvinceData = null;
