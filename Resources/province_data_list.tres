@@ -460,7 +460,7 @@ id = 45
 heatmap_color = Vector3i(47, 0, 0)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([47, 46])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_cyugy"]
@@ -470,7 +470,7 @@ id = 46
 heatmap_color = Vector3i(78, 0, 0)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([45, 47, 50, 49, 48])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_0hxd7"]
@@ -480,7 +480,7 @@ id = 47
 heatmap_color = Vector3i(62, 0, 0)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([45, 46, 50])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_3dekt"]
@@ -490,7 +490,7 @@ id = 48
 heatmap_color = Vector3i(105, 0, 0)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([46, 49, 51])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_m15rk"]
@@ -500,7 +500,7 @@ id = 49
 heatmap_color = Vector3i(167, 0, 0)
 ocean_access = false
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([50, 52, 48, 46])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_1r58n"]
@@ -510,7 +510,7 @@ id = 50
 heatmap_color = Vector3i(194, 0, 0)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([54, 52, 49, 46, 47])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_6kjpg"]
@@ -520,7 +520,7 @@ id = 51
 heatmap_color = Vector3i(132, 0, 0)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([48, 52, 53])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_aaobr"]
@@ -540,7 +540,7 @@ id = 53
 heatmap_color = Vector3i(19, 0, 239)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([51, 52, 55, 54])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_4qwdi"]
@@ -640,7 +640,7 @@ id = 63
 heatmap_color = Vector3i(255, 234, 132)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([])
+adjacencies = Array[int]([62])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_gvfxe"]
