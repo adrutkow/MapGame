@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProvinceDataList" load_steps=57 format=3 uid="uid://dnupc0m281r37"]
+[gd_resource type="Resource" script_class="ProvinceDataList" load_steps=75 format=3 uid="uid://dnupc0m281r37"]
 
 [ext_resource type="Script" uid="uid://bbkxm05urcupl" path="res://Scripts/Resources/province_data.gd" id="1_5xjdf"]
 [ext_resource type="Script" uid="uid://vkiq4aeeqhh0" path="res://Scripts/Resources/province_data_list.gd" id="2_ev0bm"]
@@ -543,7 +543,187 @@ river_access = false
 adjacencies = Array[int]([])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
+[sub_resource type="Resource" id="Resource_4qwdi"]
+script = ExtResource("1_5xjdf")
+name = "Prov54"
+id = 54
+heatmap_color = Vector3i(0, 171, 239)
+ocean_access = true
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_54hri"]
+script = ExtResource("1_5xjdf")
+name = "Prov55"
+id = 55
+heatmap_color = Vector3i(0, 63, 239)
+ocean_access = true
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_s0oer"]
+script = ExtResource("1_5xjdf")
+name = "Prov56"
+id = 56
+heatmap_color = Vector3i(0, 96, 24)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_ade36"]
+script = ExtResource("1_5xjdf")
+name = "Prov57"
+id = 57
+heatmap_color = Vector3i(0, 38, 9)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_cgpg5"]
+script = ExtResource("1_5xjdf")
+name = "Prov58"
+id = 58
+heatmap_color = Vector3i(0, 142, 35)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_2onpy"]
+script = ExtResource("1_5xjdf")
+name = "Prov59"
+id = 59
+heatmap_color = Vector3i(102, 177, 196)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_adkdr"]
+script = ExtResource("1_5xjdf")
+name = "Prov60"
+id = 60
+heatmap_color = Vector3i(132, 255, 199)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_koinb"]
+script = ExtResource("1_5xjdf")
+name = "Prov61"
+id = 61
+heatmap_color = Vector3i(242, 255, 132)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_hsj67"]
+script = ExtResource("1_5xjdf")
+name = "Prov62"
+id = 62
+heatmap_color = Vector3i(204, 187, 106)
+ocean_access = true
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_25vot"]
+script = ExtResource("1_5xjdf")
+name = "Prov63"
+id = 63
+heatmap_color = Vector3i(255, 234, 132)
+ocean_access = true
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_gvfxe"]
+script = ExtResource("1_5xjdf")
+name = "Prov64"
+id = 64
+heatmap_color = Vector3i(153, 140, 79)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_sfewi"]
+script = ExtResource("1_5xjdf")
+name = "Prov65"
+id = 65
+heatmap_color = Vector3i(255, 216, 132)
+ocean_access = true
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_4buer"]
+script = ExtResource("1_5xjdf")
+name = "Prov66"
+id = 66
+heatmap_color = Vector3i(0, 255, 33)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_fllsi"]
+script = ExtResource("1_5xjdf")
+name = "Prov67"
+id = 67
+heatmap_color = Vector3i(0, 196, 49)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_sv5x6"]
+script = ExtResource("1_5xjdf")
+name = "Prov68"
+id = 68
+heatmap_color = Vector3i(142, 255, 132)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_lat8t"]
+script = ExtResource("1_5xjdf")
+name = "Prov69"
+id = 69
+heatmap_color = Vector3i(199, 255, 132)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_73022"]
+script = ExtResource("1_5xjdf")
+name = "Prov70"
+id = 70
+heatmap_color = Vector3i(255, 155, 211)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
+[sub_resource type="Resource" id="Resource_0ekr8"]
+script = ExtResource("1_5xjdf")
+name = "Prov71"
+id = 71
+heatmap_color = Vector3i(217, 70, 213)
+ocean_access = false
+river_access = false
+adjacencies = Array[int]([])
+metadata/_custom_type_script = "uid://bbkxm05urcupl"
+
 [resource]
 script = ExtResource("2_ev0bm")
-province_list = Array[ExtResource("1_5xjdf")]([SubResource("Resource_5xjdf"), SubResource("Resource_ev0bm"), SubResource("Resource_76bj8"), SubResource("Resource_8wpxf"), SubResource("Resource_rdxpw"), SubResource("Resource_sy08r"), SubResource("Resource_2xyxl"), SubResource("Resource_j1j1i"), SubResource("Resource_oipi1"), SubResource("Resource_1sayy"), SubResource("Resource_eu8jg"), SubResource("Resource_4n62n"), SubResource("Resource_dmr86"), SubResource("Resource_iri1x"), SubResource("Resource_yj6a3"), SubResource("Resource_fkrdb"), SubResource("Resource_o6d5i"), SubResource("Resource_5ju8n"), SubResource("Resource_mn1cj"), SubResource("Resource_fr4rt"), SubResource("Resource_wiah8"), SubResource("Resource_fbjbr"), SubResource("Resource_n0m4l"), SubResource("Resource_e7ef1"), SubResource("Resource_6f4rs"), SubResource("Resource_vjjhj"), SubResource("Resource_fv74l"), SubResource("Resource_8nr04"), SubResource("Resource_cbjkj"), SubResource("Resource_tqhvh"), SubResource("Resource_v8mah"), SubResource("Resource_o6khg"), SubResource("Resource_p7xci"), SubResource("Resource_ulddm"), SubResource("Resource_vhrtp"), SubResource("Resource_bb0ia"), SubResource("Resource_ibhp7"), SubResource("Resource_cv42e"), SubResource("Resource_120ip"), SubResource("Resource_lyblu"), SubResource("Resource_yhwk6"), SubResource("Resource_fsdda"), SubResource("Resource_7doyi"), SubResource("Resource_wpr4j"), SubResource("Resource_k3cte"), SubResource("Resource_fjkdl"), SubResource("Resource_cyugy"), SubResource("Resource_0hxd7"), SubResource("Resource_3dekt"), SubResource("Resource_m15rk"), SubResource("Resource_1r58n"), SubResource("Resource_6kjpg"), SubResource("Resource_aaobr"), SubResource("Resource_fssoy")])
+province_list = Array[ExtResource("1_5xjdf")]([SubResource("Resource_5xjdf"), SubResource("Resource_ev0bm"), SubResource("Resource_76bj8"), SubResource("Resource_8wpxf"), SubResource("Resource_rdxpw"), SubResource("Resource_sy08r"), SubResource("Resource_2xyxl"), SubResource("Resource_j1j1i"), SubResource("Resource_oipi1"), SubResource("Resource_1sayy"), SubResource("Resource_eu8jg"), SubResource("Resource_4n62n"), SubResource("Resource_dmr86"), SubResource("Resource_iri1x"), SubResource("Resource_yj6a3"), SubResource("Resource_fkrdb"), SubResource("Resource_o6d5i"), SubResource("Resource_5ju8n"), SubResource("Resource_mn1cj"), SubResource("Resource_fr4rt"), SubResource("Resource_wiah8"), SubResource("Resource_fbjbr"), SubResource("Resource_n0m4l"), SubResource("Resource_e7ef1"), SubResource("Resource_6f4rs"), SubResource("Resource_vjjhj"), SubResource("Resource_fv74l"), SubResource("Resource_8nr04"), SubResource("Resource_cbjkj"), SubResource("Resource_tqhvh"), SubResource("Resource_v8mah"), SubResource("Resource_o6khg"), SubResource("Resource_p7xci"), SubResource("Resource_ulddm"), SubResource("Resource_vhrtp"), SubResource("Resource_bb0ia"), SubResource("Resource_ibhp7"), SubResource("Resource_cv42e"), SubResource("Resource_120ip"), SubResource("Resource_lyblu"), SubResource("Resource_yhwk6"), SubResource("Resource_fsdda"), SubResource("Resource_7doyi"), SubResource("Resource_wpr4j"), SubResource("Resource_k3cte"), SubResource("Resource_fjkdl"), SubResource("Resource_cyugy"), SubResource("Resource_0hxd7"), SubResource("Resource_3dekt"), SubResource("Resource_m15rk"), SubResource("Resource_1r58n"), SubResource("Resource_6kjpg"), SubResource("Resource_aaobr"), SubResource("Resource_fssoy"), SubResource("Resource_4qwdi"), SubResource("Resource_54hri"), SubResource("Resource_s0oer"), SubResource("Resource_ade36"), SubResource("Resource_cgpg5"), SubResource("Resource_2onpy"), SubResource("Resource_adkdr"), SubResource("Resource_koinb"), SubResource("Resource_hsj67"), SubResource("Resource_25vot"), SubResource("Resource_gvfxe"), SubResource("Resource_sfewi"), SubResource("Resource_4buer"), SubResource("Resource_fllsi"), SubResource("Resource_sv5x6"), SubResource("Resource_lat8t"), SubResource("Resource_73022"), SubResource("Resource_0ekr8")])
 metadata/_custom_type_script = "uid://vkiq4aeeqhh0"

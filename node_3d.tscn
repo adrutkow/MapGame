@@ -1,26 +1,26 @@
 [gd_scene load_steps=40 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
-[ext_resource type="Script" path="res://sprite_3d.gd" id="2_noarx"]
-[ext_resource type="Script" path="res://camera_3d.gd" id="3_a0tk4"]
+[ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
+[ext_resource type="Script" uid="uid://x07fpdyp3ula" path="res://camera_3d.gd" id="3_a0tk4"]
 [ext_resource type="Texture2D" uid="uid://bwkuon3twx3om" path="res://test5.png" id="3_ealrb"]
 [ext_resource type="Texture2D" uid="uid://bfj2c750ck3do" path="res://outlinetest2.png" id="3_i5arm"]
-[ext_resource type="Shader" path="res://black_transparent.gdshader" id="3_jka67"]
-[ext_resource type="Shader" path="res://land.gdshader" id="4_tcnuu"]
+[ext_resource type="Shader" uid="uid://dobsawhhyrgag" path="res://black_transparent.gdshader" id="3_jka67"]
+[ext_resource type="Shader" uid="uid://c2dxkamyikwk7" path="res://land.gdshader" id="4_tcnuu"]
 [ext_resource type="Material" uid="uid://d4nvr5op0ya5v" path="res://Assets/Materials/land.tres" id="4_tuemg"]
-[ext_resource type="Script" path="res://land.gd" id="5_3v7ru"]
+[ext_resource type="Script" uid="uid://f4qad80giudw" path="res://land.gd" id="5_3v7ru"]
 [ext_resource type="Texture2D" uid="uid://bn2a3apdp0b2r" path="res://test34.png" id="5_i0g27"]
-[ext_resource type="Shader" path="res://water.gdshader" id="7_wc5p8"]
-[ext_resource type="Script" path="res://game_instance.gd" id="8_jsk3o"]
+[ext_resource type="Shader" uid="uid://cph51f8vu2m17" path="res://water.gdshader" id="7_wc5p8"]
+[ext_resource type="Script" uid="uid://b70riu7gbpbvf" path="res://game_instance.gd" id="8_jsk3o"]
 [ext_resource type="Texture2D" uid="uid://dv600tyxh1qhh" path="res://Screenshot 2025-11-15 042842.png" id="9_4arys"]
 [ext_resource type="Texture2D" uid="uid://bdxv7tkkhj8yq" path="res://Assets/Icons/science.png" id="10_6iypd"]
 [ext_resource type="Texture2D" uid="uid://djkn6fam336ky" path="res://Assets/Icons/culture.png" id="11_wlxy5"]
 [ext_resource type="Texture2D" uid="uid://bxtex6og3mkq3" path="res://Assets/Icons/gold.png" id="12_3v7ru"]
-[ext_resource type="Script" path="res://client.gd" id="13_jsnrv"]
+[ext_resource type="Script" uid="uid://bvbh4bnra8kns" path="res://client.gd" id="13_jsnrv"]
 [ext_resource type="Texture2D" uid="uid://cvno6vxc7t0wl" path="res://Assets/Icons/happiness.png" id="13_tcnuu"]
-[ext_resource type="Script" path="res://savefile.gd" id="14_lggff"]
+[ext_resource type="Script" uid="uid://w03ck8mg66te" path="res://savefile.gd" id="14_lggff"]
 [ext_resource type="Texture2D" uid="uid://cj21y8gwic7rh" path="res://Assets/Icons/power.png" id="14_tuemg"]
-[ext_resource type="Script" path="res://ui_manager.gd" id="15_lggff"]
+[ext_resource type="Script" uid="uid://drko2snt08yh3" path="res://ui_manager.gd" id="15_lggff"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jka67"]
 
@@ -111,6 +111,13 @@ shader_parameter/c = Color(0.04, 0.04, 0.04, 1)
 
 [node name="Node3D" type="Node3D"]
 
+[node name="GameInstance" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0110288, -0.00527596, 0.00991535)
+script = ExtResource("8_jsk3o")
+
+[node name="Savefile" type="Node3D" parent="GameInstance"]
+script = ExtResource("14_lggff")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 2.53952, 5.93109, 6.41656)
 fov = 30.0
@@ -125,6 +132,30 @@ heatmap = ExtResource("5_i0g27")
 
 [node name="Nations" type="Sprite3D" parent="Map/MapViews"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.50582, 0.0260158, 2.41655)
+
+[node name="ProvinceNames" type="Node3D" parent="Map/MapViews"]
+
+[node name="NationNames" type="Node3D" parent="Map/MapViews"]
+
+[node name="NationNameLabel" type="Label3D" parent="Map/MapViews/NationNames"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46663, 0, 0)
+billboard = 1
+no_depth_test = true
+render_priority = 10
+text = "Province name
+"
+font_size = 24
+
+[node name="ProvinceIDs" type="Node3D" parent="Map/MapViews"]
+
+[node name="ProvinceIDLabel" type="Label3D" parent="Map/MapViews/ProvinceIDs"]
+billboard = 1
+no_depth_test = true
+render_priority = 4
+modulate = Color(0.270588, 1, 1, 1)
+text = "Province name
+"
+font_size = 12
 
 [node name="Decoratives" type="Node3D" parent="Map"]
 
@@ -234,13 +265,6 @@ material_override = SubResource("ShaderMaterial_jka67")
 [node name="HighlightShadow" type="Sprite3D" parent="Map/HighlightedProvince/Highlight"]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_wc5p8")
-
-[node name="GameInstance" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0110288, -0.00527596, 0.00991535)
-script = ExtResource("8_jsk3o")
-
-[node name="Savefile" type="Node3D" parent="GameInstance"]
-script = ExtResource("14_lggff")
 
 [node name="Client" type="Node3D" parent="."]
 script = ExtResource("13_jsnrv")
@@ -601,3 +625,13 @@ mesh = SubResource("CapsuleMesh_lggff")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 5.00424, 0, 4.825)
 mesh = SubResource("CapsuleMesh_lggff")
+
+[node name="Label3D" type="Label3D" parent="."]
+billboard = 1
+no_depth_test = true
+render_priority = 4
+text = "Province name
+"
+font_size = 16
+
+[node name="Node3D" type="Node3D" parent="."]

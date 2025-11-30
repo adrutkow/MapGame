@@ -14,6 +14,10 @@ func _enter_tree() -> void:
 	heatmap_image_texture = ImageTexture.create_from_image(heatmap_image);
 	heatmap_size = heatmap.get_size();
 
+func _ready() -> void:
+	generate_mapview_nation_names();
+	generate_mapview_province_ids();
+
 func get_heatmap_image() -> Image:
 	return (heatmap_image);
 	
@@ -66,9 +70,17 @@ func generate_bitmap(colors: Array[Color] = [], nations: Array[int] = []):
 	var bitmap: BitMap = get_empty_bitmap();
 	var temp_c: Color;
 	var valid_colors: Array[Color];
+	var nation: Nation;
+	var p: ProvinceData;
 	
 	for c: Color in colors:
 		valid_colors.append(c);
+		
+	for i: int in nations:
+		nation = GameInstance.game_instance.get_nations()[i];
+		for j: int in nation.owned_provinces:
+			p = GameGlobal.province_data_list.province_list[j];
+			valid_colors.append(vector3i_to_color(p.heatmap_color));
 		
 	for y in range(0, heatmap_image.get_height()):
 		for x in range(0, heatmap_image.get_width()):
@@ -109,6 +121,10 @@ func select_province(province_id: int):
 	$"../MeshInstance3D".global_position = Vector3(center.x / 100, 0, center.y / 100);
 	$"../MeshInstance3D".position = Vector3(float(top_left[0]) / 100.0, 0.0, float(top_left[1]) / 100.0)
 	$"../MeshInstance3D2".position = Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0)
+	var temp: Label3D = $"../Label3D".duplicate();
+	temp.text = GameGlobal.province_data_list.province_list[province_id].name;
+	temp.position = Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0);
+	$"../Node3D".add_child(temp);
 		
 func unselect_province():
 	$"../UI/Control/Province".visible = false;
@@ -141,6 +157,34 @@ func get_province_center(province_id: int):
 	bitmap = generate_bitmap([vector3i_to_color(province.heatmap_color)]);
 	return (Utils.get_bitmap_center(bitmap));
 
+func get_nation_center(nation_id: int):
+	var bitmap: BitMap;
+	
+	bitmap = generate_bitmap([], [nation_id]);
+	return (Utils.get_bitmap_center(bitmap));
+	
+func generate_mapview_nation_names():
+	var center: Vector2;
+	var temp: Label3D;
+	
+	for n: Nation in GameInstance.game_instance.get_nations():
+		center = get_nation_center(n.get_nation_id());
+		temp = $MapViews/NationNames/NationNameLabel.duplicate();
+		temp.modulate = n.nation_color;
+		temp.position = Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0);
+		temp.text = n.nation_name;
+		$MapViews/NationNames.add_child(temp);
+	
+func generate_mapview_province_ids():
+	var center: Vector2i;
+	var temp: Label3D;
+	
+	for i in range(0, len(GameGlobal.province_data_list.province_list)):
+		center = get_province_center(i);
+		temp = $MapViews/ProvinceIDs/ProvinceIDLabel.duplicate();
+		temp.position = Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0);
+		temp.text = str(i);
+		$MapViews/ProvinceIDs.add_child(temp);
 
 static func is_vector3_color(v: Vector3i, c: Color) -> bool:
 	return ((v.x == c.r8) and (v.y == c.g8) and (v.z == c.b8));

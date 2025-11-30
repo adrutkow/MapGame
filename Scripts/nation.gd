@@ -24,3 +24,14 @@ func set_values_from_nation_data(nation_data: NationData):
 
 func get_owned_provinces_id() -> Array[int]:
 	return (owned_provinces);
+
+func get_nation_id() -> int:
+	var nation_list: Array[Nation];
+	
+	if (GameInstance.game_instance):
+		nation_list = GameInstance.game_instance.get_nations();
+		for i in range(0, len(nation_list)):
+			if self == nation_list[i]:
+				return (i);
+	return (-1);
+	

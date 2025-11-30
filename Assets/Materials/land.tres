@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://d4nvr5op0ya5v"]
 
-[ext_resource type="Shader" path="res://land.gdshader" id="1_yg2gr"]
+[ext_resource type="Shader" uid="uid://c2dxkamyikwk7" path="res://land.gdshader" id="1_yg2gr"]
 [ext_resource type="Texture2D" uid="uid://bn2a3apdp0b2r" path="res://test34.png" id="2_yg2gr"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_tcnuu"]
