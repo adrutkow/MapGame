@@ -12,6 +12,7 @@ var cached_province_centers: Array[Vector2i];
 var mesh: ImmediateMesh;
 var mat: ORMMaterial3D;
 
+var test: int = 0;
 
 func _enter_tree() -> void:
 	Map.map_instance = self;
@@ -23,11 +24,11 @@ func _ready() -> void:
 	init_cache();
 	mesh = ImmediateMesh.new();
 	mat = ORMMaterial3D.new();
-	generate_mapview_nation_names();
-	generate_mapview_province_names();
+	#generate_mapview_nation_names();
+	#generate_mapview_province_names();
 	generate_mapview_province_ids();
-	generate_mapview_connections();
-	generate_mapview_diplomacy();
+	#generate_mapview_connections();
+	#generate_mapview_diplomacy();
 	
 func init_cache():
 	for i in range(0, len(GameGlobal.province_data_list.province_list)):
@@ -64,7 +65,7 @@ func get_nation_by_heatmap_color(c: Color) -> Nation:
 			return (n);
 	return (null);
 
-func generate_bitmap(colors: Array[Color] = [], nations: Array[int] = []):
+func generate_bitmap(colors: Array[Color] = [], nations: Array[int] = [], provinces: Array[int] = []):
 	var bitmap: BitMap = get_empty_bitmap();
 	var temp_c: Color;
 	var valid_colors: Array[Color];
@@ -79,6 +80,12 @@ func generate_bitmap(colors: Array[Color] = [], nations: Array[int] = []):
 		for j: int in nation.owned_provinces:
 			p = GameGlobal.province_data_list.province_list[j];
 			valid_colors.append(vector3i_to_color(p.heatmap_color));
+		
+	for pid: int in provinces:
+		if (pid < 0):
+			continue;
+		p = GameGlobal.province_data_list.province_list[pid];
+		valid_colors.append(vector3i_to_color(p.heatmap_color));
 		
 	for y in range(0, heatmap_image.get_height()):
 		for x in range(0, heatmap_image.get_width()):
@@ -245,6 +252,31 @@ func generate_mapview_connections():
 	#	center = get_province_center(i);
 	#	add_line(Vector3(0, 1, 0), Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0));
 	
+func generate_mapview_highlighted_provinces(provinces: Array[int]):
+	var image: Image;
+	var n: Nation = null;
+	var c: Color;
+	var pixel_color: Color = Color.BLACK;
+	var nation_color: Color = Color.TRANSPARENT;
+	var bitmap: BitMap;
+	
+	image = Image.create_empty(heatmap_image.get_width(), heatmap_image.get_height(), false, Image.FORMAT_RGBA8);
+		
+	bitmap = generate_bitmap([], [], provinces);
+		
+	for y in range(0, bitmap.get_size()[1]):
+		for x in range(0, bitmap.get_size()[0]):
+			if (bitmap.get_bit(x, y)):
+				image.set_pixel(x, y, Color.AQUA);
+			#if (pixel_color != heatmap_image.get_pixel(x, y)):
+			#	n = get_nation_by_heatmap_color(heatmap_image.get_pixel(x, y));
+			#	pixel_color = heatmap_image.get_pixel(x, y);
+			#if (n):
+			#	c = n.nation_color;
+			#	c.a8 = 100;
+			#	image.set_pixel(x, y, c);
+	$MapViews/HighlightProvinces/Image.texture = ImageTexture.create_from_image(image);
+	
 func add_line(start_pos: Vector3, end_pos: Vector3):
 	var temp: MeshInstance3D;
 	
@@ -256,6 +288,94 @@ func add_line(start_pos: Vector3, end_pos: Vector3):
 	temp.mesh.surface_add_vertex(end_pos);
 	temp.mesh.surface_end();
 	$MapViews/ProvinceConnections.add_child(temp);
+
+func pathfind(prov1: int, prov2: int):
+	var adj: Array[int];
+	var output: Array[int];
+	
+	adj = GameGlobal.get_province_adjacencies(prov1);
+	
+	print(adj)
+	
+	output = recursive_pathfind([prov1], prov2);
+	if (output == [-1]):
+		return;
+	generate_mapview_highlighted_provinces(output)
+	
+func pathfind2(prov1: int, prov2: int) -> Array[int]:
+	var paths: Array = [];
+	var target: int;
+	var visited_nodes = [];
+	var new_paths: Array = [];
+	var output: Array[int];
+	
+	paths.append([prov1]);
+	target = prov2;
+	
+	while (not paths.is_empty()):
+		new_paths = [];
+		for path: Array in paths:
+			if (path.is_empty()):
+				continue;
+			visited_nodes.append(path[-1]);
+			for adj in GameGlobal.get_province_adjacencies(path[-1]):
+				if (adj in visited_nodes):
+					continue;
+				
+				var temp = path.duplicate();
+				if (adj == target):
+					temp.append(adj);
+					for i in temp:
+						output.append(i);
+					return (output);
+				temp.append(adj);
+				new_paths.append(temp);
+				
+		paths = new_paths.duplicate();
+		new_paths = [];
+	return [];
+	
+func recursive_pathfind(path: Array[int], target: int):
+	if (path.is_empty()):
+		return ([-1]);
+	var adj: Array[int];
+	var temp: Array[int];
+	var free_adj: Array[int];
+	
+	adj = GameGlobal.get_province_adjacencies(path[len(path) - 1]);
+	
+	test += 1;
+	print(test);
+	if (test % 100 == 0):
+		print(path)
+	
+	
+	for p in adj:
+		if (not (p in path)):
+			free_adj.append(p);
+	
+	
+	if (free_adj.is_empty()):
+		return ([-1]);
+	if (path == [-1]):
+		return ([-1]);
+	if (target in free_adj):
+		temp = path.duplicate();
+		temp.append(target);
+		return (temp);
+		
+	for p in free_adj:
+		var output;
+		
+		if (p in path):
+			continue;
+		
+		temp = path.duplicate();
+		temp.append(p);
+		output = recursive_pathfind(temp, target);
+		if (output != [-1]):
+			return (output);
+	return ([-1]);
 
 static func is_vector3_color(v: Vector3i, c: Color) -> bool:
 	return ((v.x == c.r8) and (v.y == c.g8) and (v.z == c.b8));

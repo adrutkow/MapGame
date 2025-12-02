@@ -6,6 +6,8 @@ var nations: Array[Nation];
 var provinces: Array[ProvinceState];
 var day: int = 0;
 
+var prov1: int = -1;
+var prov2: int = -1;
 
 # Expanding borders with gold
 # research/civics can reduce that cost

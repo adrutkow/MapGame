@@ -150,7 +150,7 @@ id = 14
 heatmap_color = Vector3i(141, 0, 132)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([19])
+adjacencies = Array[int]([19, 13, 12])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_fkrdb"]

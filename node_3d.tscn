@@ -187,6 +187,11 @@ transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -5.65668, 0, 1.74136
 material_override = SubResource("ORMMaterial3D_lggff")
 mesh = SubResource("SphereMesh_lggff")
 
+[node name="HighlightProvinces" type="Node3D" parent="Map/MapViews"]
+
+[node name="Image" type="Sprite3D" parent="Map/MapViews/HighlightProvinces"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.50582, 0.0260158, 2.41655)
+
 [node name="Decoratives" type="Node3D" parent="Map"]
 
 [node name="Terrain" type="Node3D" parent="Map/Decoratives"]

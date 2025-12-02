@@ -21,8 +21,9 @@ func _unhandled_input(event):
 		## Escape mouse lock
 		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		_on_click(event.position)
-		
+		on_left_click(event.position)
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		on_right_click(event.position)
 		
 func _process(delta):
 	var dir := Vector3.ZERO
@@ -45,10 +46,7 @@ func _process(delta):
 		dir = dir.normalized()
 		global_position += dir * move_speed * delta * 5
 
-
-
-func _on_click(mouse_pos: Vector2):
-	print("Clicked")
+func raycast_heatmap(mouse_pos: Vector2):
 	var space_state = get_world_3d().direct_space_state
 
 	# Create a ray from the camera through the mouse position
@@ -60,12 +58,9 @@ func _on_click(mouse_pos: Vector2):
 	query.collide_with_bodies = true
 
 	var result = space_state.intersect_ray(query)
-
 	if result.is_empty():
-		Map.map_instance.unselect_province();
+		#Map.map_instance.unselect_province();
 		return
-
-	print(result)
 
 	var collider = result["collider"]
 	if collider is Area3D:
@@ -75,7 +70,7 @@ func _on_click(mouse_pos: Vector2):
 		# Convert local 3D hit position to UV (0–1 range)
 		var tex: Texture2D = sprite.texture
 		if tex == null:
-			return
+			return (null);
 		var img: Image = tex.get_image()
 
 		# Sprite3D draws centered around its origin, so compensate
@@ -91,11 +86,41 @@ func _on_click(mouse_pos: Vector2):
 
 		if px >= 0 and px < size.x and py >= 0 and py < size.y:
 			var color = img.get_pixel(px, py)
-			print("Clicked color:", color.r8, ",", color.g8, ",", color.b8)
-			$"../Map/Area3D/Sprite3D".highlight_by_color(color);
-			var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
-			if (p):
-				print(p.name);
-				Map.map_instance.select_province(p.id);
-			else:
-				Map.map_instance.unselect_province();
+			return (color);
+			#print("Clicked color:", color.r8, ",", color.g8, ",", color.b8)
+			#$"../Map/Area3D/Sprite3D".highlight_by_color(color);
+			#var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
+			#if (p):
+			#	print(p.name);
+			#	Map.map_instance.select_province(p.id);
+			#else:
+			#	Map.map_instance.unselect_province();
+	return (null);
+
+func on_left_click(mouse_pos: Vector2):
+	var color = raycast_heatmap(mouse_pos);
+	
+	if (not color):
+		return;
+	
+	var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
+	if (p):
+		Map.map_instance.select_province(p.id);
+		GameInstance.game_instance.prov1 = p.id;
+	else:
+		Map.map_instance.unselect_province();
+
+func on_right_click(mouse_pos: Vector2):
+	var color = raycast_heatmap(mouse_pos);
+	
+	if (not color):
+		return;
+	
+	var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
+	if (p):
+		GameInstance.game_instance.prov2 = p.id;
+	Map.map_instance.generate_mapview_highlighted_provinces([GameInstance.game_instance.prov1, GameInstance.game_instance.prov2])
+	if (GameInstance.game_instance.prov1 != -1 and GameInstance.game_instance.prov2 != -1):
+		var t = Map.map_instance.pathfind2(GameInstance.game_instance.prov1, GameInstance.game_instance.prov2);
+		if (not t.is_empty()):
+			Map.map_instance.generate_mapview_highlighted_provinces(t);
