@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=43 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -16,12 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://bdxv7tkkhj8yq" path="res://Assets/Icons/science.png" id="10_6iypd"]
 [ext_resource type="Texture2D" uid="uid://djkn6fam336ky" path="res://Assets/Icons/culture.png" id="11_wlxy5"]
 [ext_resource type="Texture2D" uid="uid://bxtex6og3mkq3" path="res://Assets/Icons/gold.png" id="12_3v7ru"]
-[ext_resource type="Script" uid="uid://bvbh4bnra8kns" path="res://client.gd" id="13_jsnrv"]
 [ext_resource type="Texture2D" uid="uid://cvno6vxc7t0wl" path="res://Assets/Icons/happiness.png" id="13_tcnuu"]
 [ext_resource type="Script" uid="uid://w03ck8mg66te" path="res://savefile.gd" id="14_lggff"]
 [ext_resource type="Texture2D" uid="uid://cj21y8gwic7rh" path="res://Assets/Icons/power.png" id="14_tuemg"]
 [ext_resource type="Script" uid="uid://drko2snt08yh3" path="res://ui_manager.gd" id="15_lggff"]
 [ext_resource type="Script" uid="uid://cand4yd5hgw84" path="res://map_views_ui.gd" id="22_s0gvp"]
+[ext_resource type="Script" uid="uid://rd225h3pkvvy" path="res://dev_console.gd" id="22_vxd74"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lggff"]
 shading_mode = 0
@@ -116,8 +116,6 @@ shader_parameter/c = Color(2.98411e-06, 0.981192, 0.21933, 1)
 render_priority = 0
 shader = ExtResource("3_jka67")
 shader_parameter/c = Color(0.04, 0.04, 0.04, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_lggff"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -301,13 +299,7 @@ material_override = SubResource("ShaderMaterial_jka67")
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_wc5p8")
 
-[node name="Client" type="Node3D" parent="."]
-script = ExtResource("13_jsnrv")
-
-[node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, 0, 0, 0)
-
-[node name="Borders" type="Sprite3D" parent="."]
+[node name="Borders" type="Sprite3D" parent="Map"]
 transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, 2.506, 0.022, 2.417)
 texture = ExtResource("3_i5arm")
 
@@ -721,15 +713,94 @@ theme_override_font_sizes/font_size = 8
 text = "Diplo
 "
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 5.00424, 0, 4.825)
-mesh = SubResource("CapsuleMesh_lggff")
+[node name="DevConsole" type="Control" parent="UI/Control"]
+anchors_preset = 0
+offset_left = 1326.0
+offset_top = 762.0
+offset_right = 1842.0
+offset_bottom = 1059.0
+script = ExtResource("22_vxd74")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 5.00424, 0, 4.825)
-mesh = SubResource("CapsuleMesh_lggff")
+[node name="Panel" type="Panel" parent="UI/Control/DevConsole"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/DevConsole"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Control/DevConsole/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/DevConsole/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LineEdit" type="LineEdit" parent="UI/Control/DevConsole/VBoxContainer"]
+layout_mode = 2
+
+[node name="DebugButtons" type="Control" parent="UI/Control"]
+anchors_preset = 0
+offset_left = 1556.0
+offset_top = 246.0
+offset_right = 1901.0
+offset_bottom = 746.0
+
+[node name="Panel" type="Panel" parent="UI/Control/DebugButtons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/DebugButtons/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HostServer" type="Button" parent="UI/Control/DebugButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Host server"
+
+[node name="ConnectToServer" type="Button" parent="UI/Control/DebugButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Connect to server"
+
+[node name="SendCommand" type="Button" parent="UI/Control/DebugButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Send Command"
+
+[node name="GameTick" type="Button" parent="UI/Control/DebugButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_mode = 0
+text = "GameTick"
 
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceNamesToggle" to="UI/Control/MapViews" method="_on_province_names_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceIDsToggle" to="UI/Control/MapViews" method="_on_province_ids_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/NationNamesToggle" to="UI/Control/MapViews" method="_on_nation_names_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/DiplomaticViewToggle" to="UI/Control/MapViews" method="_on_diplomatic_view_toggle_pressed"]
+[connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/HostServer" to="UI/Control/DevConsole" method="_on_host_server_pressed"]
+[connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/ConnectToServer" to="UI/Control/DevConsole" method="_on_connect_to_server_pressed"]
+[connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/SendCommand" to="UI/Control/DevConsole" method="_on_send_command_pressed"]
+[connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GameTick" to="UI/Control/DevConsole" method="_on_game_tick_pressed"]

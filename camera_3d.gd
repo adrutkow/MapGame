@@ -100,8 +100,12 @@ func raycast_heatmap(mouse_pos: Vector2):
 func on_left_click(mouse_pos: Vector2):
 	var color = raycast_heatmap(mouse_pos);
 	
+	print("XD")
+	
+	
 	if (not color):
 		return;
+	
 	
 	var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
 	if (p):
@@ -123,4 +127,15 @@ func on_right_click(mouse_pos: Vector2):
 	if (GameInstance.game_instance.prov1 != -1 and GameInstance.game_instance.prov2 != -1):
 		var t = Map.map_instance.pathfind2(GameInstance.game_instance.prov1, GameInstance.game_instance.prov2);
 		if (not t.is_empty()):
-			Map.map_instance.generate_mapview_highlighted_provinces(t);
+			Map.map_instance.remove_all_lines();
+			
+			for i in range(0, len(t) - 1):
+				var p1 = Map.map_instance.bitmap_vector_to_world(Map.map_instance.get_province_center(t[i])) + Vector3(0, 0.05, 0);
+				var p2 = Map.map_instance.bitmap_vector_to_world(Map.map_instance.get_province_center(t[i+1])) + Vector3(0, 0.05, 0);
+				
+				
+				Map.map_instance.add_line(p1, p2)
+				Map.map_instance.add_ball(p1)
+			
+			
+			#Map.map_instance.generate_mapview_highlighted_provinces(t);

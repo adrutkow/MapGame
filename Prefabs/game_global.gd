@@ -4,6 +4,10 @@ extends Node
 @export var nation_data_list: NationDataList;
 @export var province_data_list: ProvinceDataList;
 
+enum GAME_ACTION {
+	UPGRADE_PROVINCE,
+}
+
 func is_valid_province_id(prov_id: int) -> bool:
 	if (prov_id >= 0 and prov_id < len(province_data_list.province_list)):
 		return (true);

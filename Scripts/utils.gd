@@ -1,5 +1,8 @@
 extends Node
 
+func wait(time: float) -> bool:
+	await get_tree().create_timer(time).timeout
+	return (true);
 
 func get_highest_bit(bitmap: BitMap) -> int:
 	for y in range(0, bitmap.get_size()[1]):

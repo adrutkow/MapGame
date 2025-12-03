@@ -24,6 +24,4 @@ func _ready() -> void:
 
 
 	image_texture = ImageTexture.create_from_image(image);
-
-
 	texture = image_texture;

@@ -26,7 +26,7 @@ func _ready() -> void:
 	mat = ORMMaterial3D.new();
 	#generate_mapview_nation_names();
 	#generate_mapview_province_names();
-	generate_mapview_province_ids();
+	#generate_mapview_province_ids();
 	#generate_mapview_connections();
 	#generate_mapview_diplomacy();
 	
@@ -240,9 +240,7 @@ func generate_mapview_connections():
 		if (len(GameGlobal.province_data_list.province_list[i].adjacencies) == 0):
 			continue;
 		center = get_province_center(i);
-		temp = $MapViews/ProvinceConnections/ProvinceCenterDot.duplicate();
-		temp.position = bitmap_vector_to_world(center) + Vector3(0, 0.05, 0);
-		$MapViews/ProvinceConnections.add_child(temp);
+		add_ball(bitmap_vector_to_world(center));
 		
 		for a: int in GameGlobal.province_data_list.province_list[i].adjacencies:
 			center2 = get_province_center(a);
@@ -252,30 +250,12 @@ func generate_mapview_connections():
 	#	center = get_province_center(i);
 	#	add_line(Vector3(0, 1, 0), Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0));
 	
-func generate_mapview_highlighted_provinces(provinces: Array[int]):
-	var image: Image;
-	var n: Nation = null;
-	var c: Color;
-	var pixel_color: Color = Color.BLACK;
-	var nation_color: Color = Color.TRANSPARENT;
-	var bitmap: BitMap;
+func add_ball(pos: Vector3):
+	var temp;
 	
-	image = Image.create_empty(heatmap_image.get_width(), heatmap_image.get_height(), false, Image.FORMAT_RGBA8);
-		
-	bitmap = generate_bitmap([], [], provinces);
-		
-	for y in range(0, bitmap.get_size()[1]):
-		for x in range(0, bitmap.get_size()[0]):
-			if (bitmap.get_bit(x, y)):
-				image.set_pixel(x, y, Color.AQUA);
-			#if (pixel_color != heatmap_image.get_pixel(x, y)):
-			#	n = get_nation_by_heatmap_color(heatmap_image.get_pixel(x, y));
-			#	pixel_color = heatmap_image.get_pixel(x, y);
-			#if (n):
-			#	c = n.nation_color;
-			#	c.a8 = 100;
-			#	image.set_pixel(x, y, c);
-	$MapViews/HighlightProvinces/Image.texture = ImageTexture.create_from_image(image);
+	temp = $MapViews/ProvinceConnections/ProvinceCenterDot.duplicate();
+	temp.position = pos + Vector3(0, 0.05, 0);
+	$MapViews/ProvinceConnections.add_child(temp);
 	
 func add_line(start_pos: Vector3, end_pos: Vector3):
 	var temp: MeshInstance3D;
@@ -288,6 +268,40 @@ func add_line(start_pos: Vector3, end_pos: Vector3):
 	temp.mesh.surface_add_vertex(end_pos);
 	temp.mesh.surface_end();
 	$MapViews/ProvinceConnections.add_child(temp);
+
+func remove_all_lines():
+	for n in $MapViews/ProvinceConnections.get_children():
+		if (n.name != "ProvinceConnectionLine" and n.name != "ProvinceCenterDot"):
+			n.queue_free();
+	
+func generate_mapview_highlighted_provinces(provinces: Array[int]):
+	var image: Image;
+	var n: Nation = null;
+	var c: Color;
+	var pixel_color: Color = Color.BLACK;
+	var nation_color: Color = Color.TRANSPARENT;
+	var bitmap: BitMap;
+	
+	image = Image.create_empty(heatmap_image.get_width(), heatmap_image.get_height(), false, Image.FORMAT_RGBA8);
+		
+	bitmap = generate_bitmap([], [], provinces);
+	c = Color.CHARTREUSE;
+	c.a8 = 100;
+	
+	for y in range(0, bitmap.get_size()[1]):
+		for x in range(0, bitmap.get_size()[0]):
+			if (bitmap.get_bit(x, y)):
+				image.set_pixel(x, y, c);
+			#if (pixel_color != heatmap_image.get_pixel(x, y)):
+			#	n = get_nation_by_heatmap_color(heatmap_image.get_pixel(x, y));
+			#	pixel_color = heatmap_image.get_pixel(x, y);
+			#if (n):
+			#	c = n.nation_color;
+			#	c.a8 = 100;
+			#	image.set_pixel(x, y, c);
+	$MapViews/HighlightProvinces/Image.texture = ImageTexture.create_from_image(image);
+	
+
 
 func pathfind(prov1: int, prov2: int):
 	var adj: Array[int];

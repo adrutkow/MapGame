@@ -110,7 +110,7 @@ id = 10
 heatmap_color = Vector3i(160, 70, 97)
 ocean_access = false
 river_access = false
-adjacencies = Array[int]([9, 71, 26, 27])
+adjacencies = Array[int]([9, 71, 26, 27, 28, 11])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_4n62n"]
@@ -120,7 +120,7 @@ id = 11
 heatmap_color = Vector3i(119, 19, 74)
 ocean_access = true
 river_access = false
-adjacencies = Array[int]([10, 27, 72, 24])
+adjacencies = Array[int]([10, 27, 72, 24, 23])
 metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_dmr86"]

@@ -9,23 +9,45 @@ var day: int = 0;
 var prov1: int = -1;
 var prov2: int = -1;
 
+var timer: int = 0;
+
 # Expanding borders with gold
 # research/civics can reduce that cost
 
+# great people, can assign to province, give stat to province
+# vsauce +20% science to province
+
+func _process(delta: float) -> void:
+	timer += 1;
+	if (timer > 60):
+		pass;
 
 func _ready() -> void:
 	GameInstance.game_instance = self;
-	
 	create_nations();
 	create_provinces();
-
+	Client.nation = get_nations()[0];
 
 
 func tick():
+	
+	if (multiplayer.is_server()):
+		if (not NetworkManager.is_every_player_ready()):
+			DevConsole.instance.add_line("Not every player is ready!");
+			return;
+	
+	for c in NetworkManager.game_commands:
+		get_nations()[0].power += 1;
+		DevConsole.instance.add_line("Processed command");
+
+	NetworkManager.game_commands = [];
 	for p: ProvinceState in provinces:
 		p.tick();
 	day += 1;
-	Client.client_instance.get_ui_manager().tick();
+	UIManager.instance.tick();
+	NetworkManager.send_ready_to_host();
+	if (multiplayer.is_server()):
+		NetworkManager.set_all_player_unready();
 		
 func create_nations():
 	var temp: Nation;
