@@ -104,9 +104,12 @@ func on_left_click(mouse_pos: Vector2):
 		return;
 	
 	var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
+	
 	if (p):
 		Map.map_instance.select_province(p.id);
 		GameInstance.game_instance.prov1 = p.id;
+		GameInstance.game_instance.selected_army_id = GameInstance.game_instance.get_army_id_by_province(p.id);
+		DevConsole.instance.add_line("Selected army: " + str(GameInstance.game_instance.selected_army_id))
 	else:
 		Map.map_instance.unselect_province();
 
@@ -123,6 +126,9 @@ func on_right_click(mouse_pos: Vector2):
 	if (GameInstance.game_instance.prov1 != -1 and GameInstance.game_instance.prov2 != -1):
 		var t = Map.map_instance.pathfind2(GameInstance.game_instance.prov1, GameInstance.game_instance.prov2);
 		if (not t.is_empty()):
+			if (GameInstance.game_instance.selected_army_id != -1):
+				GameInstance.game_instance.get_army_by_id(GameInstance.game_instance.selected_army_id).desired_path = t.duplicate();
+				DevConsole.instance.add_line("Applied path to army: " + str(GameInstance.game_instance.get_army_by_id(GameInstance.game_instance.selected_army_id).desired_path))
 			Map.map_instance.remove_all_lines();
 			
 			for i in range(0, len(t) - 1):

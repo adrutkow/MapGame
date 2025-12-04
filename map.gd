@@ -308,7 +308,7 @@ func generate_mapview_military():
 	var temp;
 	
 	for t in $MapViews/Military.get_children():
-		if (t.name != "ArmyCube"):
+		if (t.name != "ArmyCube" and t.name != "ArmyArrow"):
 			t.queue_free();
 	
 	for a: Army in GameInstance.game_instance.get_armies():
@@ -329,7 +329,19 @@ func generate_mapview_military():
 		m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED;
 		temp.get_node("Mesh").material_override = m;
 		$MapViews/Military.add_child(temp);
-
+		
+		if (not (a.desired_path.is_empty())):
+			temp = $MapViews/Military/ArmyArrow.duplicate();
+			temp.position = bitmap_vector_to_world(center);
+			temp.position += Vector3(0, 0.3, 0);
+			$MapViews/Military.add_child(temp);
+			
+			var target_center = Map.map_instance.get_province_center(a.get_next_move_target());
+			var angle = atan2(center[1] - target_center[1], center[0] - target_center[0]);
+			
+			temp.rotation = Vector3(0, angle, 0);
+			DevConsole.instance.add_line("angle: " + str(angle));
+			
 func pathfind(prov1: int, prov2: int):
 	var adj: Array[int];
 	var output: Array[int];

@@ -9,6 +9,7 @@ var day: int = 0;
 
 var prov1: int = -1;
 var prov2: int = -1;
+var selected_army_id: int = -1;
 
 var timer: int = 0;
 var start: bool = false;
@@ -57,8 +58,14 @@ func tick_commands():
 		DevConsole.instance.add_line("Processed command");
 	NetworkManager.game_commands = [];
 
+func tick_armies():
+	for a: Army in get_armies():
+		a.tick_movement();
+	Map.map_instance.generate_mapview_military();
+
 func tick():
 	tick_commands();
+	tick_armies();
 	for p: ProvinceState in provinces:
 		p.tick();
 	day += 1;
@@ -122,6 +129,18 @@ func get_nation_id(nation: Nation) -> int:
 		if (n[i] == nation):
 			return (i);
 	return (-1);
+
+func get_army_id_by_province(province_id: int) -> int:
+	for a: Army in get_armies():
+		if (a.province_id == province_id):
+			return (a.army_id);
+	return (-1);
+
+func get_army_by_id(army_id: int) -> Army:
+	for a: Army in get_armies():
+		if (a.army_id == army_id):
+			return (a);
+	return (null);
 
 func summon_army(province_id: int, nation_owner_id: int):
 	var temp: Army;
