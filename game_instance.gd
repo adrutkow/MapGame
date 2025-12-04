@@ -3,6 +3,7 @@ class_name GameInstance;
 
 static var game_instance: GameInstance;
 var nations: Array[Nation];
+var armies: Array[Army];
 var provinces: Array[ProvinceState];
 var day: int = 0;
 
@@ -10,6 +11,9 @@ var prov1: int = -1;
 var prov2: int = -1;
 
 var timer: int = 0;
+var start: bool = false;
+
+var lag: bool = false;
 
 # Expanding borders with gold
 # research/civics can reduce that cost
@@ -19,35 +23,53 @@ var timer: int = 0;
 
 func _process(delta: float) -> void:
 	timer += 1;
-	if (timer > 60):
-		pass;
+	if (timer > 60 and start):
+		if multiplayer.is_server():
+			if (NetworkManager.is_every_player_ready()):
+				host_tick();
+				timer = 0;
 
 func _ready() -> void:
 	GameInstance.game_instance = self;
 	create_nations();
 	create_provinces();
 	Client.nation = get_nations()[0];
-
-
-func tick():
 	
-	if (multiplayer.is_server()):
-		if (not NetworkManager.is_every_player_ready()):
-			DevConsole.instance.add_line("Not every player is ready!");
-			return;
-	
+	summon_army(0, 0);
+	summon_army(13, 2);
+	summon_army(25, 4);
+
+func host_tick():
+	if (not multiplayer.is_server()):
+		DevConsole.instance.add_line("Host tick request, im not server!");
+		return;
+	NetworkManager.send_clients_commands(NetworkManager.game_commands);
+	NetworkManager.ask_clients_to_tick();
+	tick();
+	#while (not NetworkManager.is_every_player_ready()):
+	#	DevConsole.instance.add_line("Not every player is ready!");
+	#	await Utils.wait(1);
+	NetworkManager.set_all_player_unready();
+
+func tick_commands():
 	for c in NetworkManager.game_commands:
 		get_nations()[0].power += 1;
 		DevConsole.instance.add_line("Processed command");
-
 	NetworkManager.game_commands = [];
+
+func tick():
+	tick_commands();
 	for p: ProvinceState in provinces:
 		p.tick();
 	day += 1;
 	UIManager.instance.tick();
+	
+	while (lag):
+		DevConsole.instance.add_line("Lagging...")
+		await Utils.wait(1);
+	
 	NetworkManager.send_ready_to_host();
-	if (multiplayer.is_server()):
-		NetworkManager.set_all_player_unready();
+
 		
 func create_nations():
 	var temp: Nation;
@@ -86,6 +108,9 @@ func get_nations() -> Array[Nation]:
 		output.append(n);
 	return (output);
 
+func get_armies() -> Array[Army]:
+	return (armies);
+
 func get_nation_by_id(id: int) -> Nation:
 	return (get_nations()[id]);
 
@@ -97,3 +122,14 @@ func get_nation_id(nation: Nation) -> int:
 		if (n[i] == nation):
 			return (i);
 	return (-1);
+
+func summon_army(province_id: int, nation_owner_id: int):
+	var temp: Army;
+	
+	temp = Army.new();
+	temp.army_id = Army.armies_created_count;
+	temp.province_id = province_id;
+	temp.nation_owner_id = nation_owner_id;
+	Army.armies_created_count += 1;
+	armies.append(temp);
+	

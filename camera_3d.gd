@@ -100,12 +100,8 @@ func raycast_heatmap(mouse_pos: Vector2):
 func on_left_click(mouse_pos: Vector2):
 	var color = raycast_heatmap(mouse_pos);
 	
-	print("XD")
-	
-	
 	if (not color):
 		return;
-	
 	
 	var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
 	if (p):

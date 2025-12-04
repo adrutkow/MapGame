@@ -235,7 +235,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_e7ef1"]
 script = ExtResource("1_5xjdf")
-name = "Basileus of Aedinfell"
+name = "Aedinfell"
 id = 23
 heatmap_color = Vector3i(139, 0, 204)
 ocean_access = true

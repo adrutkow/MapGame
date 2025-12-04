@@ -26,3 +26,24 @@ func _on_send_command_pressed() -> void:
 
 func _on_game_tick_pressed() -> void:
 	GameInstance.game_instance.tick();
+
+
+func _on_host_tick_pressed() -> void:
+	GameInstance.game_instance.host_tick();
+
+
+func _on_start_host_tick_loop_pressed() -> void:
+	GameInstance.game_instance.start = true;
+
+
+func _on_toggle_lag_pressed() -> void:
+	GameInstance.game_instance.lag = !GameInstance.game_instance.lag;
+
+
+func _on_generate_army_pressed() -> void:
+	Map.map_instance.generate_mapview_military();
+
+
+func _on_give_army_troops_pressed() -> void:
+	for a: Army in GameInstance.game_instance.get_armies():
+		a.add_unit("goon", 100);

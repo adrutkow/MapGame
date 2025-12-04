@@ -24,11 +24,13 @@ func _ready() -> void:
 	init_cache();
 	mesh = ImmediateMesh.new();
 	mat = ORMMaterial3D.new();
-	#generate_mapview_nation_names();
-	#generate_mapview_province_names();
-	#generate_mapview_province_ids();
-	#generate_mapview_connections();
-	#generate_mapview_diplomacy();
+	generate_mapview_nation_names();
+	generate_mapview_province_names();
+	generate_mapview_province_ids();
+	generate_mapview_connections();
+	generate_mapview_diplomacy();
+	generate_mapview_military();
+	
 	
 func init_cache():
 	for i in range(0, len(GameGlobal.province_data_list.province_list)):
@@ -301,7 +303,32 @@ func generate_mapview_highlighted_provinces(provinces: Array[int]):
 			#	image.set_pixel(x, y, c);
 	$MapViews/HighlightProvinces/Image.texture = ImageTexture.create_from_image(image);
 	
+func generate_mapview_military():
+	var center;
+	var temp;
+	
+	for t in $MapViews/Military.get_children():
+		if (t.name != "ArmyCube"):
+			t.queue_free();
+	
+	for a: Army in GameInstance.game_instance.get_armies():
+		center = get_province_center(a.province_id);
+		temp = $MapViews/Military/ArmyCube.duplicate();
+		temp.position = bitmap_vector_to_world(center);
+		
+		var troop_count: int = 0;
+		for k in a.unit_groups.keys():
+			troop_count += a.unit_groups[k];
+		temp.get_node("Label3D").text = str(troop_count);
+		
+		var m: StandardMaterial3D;
 
+		m = StandardMaterial3D.new();
+		m.albedo_color = GameInstance.game_instance.get_nation_by_id(a.nation_owner_id).nation_color;
+		m.vertex_color_use_as_albedo = true;
+		m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED;
+		temp.get_node("Mesh").material_override = m;
+		$MapViews/Military.add_child(temp);
 
 func pathfind(prov1: int, prov2: int):
 	var adj: Array[int];

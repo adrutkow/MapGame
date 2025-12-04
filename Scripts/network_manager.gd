@@ -39,7 +39,6 @@ func receive_commands_as_client(commands: Array[Dictionary]):
 	for c in commands:
 		game_commands.append(c);
 	DevConsole.instance.add_line("Received commands from server!");
-	#GameInstance.game_instance.tick();
 
 @rpc("any_peer")
 func receive_ready_as_host():
@@ -62,6 +61,14 @@ func is_every_player_ready() -> bool:
 		if (not rp.is_ready):
 			return (false);
 	return (true);
+
+func ask_clients_to_tick():
+	for rp: RemotePlayer in remote_players:
+		rpc_id(rp.peer_id, "receive_tick_request");
+	
+@rpc("authority")
+func receive_tick_request():
+	GameInstance.game_instance.tick();
 
 func send_commands_to_clients():
 	DevConsole.instance.add_line("Sending commands to clients");

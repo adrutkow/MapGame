@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name Nation;
 
 @export var owned_provinces: Array[int];

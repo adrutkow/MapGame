@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=45 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -31,6 +31,11 @@ albedo_color = Color(1, 0, 0, 1)
 resource_local_to_scene = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_lggff"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0gvp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s0gvp"]
+resource_local_to_scene = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_jka67"]
 
@@ -189,6 +194,22 @@ mesh = SubResource("SphereMesh_lggff")
 
 [node name="Image" type="Sprite3D" parent="Map/MapViews/HighlightProvinces"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.50582, 0.0260158, 2.41655)
+
+[node name="Military" type="Node3D" parent="Map/MapViews"]
+
+[node name="ArmyCube" type="Node3D" parent="Map/MapViews/Military"]
+
+[node name="Mesh" type="MeshInstance3D" parent="Map/MapViews/Military/ArmyCube"]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_s0gvp")
+mesh = SubResource("BoxMesh_s0gvp")
+skeleton = NodePath("../..")
+
+[node name="Label3D" type="Label3D" parent="Map/MapViews/Military/ArmyCube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220288, 0)
+billboard = 1
+text = "10000"
+font_size = 24
 
 [node name="Decoratives" type="Node3D" parent="Map"]
 
@@ -796,6 +817,36 @@ layout_mode = 2
 focus_mode = 0
 text = "GameTick"
 
+[node name="HostTick" type="Button" parent="UI/Control/DebugButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_mode = 0
+text = "HostTick"
+
+[node name="StartHostTickLoop" type="Button" parent="UI/Control/DebugButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Start host tick loop"
+
+[node name="ToggleLag" type="Button" parent="UI/Control/DebugButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Toggle Lag"
+
+[node name="GenerateArmy" type="Button" parent="UI/Control/DebugButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Show Armies"
+
+[node name="GiveArmyTroops" type="Button" parent="UI/Control/DebugButtons/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Give armies 100 troops"
+
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceNamesToggle" to="UI/Control/MapViews" method="_on_province_names_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceIDsToggle" to="UI/Control/MapViews" method="_on_province_ids_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/NationNamesToggle" to="UI/Control/MapViews" method="_on_nation_names_toggle_pressed"]
@@ -804,3 +855,8 @@ text = "GameTick"
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/ConnectToServer" to="UI/Control/DevConsole" method="_on_connect_to_server_pressed"]
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/SendCommand" to="UI/Control/DevConsole" method="_on_send_command_pressed"]
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GameTick" to="UI/Control/DevConsole" method="_on_game_tick_pressed"]
+[connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/HostTick" to="UI/Control/DevConsole" method="_on_host_tick_pressed"]
+[connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/StartHostTickLoop" to="UI/Control/DevConsole" method="_on_start_host_tick_loop_pressed"]
+[connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/ToggleLag" to="UI/Control/DevConsole" method="_on_toggle_lag_pressed"]
+[connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GenerateArmy" to="UI/Control/DevConsole" method="_on_generate_army_pressed"]
+[connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GiveArmyTroops" to="UI/Control/DevConsole" method="_on_give_army_troops_pressed"]
