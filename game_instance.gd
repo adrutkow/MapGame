@@ -7,13 +7,8 @@ var armies: Array[Army];
 var provinces: Array[ProvinceState];
 var day: int = 0;
 
-var prov1: int = -1;
-var prov2: int = -1;
-var selected_army_id: int = -1;
-
 var timer: int = 0;
 var start: bool = false;
-
 var lag: bool = false;
 
 # Expanding borders with gold
@@ -142,6 +137,14 @@ func get_army_by_id(army_id: int) -> Army:
 			return (a);
 	return (null);
 
+func get_army_ids_in_province(province_id: int) -> Array[int]:
+	var output: Array[int];
+	
+	for a: Army in get_armies():
+		if (a.province_id == province_id):
+			output.append(a.army_id)
+	return (output);
+	
 func summon_army(province_id: int, nation_owner_id: int):
 	var temp: Army;
 	

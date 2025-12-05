@@ -87,14 +87,6 @@ func raycast_heatmap(mouse_pos: Vector2):
 		if px >= 0 and px < size.x and py >= 0 and py < size.y:
 			var color = img.get_pixel(px, py)
 			return (color);
-			#print("Clicked color:", color.r8, ",", color.g8, ",", color.b8)
-			#$"../Map/Area3D/Sprite3D".highlight_by_color(color);
-			#var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
-			#if (p):
-			#	print(p.name);
-			#	Map.map_instance.select_province(p.id);
-			#else:
-			#	Map.map_instance.unselect_province();
 	return (null);
 
 func on_left_click(mouse_pos: Vector2):
@@ -107,9 +99,7 @@ func on_left_click(mouse_pos: Vector2):
 	
 	if (p):
 		Map.map_instance.select_province(p.id);
-		GameInstance.game_instance.prov1 = p.id;
-		GameInstance.game_instance.selected_army_id = GameInstance.game_instance.get_army_id_by_province(p.id);
-		DevConsole.instance.add_line("Selected army: " + str(GameInstance.game_instance.selected_army_id))
+		UIManager.instance.on_clicked_province(p.id);
 	else:
 		Map.map_instance.unselect_province();
 
@@ -121,23 +111,5 @@ func on_right_click(mouse_pos: Vector2):
 	
 	var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
 	if (p):
-		GameInstance.game_instance.prov2 = p.id;
-	Map.map_instance.generate_mapview_highlighted_provinces([GameInstance.game_instance.prov1, GameInstance.game_instance.prov2])
-	if (GameInstance.game_instance.prov1 != -1 and GameInstance.game_instance.prov2 != -1):
-		var t = Map.map_instance.pathfind2(GameInstance.game_instance.prov1, GameInstance.game_instance.prov2);
-		if (not t.is_empty()):
-			if (GameInstance.game_instance.selected_army_id != -1):
-				GameInstance.game_instance.get_army_by_id(GameInstance.game_instance.selected_army_id).desired_path = t.duplicate();
-				DevConsole.instance.add_line("Applied path to army: " + str(GameInstance.game_instance.get_army_by_id(GameInstance.game_instance.selected_army_id).desired_path))
-			Map.map_instance.remove_all_lines();
+		UIManager.instance.on_right_clicked_province(p.id);
 			
-			for i in range(0, len(t) - 1):
-				var p1 = Map.map_instance.bitmap_vector_to_world(Map.map_instance.get_province_center(t[i])) + Vector3(0, 0.05, 0);
-				var p2 = Map.map_instance.bitmap_vector_to_world(Map.map_instance.get_province_center(t[i+1])) + Vector3(0, 0.05, 0);
-				
-				
-				Map.map_instance.add_line(p1, p2)
-				Map.map_instance.add_ball(p1)
-			
-			
-			#Map.map_instance.generate_mapview_highlighted_provinces(t);

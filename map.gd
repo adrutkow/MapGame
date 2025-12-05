@@ -320,12 +320,19 @@ func generate_mapview_military():
 		var troop_count: int = 0;
 		for k in a.unit_groups.keys():
 			troop_count += a.unit_groups[k];
-		temp.set_army_count_text(troop_count);
+		temp.set_troop_count_text(troop_count);
 		
 		var c: Color = GameInstance.game_instance.get_nation_by_id(a.nation_owner_id).nation_color;
 		
+		var offset: int;
+		
+		offset = GameInstance.game_instance.get_army_ids_in_province(a.province_id).find(a.army_id);
+		
+		temp.army_id = a.army_id;
 		temp.set_color(c);
-		temp.set_army_count_text_color(c);
+		temp.set_troop_count_text_color(c);
+		temp.offset_troop_count_text(offset);
+		temp.province_id = a.province_id;
 		$MapViews/Military.add_child(temp);
 		
 		if (not (a.get_next_move_target() == -1)):
@@ -344,20 +351,33 @@ func generate_mapview_military():
 			var angle_degrees = rad_to_deg(atan2(y2 - y1, x2 - x1));
 			temp2.rotation_degrees = Vector3(0, -angle_degrees, 0);
 			
-func pathfind(prov1: int, prov2: int):
-	var adj: Array[int];
-	var output: Array[int];
+	update_armycube_visual();
+			
+func get_armycubes() -> Array[ArmyCube]:
+	var output: Array[ArmyCube];
 	
-	adj = GameGlobal.get_province_adjacencies(prov1);
+	for n in $MapViews/Military.get_children():
+		if (n is ArmyCube and n.name != "ArmyCube"):
+			output.append(n);
+	return (output);
+			
+func get_armycube_count_in_province(province_id: int) -> int:
+	var output: int = 0;
 	
-	print(adj)
-	
-	output = recursive_pathfind([prov1], prov2);
-	if (output == [-1]):
-		return;
-	generate_mapview_highlighted_provinces(output)
-	
-func pathfind2(prov1: int, prov2: int) -> Array[int]:
+	for n in $MapViews/Military.get_children():
+		if (n is ArmyCube and n.name != "ArmyCube"):
+			if (n.province_id == province_id):
+				output += 1;
+	print(str(output));
+	return (output);
+			
+func update_armycube_visual():
+	for ac: ArmyCube in get_armycubes():
+		ac.draw_unselected();
+		if (ac.army_id == UIManager.instance.selected_army_id):
+			ac.draw_selected();
+			
+func pathfind(prov1: int, prov2: int) -> Array[int]:
 	var paths: Array = [];
 	var target: int;
 	var visited_nodes = [];
@@ -390,47 +410,14 @@ func pathfind2(prov1: int, prov2: int) -> Array[int]:
 		new_paths = [];
 	return [];
 	
-func recursive_pathfind(path: Array[int], target: int):
-	if (path.is_empty()):
-		return ([-1]);
-	var adj: Array[int];
-	var temp: Array[int];
-	var free_adj: Array[int];
-	
-	adj = GameGlobal.get_province_adjacencies(path[len(path) - 1]);
-	
-	test += 1;
-	print(test);
-	if (test % 100 == 0):
-		print(path)
-	
-	
-	for p in adj:
-		if (not (p in path)):
-			free_adj.append(p);
-	
-	
-	if (free_adj.is_empty()):
-		return ([-1]);
-	if (path == [-1]):
-		return ([-1]);
-	if (target in free_adj):
-		temp = path.duplicate();
-		temp.append(target);
-		return (temp);
-		
-	for p in free_adj:
-		var output;
-		
-		if (p in path):
-			continue;
-		
-		temp = path.duplicate();
-		temp.append(p);
-		output = recursive_pathfind(temp, target);
-		if (output != [-1]):
-			return (output);
-	return ([-1]);
+func draw_path(t: Array[int]):
+	Map.map_instance.remove_all_lines();
+	for i in range(0, len(t) - 1):
+		var p1 = Map.bitmap_vector_to_world(Map.map_instance.get_province_center(t[i])) + Vector3(0, 0.05, 0);
+		var p2 = Map.bitmap_vector_to_world(Map.map_instance.get_province_center(t[i+1])) + Vector3(0, 0.05, 0);
+				
+		Map.map_instance.add_line(p1, p2)
+		Map.map_instance.add_ball(p1)
 
 static func is_vector3_color(v: Vector3i, c: Color) -> bool:
 	return ((v.x == c.r8) and (v.y == c.g8) and (v.z == c.b8));
