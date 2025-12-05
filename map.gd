@@ -305,7 +305,8 @@ func generate_mapview_highlighted_provinces(provinces: Array[int]):
 	
 func generate_mapview_military():
 	var center;
-	var temp;
+	var temp: ArmyCube;
+	var temp2;
 	
 	for t in $MapViews/Military.get_children():
 		if (t.name != "ArmyCube" and t.name != "ArmyArrow"):
@@ -319,28 +320,29 @@ func generate_mapview_military():
 		var troop_count: int = 0;
 		for k in a.unit_groups.keys():
 			troop_count += a.unit_groups[k];
-		temp.get_node("Label3D").text = str(troop_count);
+		temp.set_army_count_text(troop_count);
 		
-		var m: StandardMaterial3D;
-
-		m = StandardMaterial3D.new();
-		m.albedo_color = GameInstance.game_instance.get_nation_by_id(a.nation_owner_id).nation_color;
-		m.vertex_color_use_as_albedo = true;
-		m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED;
-		temp.get_node("Mesh").material_override = m;
+		var c: Color = GameInstance.game_instance.get_nation_by_id(a.nation_owner_id).nation_color;
+		
+		temp.set_color(c);
+		temp.set_army_count_text_color(c);
 		$MapViews/Military.add_child(temp);
 		
-		if (not (a.desired_path.is_empty())):
-			temp = $MapViews/Military/ArmyArrow.duplicate();
-			temp.position = bitmap_vector_to_world(center);
-			temp.position += Vector3(0, 0.3, 0);
-			$MapViews/Military.add_child(temp);
+		if (not (a.get_next_move_target() == -1)):
+			temp2 = $MapViews/Military/ArmyArrow.duplicate();
+			temp2.position = bitmap_vector_to_world(center);
+			temp2.position += Vector3(0, 0.3, 0);
+			$MapViews/Military.add_child(temp2);
 			
 			var target_center = Map.map_instance.get_province_center(a.get_next_move_target());
-			var angle = atan2(center[1] - target_center[1], center[0] - target_center[0]);
 			
-			temp.rotation = Vector3(0, angle, 0);
-			DevConsole.instance.add_line("angle: " + str(angle));
+			var x1: float = center[0];
+			var x2: float = target_center[0];
+			var y1: float = center[1];
+			var y2: float = target_center[1];
+			
+			var angle_degrees = rad_to_deg(atan2(y2 - y1, x2 - x1));
+			temp2.rotation_degrees = Vector3(0, -angle_degrees, 0);
 			
 func pathfind(prov1: int, prov2: int):
 	var adj: Array[int];

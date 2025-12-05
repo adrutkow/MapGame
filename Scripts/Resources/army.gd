@@ -13,14 +13,15 @@ var move_progress: float = 0.0;
 var speed: float = 50.0;
 
 func tick_movement():
-	DevConsole.instance.add_line("tick movement")
 	move_progress += speed;
 	if (move_progress >= 100.0):
-		DevConsole.instance.add_line("Trying to move");
 		move_progress = 0;
 		move_target = get_next_move_target();
-		if (move_target != -1):
-			province_id = move_target;
+		move_to_province(move_target);
+			
+func move_to_province(p: int):
+	if (p != -1):
+		province_id = p;
 
 func get_next_move_target() -> int:
 	var current_path_index: int = -1;

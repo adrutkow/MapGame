@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://d4nvr5op0ya5v" path="res://Assets/Materials/land.tres" id="4_tuemg"]
 [ext_resource type="Script" uid="uid://f4qad80giudw" path="res://land.gd" id="5_3v7ru"]
 [ext_resource type="Texture2D" uid="uid://bn2a3apdp0b2r" path="res://test34.png" id="5_i0g27"]
+[ext_resource type="Script" uid="uid://vxtf8rgy6xn2" path="res://army_cube.gd" id="6_vxd74"]
 [ext_resource type="Shader" uid="uid://cph51f8vu2m17" path="res://water.gdshader" id="7_wc5p8"]
 [ext_resource type="Script" uid="uid://b70riu7gbpbvf" path="res://game_instance.gd" id="8_jsk3o"]
 [ext_resource type="Texture2D" uid="uid://dv600tyxh1qhh" path="res://Screenshot 2025-11-15 042842.png" id="9_4arys"]
@@ -31,8 +32,6 @@ albedo_color = Color(1, 0, 0, 1)
 resource_local_to_scene = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_lggff"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0gvp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_s0gvp"]
 resource_local_to_scene = true
@@ -202,10 +201,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.5058
 [node name="Military" type="Node3D" parent="Map/MapViews"]
 
 [node name="ArmyCube" type="Node3D" parent="Map/MapViews/Military"]
+script = ExtResource("6_vxd74")
 
 [node name="Mesh" type="MeshInstance3D" parent="Map/MapViews/Military/ArmyCube"]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_s0gvp")
+transform = Transform3D(0.05, 0, 0, 0, 0.125, 0, 0, 0, 0.05, 0, 0, 0)
 mesh = SubResource("BoxMesh_s0gvp")
 skeleton = NodePath("../..")
 
