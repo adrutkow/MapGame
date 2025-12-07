@@ -4,6 +4,7 @@ class_name GameInstance;
 static var game_instance: GameInstance;
 var nations: Array[Nation];
 var armies: Array[Army];
+var combats: Array[Combat];
 var provinces: Array[ProvinceState];
 var day: int = 0;
 
@@ -29,7 +30,7 @@ func _ready() -> void:
 	GameInstance.game_instance = self;
 	create_nations();
 	create_provinces();
-	Client.nation = get_nations()[0];
+	Client.nation_id = 0;
 	
 	summon_army(0, 0);
 	summon_army(13, 2);
@@ -58,9 +59,16 @@ func tick_armies():
 		a.tick_movement();
 	Map.map_instance.generate_mapview_military();
 
+func tick_combats():
+	for c: Combat in get_combats():
+		c.tick();
+	Map.map_instance.generate_mapview_military();
+
+
 func tick():
 	tick_commands();
 	tick_armies();
+	tick_combats();
 	for p: ProvinceState in provinces:
 		p.tick();
 	day += 1;
@@ -113,6 +121,9 @@ func get_nations() -> Array[Nation]:
 func get_armies() -> Array[Army]:
 	return (armies);
 
+func get_combats() -> Array[Combat]:
+	return (combats);
+
 func get_nation_by_id(id: int) -> Nation:
 	return (get_nations()[id]);
 
@@ -144,6 +155,21 @@ func get_army_ids_in_province(province_id: int) -> Array[int]:
 		if (a.province_id == province_id):
 			output.append(a.army_id)
 	return (output);
+	
+func province_has_active_enemy_army(province_id: int, army_id: int = -1) -> bool:
+	var armies: Array[int];
+	var output = false;
+	
+	armies = get_army_ids_in_province(province_id);
+	
+	for a_id: int in armies:
+		var army: Army = get_army_by_id(a_id);
+		
+		if (not army.is_defeated()):
+			return (true);
+	
+	return (output);
+	
 	
 func summon_army(province_id: int, nation_owner_id: int):
 	var temp: Army;

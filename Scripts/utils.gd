@@ -1,5 +1,10 @@
 extends Node
 
+var rng: RandomNumberGenerator;
+
+func _ready() -> void:
+	rng = RandomNumberGenerator.new();
+
 func wait(time: float) -> bool:
 	await get_tree().create_timer(time).timeout
 	return (true);

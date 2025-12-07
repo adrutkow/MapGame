@@ -11,6 +11,7 @@ var desired_path: Array[int] = [];
 var move_target: int = -1;
 var move_progress: float = 0.0;
 var speed: float = 50.0;
+var defeated: bool = false;
 
 func tick_movement():
 	move_progress += speed;
@@ -20,8 +21,27 @@ func tick_movement():
 		move_to_province(move_target);
 			
 func move_to_province(p: int):
+	var armies: Array[int];
+	
+	armies = GameInstance.game_instance.get_army_ids_in_province(p);
+	if (not is_defeated() and GameInstance.game_instance.province_has_active_enemy_army(p)):
+		start_combat(p); 
+		return;
+	
 	if (p != -1):
 		province_id = p;
+
+func start_combat(target_province: int):
+	var temp: Combat;
+	
+	temp = Combat.new();
+	temp.armies.append(self.army_id);
+	for i in GameInstance.game_instance.get_army_ids_in_province(target_province):
+		temp.armies.append(i);
+	desired_path = [];
+	
+	GameInstance.game_instance.combats.append(temp);
+	
 
 func get_next_move_target() -> int:
 	var current_path_index: int = -1;
@@ -37,3 +57,32 @@ func add_unit(unit_name: String, count: int):
 	if (not (unit_name in unit_groups.keys())):
 		unit_groups[unit_name] = 0;
 	unit_groups[unit_name] += count;
+
+func get_unit_count() -> int:
+	var output: int = 0;
+	
+	for k in unit_groups.keys():
+		output += unit_groups[k];
+	return (output);
+
+func lose_unit(count: int = 0, unit_name: String = ""):
+	if (not (unit_name in unit_groups.keys())):
+		unit_groups[unit_name] = 0;
+		return;
+	if (unit_name == ""):
+		for k in unit_groups.keys():
+			unit_groups[k] -= count;
+		return;
+	unit_groups[unit_name] -= count;
+	if (unit_groups[unit_name] < 0):
+		unit_groups[unit_name] = 0;
+		
+		
+func is_in_combat() -> bool:
+	for c: Combat in GameInstance.game_instance.get_combats():
+		if (self.army_id in c.armies):
+			return (true);
+	return (false);
+	
+func is_defeated() -> bool:
+	return (defeated);

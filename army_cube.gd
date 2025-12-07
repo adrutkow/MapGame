@@ -21,14 +21,14 @@ func set_color(c: Color):
 	m.vertex_color_use_as_albedo = true;
 	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED;
 
-func set_army_count_text(i: int):
-	pass;
-	
 func offset_troop_count_text(count: int):
 	var base_height: float;
 	
 	base_height = $TroopCount.position.y;
 	$TroopCount.position.y = base_height + count * 0.25;
+
+func set_is_defeated(b: bool):
+	$TroopCount/IsDefeated.visible = b;
 
 func draw_selected():
 	$TroopCount.outline_modulate = Color.GREEN;

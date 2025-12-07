@@ -10,6 +10,7 @@ var culture: float = 0;
 var gold: float = 0;
 var happiness: float = 0;
 var power: float = 0;
+var allied_nations: Array[int] = [];
 
 func set_values_from_nation_data(nation_data: NationData):
 	owned_provinces = nation_data.owned_provinces.duplicate();

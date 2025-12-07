@@ -45,7 +45,7 @@ func select_army(army_id: int):
 	Map.map_instance.update_armycube_visual();
 	
 func get_client_nation() -> Nation:
-	return (Client.nation);
+	return (Client.get_nation());
 	
 func update_resources():
 	var nation: Nation;

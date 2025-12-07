@@ -309,7 +309,9 @@ func generate_mapview_military():
 	var temp2;
 	
 	for t in $MapViews/Military.get_children():
-		if (t.name != "ArmyCube" and t.name != "ArmyArrow"):
+		if (t is ArmyCube and t.name != "ArmyCube"):
+			t.queue_free();
+		if (t is ArmyArrow and t.name != "ArmyArrow"):
 			t.queue_free();
 	
 	for a: Army in GameInstance.game_instance.get_armies():
@@ -333,6 +335,7 @@ func generate_mapview_military():
 		temp.set_troop_count_text_color(c);
 		temp.offset_troop_count_text(offset);
 		temp.province_id = a.province_id;
+		temp.set_is_defeated(a.is_defeated());
 		$MapViews/Military.add_child(temp);
 		
 		if (not (a.get_next_move_target() == -1)):
@@ -351,7 +354,24 @@ func generate_mapview_military():
 			var angle_degrees = rad_to_deg(atan2(y2 - y1, x2 - x1));
 			temp2.rotation_degrees = Vector3(0, -angle_degrees, 0);
 			
+	generate_mapview_combats();
 	update_armycube_visual();
+			
+			
+			
+func generate_mapview_combats():
+	for t in $MapViews/Military.get_children():
+		if (t is CombatVisual and t.name != "CombatVisual"):
+			t.queue_free();
+			
+	for c: Combat in GameInstance.game_instance.get_combats():
+		var pos: Vector3 = Map.bitmap_vector_to_world(Map.map_instance.get_province_center(c.get_province_id()));
+		var temp;
+
+		temp = $MapViews/Military/CombatVisual.duplicate();
+		temp.position = pos;
+		$MapViews/Military.add_child(temp);
+		
 			
 func get_armycubes() -> Array[ArmyCube]:
 	var output: Array[ArmyCube];

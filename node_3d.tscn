@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=50 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -10,11 +10,13 @@
 [ext_resource type="Material" uid="uid://d4nvr5op0ya5v" path="res://Assets/Materials/land.tres" id="4_tuemg"]
 [ext_resource type="Script" uid="uid://f4qad80giudw" path="res://land.gd" id="5_3v7ru"]
 [ext_resource type="Texture2D" uid="uid://bn2a3apdp0b2r" path="res://test34.png" id="5_i0g27"]
+[ext_resource type="Script" uid="uid://ba3w4sn76i5je" path="res://combat_visual.gd" id="6_5t8nk"]
 [ext_resource type="Texture2D" uid="uid://cw81d5rdlynfc" path="res://icon.svg" id="6_dhlwf"]
 [ext_resource type="Script" uid="uid://vxtf8rgy6xn2" path="res://army_cube.gd" id="6_vxd74"]
 [ext_resource type="Shader" uid="uid://cph51f8vu2m17" path="res://water.gdshader" id="7_wc5p8"]
 [ext_resource type="Script" uid="uid://b70riu7gbpbvf" path="res://game_instance.gd" id="8_jsk3o"]
 [ext_resource type="Texture2D" uid="uid://dv600tyxh1qhh" path="res://Screenshot 2025-11-15 042842.png" id="9_4arys"]
+[ext_resource type="Script" uid="uid://cqxhlqnjji4jf" path="res://army_arrow.gd" id="9_j3e5s"]
 [ext_resource type="Texture2D" uid="uid://bdxv7tkkhj8yq" path="res://Assets/Icons/science.png" id="10_6iypd"]
 [ext_resource type="Texture2D" uid="uid://djkn6fam336ky" path="res://Assets/Icons/culture.png" id="11_wlxy5"]
 [ext_resource type="Texture2D" uid="uid://bxtex6og3mkq3" path="res://Assets/Icons/gold.png" id="12_3v7ru"]
@@ -201,9 +203,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.5058
 
 [node name="Military" type="Node3D" parent="Map/MapViews"]
 
-[node name="ArmyCombat" type="Node3D" parent="Map/MapViews/Military"]
+[node name="CombatVisual" type="Node3D" parent="Map/MapViews/Military"]
+script = ExtResource("6_5t8nk")
 
-[node name="Sprite3D" type="Sprite3D" parent="Map/MapViews/Military/ArmyCombat"]
+[node name="Sprite3D" type="Sprite3D" parent="Map/MapViews/Military/CombatVisual"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 billboard = 1
 no_depth_test = true
@@ -223,15 +226,17 @@ no_depth_test = true
 text = "10000"
 font_size = 20
 
-[node name="ArmyCount" type="Label3D" parent="Map/MapViews/Military/ArmyCube/TroopCount"]
+[node name="IsDefeated" type="Label3D" parent="Map/MapViews/Military/ArmyCube/TroopCount"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0672156, 0)
 no_depth_test = true
-text = "x22"
+modulate = Color(1, 0, 0, 1)
+text = "Defeated"
 font_size = 8
 outline_size = 6
 
 [node name="ArmyArrow" type="Node3D" parent="Map/MapViews/Military"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("9_j3e5s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map/MapViews/Military/ArmyArrow"]
 transform = Transform3D(0.3, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
