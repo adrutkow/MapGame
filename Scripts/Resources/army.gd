@@ -41,7 +41,7 @@ func start_combat(target_province: int):
 	desired_path = [];
 	
 	GameInstance.game_instance.combats.append(temp);
-	
+	DevConsole.instance.add_line("Started new combat");
 
 func get_next_move_target() -> int:
 	var current_path_index: int = -1;

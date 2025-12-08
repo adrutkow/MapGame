@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=51 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" uid="uid://drko2snt08yh3" path="res://ui_manager.gd" id="15_lggff"]
 [ext_resource type="Script" uid="uid://cand4yd5hgw84" path="res://map_views_ui.gd" id="22_s0gvp"]
 [ext_resource type="Script" uid="uid://rd225h3pkvvy" path="res://dev_console.gd" id="22_vxd74"]
+[ext_resource type="Script" uid="uid://bgcewtnl13o0o" path="res://window_dragger.gd" id="27_nu31w"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lggff"]
 shading_mode = 0
@@ -881,6 +882,43 @@ layout_mode = 2
 focus_mode = 0
 text = "Give armies 100 troops"
 
+[node name="test" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 344.0
+offset_top = 253.0
+offset_right = 690.0
+offset_bottom = 564.0
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="UI/test"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WindowDragger" type="Control" parent="UI/test" node_paths=PackedStringArray("target")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 35.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 6
+script = ExtResource("27_nu31w")
+target = NodePath("..")
+
+[node name="Panel2" type="Panel" parent="UI/test/WindowDragger"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceNamesToggle" to="UI/Control/MapViews" method="_on_province_names_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceIDsToggle" to="UI/Control/MapViews" method="_on_province_ids_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/NationNamesToggle" to="UI/Control/MapViews" method="_on_nation_names_toggle_pressed"]
@@ -894,3 +932,4 @@ text = "Give armies 100 troops"
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/ToggleLag" to="UI/Control/DevConsole" method="_on_toggle_lag_pressed"]
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GenerateArmy" to="UI/Control/DevConsole" method="_on_generate_army_pressed"]
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GiveArmyTroops" to="UI/Control/DevConsole" method="_on_give_army_troops_pressed"]
+[connection signal="gui_input" from="UI/test/WindowDragger" to="UI/test/WindowDragger" method="_on_gui_input"]
