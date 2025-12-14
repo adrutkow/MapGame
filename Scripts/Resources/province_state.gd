@@ -2,14 +2,29 @@ extends Resource
 class_name ProvinceState;
 
 var province_data: ProvinceData;
+var buildings: Array[String];
 
 func tick():
 	var owner: Nation;
+	var effect_context: EffectContext;
 	
 	owner = get_owner();
 	if (not owner):
 		return;
 	get_owner().science += 1;
+	
+	effect_context = EffectContext.new();
+	effect_context.nation = owner;
+	effect_context.province_state = self;
+	
+	for b: String in get_buildings():
+		var b_data: ProvinceBuildingData;
+		
+		b_data = GameGlobal.get_province_building_data_by_name(b);
+		if (not b_data):
+			continue;
+		for e: Effect in b_data.turn_effects:
+			e.tick(effect_context);
 
 func get_owner() -> Nation:
 	var id: int;
@@ -21,3 +36,18 @@ func get_owner() -> Nation:
 		if (id in n.owned_provinces):
 			return (n);
 	return (null);
+
+func add_building(n: String):
+	var b_data: ProvinceBuildingData;
+	var effect_context: EffectContext;
+		
+	effect_context = EffectContext.new();
+	effect_context.nation = get_owner();
+	effect_context.province_state = self;
+	b_data = GameGlobal.get_province_building_data_by_name(n);
+	buildings.append(n);
+	for e: Effect in b_data.on_built_effects:
+		e.tick(effect_context);
+
+func get_buildings() -> Array[String]:
+	return (buildings);

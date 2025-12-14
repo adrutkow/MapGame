@@ -36,3 +36,5 @@ func get_nation_id() -> int:
 				return (i);
 	return (-1);
 	
+func give_gold(amount: float):
+	gold += amount;

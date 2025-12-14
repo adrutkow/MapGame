@@ -3,7 +3,7 @@ class_name UIManager;
 
 static var instance: UIManager;
 var selected_army_id: int = -1;
-
+var selected_province: int = -1;
 
 func _init() -> void:
 	instance = self;
@@ -11,6 +11,7 @@ func _init() -> void:
 func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("Space")):
 		GameInstance.game_instance.tick();
+	$FloatingText.position = get_viewport().get_mouse_position();
 
 func tick():
 	update_resources();
@@ -19,6 +20,9 @@ func tick():
 	
 func on_clicked_province(province_id: int):
 	var armies_in_province: Array[int];
+	
+	selected_province = province_id;
+	show_province_info(province_id);
 	
 	armies_in_province = GameInstance.game_instance.get_army_ids_in_province(province_id);
 	if (armies_in_province.is_empty()):
@@ -40,6 +44,27 @@ func on_right_clicked_province(province_id: int):
 		
 		a.desired_path = Map.map_instance.pathfind(a.province_id, province_id);
 	
+	if (province_id != -1):
+		var p: ProvinceState = GameInstance.game_instance.get_province_by_id(province_id);
+		p.add_building("marketplace");
+		
+func show_province_info(province_id: int):
+	var province_data: ProvinceData;
+	
+	if (province_id == -1):
+		$Control/Province.visible = false;
+		return;
+		
+	province_data = Map.map_instance.get_province_data_by_id(province_id);
+	$Control/Province.visible = true;
+	$Control/Province.visible = true;
+	$Control/Province/RichTextLabel.text = province_data.name;
+	$Control/Province/RichTextLabel2.text = "ocean access: " + str(province_data.ocean_access);
+	$Control/Province/RichTextLabel3.text = "river access: " + str(province_data.river_access);
+	$Control/Province/ProvinceID.text = str(province_data.id);
+	$Control/Province/ProvinceBuildings.display_province_buildings(province_id);
+	
+	
 func select_army(army_id: int):
 	selected_army_id = army_id;
 	Map.map_instance.update_armycube_visual();
@@ -55,6 +80,7 @@ func update_resources():
 		return;
 	update_science(nation.science);
 	update_military(nation.power);
+	update_gold(nation.gold);
 	
 func update_nation_info():
 	if (not get_client_nation()):
@@ -70,5 +96,16 @@ func update_science(i: int):
 func update_military(i: int):
 	$Control/Mana/VBoxContainer/Power/RichTextLabel.text = str(i);
 
+func update_gold(i: int):
+	$Control/Mana/VBoxContainer/Gold/RichTextLabel.text = str(i);
+
 func update_day(i: int):
 	$Control/Time/RichTextLabel.text = "Day " + str(i);
+
+func activate_floating_text(s: String):
+	$FloatingText.visible = true;
+	$FloatingText/RichTextLabel.text = s;
+	
+func disable_floating_text():
+	$FloatingText.visible = false;
+	

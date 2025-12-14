@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=54 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -26,6 +26,9 @@
 [ext_resource type="Script" uid="uid://drko2snt08yh3" path="res://ui_manager.gd" id="15_lggff"]
 [ext_resource type="Script" uid="uid://cand4yd5hgw84" path="res://map_views_ui.gd" id="22_s0gvp"]
 [ext_resource type="Script" uid="uid://rd225h3pkvvy" path="res://dev_console.gd" id="22_vxd74"]
+[ext_resource type="Script" uid="uid://diby4n0gp5jby" path="res://ui_province_buildings.gd" id="25_2yde8"]
+[ext_resource type="Script" uid="uid://b0q4t51xgkxx2" path="res://province_building_slot.gd" id="25_obt1j"]
+[ext_resource type="Script" uid="uid://ishxob6mrgpf" path="res://ui_hover_area.gd" id="27_id0nj"]
 [ext_resource type="Script" uid="uid://bgcewtnl13o0o" path="res://window_dragger.gd" id="27_nu31w"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lggff"]
@@ -691,6 +694,82 @@ offset_top = 3.0
 offset_right = 805.0
 offset_bottom = 60.0
 
+[node name="ProvinceBuildings" type="Control" parent="UI/Control/Province"]
+anchors_preset = 0
+offset_left = 484.0
+offset_top = 46.0
+offset_right = 828.0
+offset_bottom = 261.0
+mouse_filter = 2
+script = ExtResource("25_2yde8")
+
+[node name="Panel" type="Panel" parent="UI/Control/Province/ProvinceBuildings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Control/Province/ProvinceBuildings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="ProvinceBuildingSlot" type="Control" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("25_obt1j")
+
+[node name="Panel" type="Panel" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProvinceBuildingIcon" type="TextureRect" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+
+[node name="UIHoverArea" type="Control" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot" node_paths=PackedStringArray("target")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("27_id0nj")
+target = NodePath("..")
+
 [node name="Misc" type="Control" parent="UI/Control"]
 anchors_preset = 0
 offset_left = 159.0
@@ -919,6 +998,48 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="FloatingText" type="Control" parent="UI"]
+visible = false
+z_index = 50
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 938.0
+offset_top = -608.0
+offset_right = 938.0
+offset_bottom = -608.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/FloatingText"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 200.0
+grow_vertical = 0
+mouse_filter = 2
+text = "This is test text
+"
+fit_content = true
+scroll_active = false
+
+[node name="Panel" type="Panel" parent="UI/FloatingText/RichTextLabel"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot/Button" to="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot" method="_on_button_pressed"]
+[connection signal="mouse_entered" from="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot/UIHoverArea" to="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot/UIHoverArea" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot/UIHoverArea" to="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot/UIHoverArea" method="_on_mouse_exited"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceNamesToggle" to="UI/Control/MapViews" method="_on_province_names_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceIDsToggle" to="UI/Control/MapViews" method="_on_province_ids_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/NationNamesToggle" to="UI/Control/MapViews" method="_on_nation_names_toggle_pressed"]

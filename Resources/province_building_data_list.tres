@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ProvinceBuildingDataList" load_steps=9 format=3 uid="uid://dhpyrgmooa0bt"]
+
+[ext_resource type="Script" uid="uid://c1hbldg12ywh6" path="res://Scripts/Resources/province_building_data.gd" id="1_xt2an"]
+[ext_resource type="Script" uid="uid://dpqvg5ygvxa22" path="res://Scripts/Resources/effect.gd" id="2_3imoi"]
+[ext_resource type="Script" uid="uid://btjna5qecowba" path="res://Scripts/Resources/province_building_data_list.gd" id="2_em3kk"]
+[ext_resource type="Texture2D" uid="uid://dnkwgbtlx0njh" path="res://Assets/Images/Buildings/marketplace.png" id="2_euutm"]
+[ext_resource type="Script" uid="uid://d3a757kkafwlt" path="res://Scripts/Effects/e_give_gold.gd" id="3_euutm"]
+
+[sub_resource type="Resource" id="Resource_b7r25"]
+script = ExtResource("3_euutm")
+intensity = 100.0
+metadata/_custom_type_script = "uid://d3a757kkafwlt"
+
+[sub_resource type="Resource" id="Resource_ipry3"]
+script = ExtResource("3_euutm")
+intensity = 0.2
+metadata/_custom_type_script = "uid://d3a757kkafwlt"
+
+[sub_resource type="Resource" id="Resource_j37t3"]
+script = ExtResource("1_xt2an")
+building_name = "marketplace"
+display_name = "Marketplace"
+on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_b7r25")])
+turn_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_ipry3")])
+icon = ExtResource("2_euutm")
+metadata/_custom_type_script = "uid://c1hbldg12ywh6"
+
+[resource]
+script = ExtResource("2_em3kk")
+building_list = Array[ExtResource("1_xt2an")]([SubResource("Resource_j37t3")])
+metadata/_custom_type_script = "uid://btjna5qecowba"

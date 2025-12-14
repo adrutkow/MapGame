@@ -180,4 +180,6 @@ func summon_army(province_id: int, nation_owner_id: int):
 	temp.nation_owner_id = nation_owner_id;
 	Army.armies_created_count += 1;
 	armies.append(temp);
-	
+
+func get_province_by_id(i: int) -> ProvinceState:
+	return (provinces[i]);

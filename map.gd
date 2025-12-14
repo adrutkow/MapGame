@@ -112,14 +112,8 @@ func get_province_data_by_id(i: int) -> ProvinceData:
 	return (null);
 
 func select_province(province_id: int):
-	if (province_id == -1):
-		unselect_province();
-		return;
-	$"../UI/Control/Province".visible = true;
-	$"../UI/Control/Province/RichTextLabel".text = get_province_data_by_id(province_id).name;
-	$"../UI/Control/Province/RichTextLabel2".text = "ocean access: " + str(get_province_data_by_id(province_id).ocean_access);
-	$"../UI/Control/Province/RichTextLabel3".text = "river access: " + str(get_province_data_by_id(province_id).river_access);
-	$"../UI/Control/Province/ProvinceID".text = str(get_province_data_by_id(province_id).id);
+	return;
+	UIManager.instance.show_province_info(province_id);
 		
 	return;
 		
@@ -135,8 +129,7 @@ func select_province(province_id: int):
 	temp.position = Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0);
 	$"../Node3D".add_child(temp);
 		
-func unselect_province():
-	$"../UI/Control/Province".visible = false;
+
 
 func get_province_top_left(province_id: int):
 	var province: ProvinceData = null;

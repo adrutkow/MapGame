@@ -98,10 +98,10 @@ func on_left_click(mouse_pos: Vector2):
 	var p: ProvinceData = Map.map_instance.get_province_data_by_color(color);
 	
 	if (p):
-		Map.map_instance.select_province(p.id);
+		#Map.map_instance.select_province(p.id);
 		UIManager.instance.on_clicked_province(p.id);
 	else:
-		Map.map_instance.unselect_province();
+		UIManager.instance.show_province_info(-1);
 
 func on_right_click(mouse_pos: Vector2):
 	var color = raycast_heatmap(mouse_pos);

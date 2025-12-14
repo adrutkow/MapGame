@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0wblt2nixjcb"]
+[gd_scene load_steps=6 format=3 uid="uid://d0wblt2nixjcb"]
 
 [ext_resource type="Script" uid="uid://bb13cs0kvslec" path="res://Prefabs/game_global.gd" id="1_rw7k7"]
 [ext_resource type="Resource" uid="uid://bejb6ttlphk5c" path="res://Resources/nation_data_list.tres" id="2_n4lan"]
 [ext_resource type="Resource" uid="uid://dnupc0m281r37" path="res://Resources/province_data_list.tres" id="3_d3vae"]
+[ext_resource type="Resource" uid="uid://dhpyrgmooa0bt" path="res://Resources/province_building_data_list.tres" id="4_jcvmu"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rw7k7"]
 
@@ -11,3 +12,4 @@ script = ExtResource("1_rw7k7")
 heatmap = SubResource("CompressedTexture2D_rw7k7")
 nation_data_list = ExtResource("2_n4lan")
 province_data_list = ExtResource("3_d3vae")
+province_building_data_list = ExtResource("4_jcvmu")
