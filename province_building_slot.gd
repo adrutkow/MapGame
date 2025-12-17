@@ -1,4 +1,4 @@
-extends UIElement;
+extends IconSlot;
 class_name ProvinceBuildingSlot
 
 var building_name: String = "none";
@@ -7,15 +7,13 @@ func tick():
 	if (building_name == "none"):
 		return;
 		
-	
 func update():
 	if (building_name == "none"):
-		$ProvinceBuildingIcon.texture = null;
+		set_texture(null);
 		return;
-	
-	$ProvinceBuildingIcon.texture = GameGlobal.get_province_building_data_by_name(building_name).icon;
+	set_texture(GameGlobal.get_province_building_data_by_name(building_name).icon);
 
-func on_hovered():
+func get_hover_text() -> String:
 	var building_data: ProvinceBuildingData;
 	var effect_context: EffectContext;
 	var s: String;
@@ -26,7 +24,7 @@ func on_hovered():
 	s = "";
 	
 	if (not building_data):
-		return;
+		return ("");
 		
 	s += building_data.display_name;
 	s += "\n\n";
@@ -44,12 +42,4 @@ func on_hovered():
 		s += "- ";
 		s += e.get_description(effect_context);
 		s += "\n";
-	
-	UIManager.instance.activate_floating_text(s);
-
-func on_unhovered():
-	UIManager.instance.disable_floating_text();
-
-func _on_button_pressed() -> void:
-	building_name = "marketplace"
-	update();
+	return (s);

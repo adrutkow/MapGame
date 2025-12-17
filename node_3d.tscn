@@ -1,9 +1,8 @@
-[gd_scene load_steps=54 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=55 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
 [ext_resource type="Script" uid="uid://x07fpdyp3ula" path="res://camera_3d.gd" id="3_a0tk4"]
-[ext_resource type="Texture2D" uid="uid://bwkuon3twx3om" path="res://test5.png" id="3_ealrb"]
 [ext_resource type="Texture2D" uid="uid://bfj2c750ck3do" path="res://outlinetest2.png" id="3_i5arm"]
 [ext_resource type="Shader" uid="uid://dobsawhhyrgag" path="res://black_transparent.gdshader" id="3_jka67"]
 [ext_resource type="Shader" uid="uid://c2dxkamyikwk7" path="res://land.gdshader" id="4_tcnuu"]
@@ -27,9 +26,11 @@
 [ext_resource type="Script" uid="uid://cand4yd5hgw84" path="res://map_views_ui.gd" id="22_s0gvp"]
 [ext_resource type="Script" uid="uid://rd225h3pkvvy" path="res://dev_console.gd" id="22_vxd74"]
 [ext_resource type="Script" uid="uid://diby4n0gp5jby" path="res://ui_province_buildings.gd" id="25_2yde8"]
-[ext_resource type="Script" uid="uid://b0q4t51xgkxx2" path="res://province_building_slot.gd" id="25_obt1j"]
-[ext_resource type="Script" uid="uid://ishxob6mrgpf" path="res://ui_hover_area.gd" id="27_id0nj"]
+[ext_resource type="Script" uid="uid://bpu2l45wnmixw" path="res://icon_slot_container.gd" id="26_ype4i"]
 [ext_resource type="Script" uid="uid://bgcewtnl13o0o" path="res://window_dragger.gd" id="27_nu31w"]
+[ext_resource type="PackedScene" uid="uid://cdp5nw4dqcro1" path="res://Prefabs/icon_slot.tscn" id="27_riyl1"]
+[ext_resource type="Script" uid="uid://ch38vaoagj850" path="res://ui_research_tier.gd" id="31_1q667"]
+[ext_resource type="PackedScene" uid="uid://c36wkifj71gdw" path="res://Assets/Models/hello_kitty_speed_good.fbx" id="31_ype4i"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lggff"]
 shading_mode = 0
@@ -83,9 +84,9 @@ noise = SubResource("FastNoiseLite_jsk3o")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jsk3o"]
 render_priority = 0
 shader = ExtResource("7_wc5p8")
-shader_parameter/c = Color(0, 0.125, 0.5, 1)
+shader_parameter/c = Color(0, 0.254902, 0.960784, 1)
 shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.02
+shader_parameter/roughness = 0.054
 shader_parameter/texture_normal = SubResource("NoiseTexture2D_jsk3o")
 shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_4arys")
 shader_parameter/wave_direction = Vector2(2, 0)
@@ -238,6 +239,9 @@ text = "Defeated"
 font_size = 8
 outline_size = 6
 
+[node name="hello_kitty_speed_good" parent="Map/MapViews/Military/ArmyCube" instance=ExtResource("31_ype4i")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+
 [node name="ArmyArrow" type="Node3D" parent="Map/MapViews/Military"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("9_j3e5s")
@@ -311,12 +315,6 @@ transform = Transform3D(0.0358125, 0, 0.164888, 0, 0.453764, 0, -0.0217838, 0, 0
 mesh = SubResource("BoxMesh_jka67")
 skeleton = NodePath("../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Map/Decoratives/Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07398, 3.59691, -5.09573)
-light_energy = 10.0
-omni_range = 39.596
-omni_attenuation = -0.171
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Map/Decoratives/Terrain"]
 environment = SubResource("Environment_wc5p8")
 
@@ -327,15 +325,14 @@ texture = ExtResource("5_i0g27")
 script = ExtResource("5_3v7ru")
 heatmap = ExtResource("5_i0g27")
 
-[node name="LandProvince" type="Sprite3D" parent="Map/Decoratives/Terrain/Land"]
-visible = false
-texture = ExtResource("3_ealrb")
-
 [node name="Water" type="MeshInstance3D" parent="Map/Decoratives/Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20999, 0.0153482, 1.50061)
 mesh = SubResource("QuadMesh_i5arm")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("ShaderMaterial_jsk3o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map/Decoratives/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2.03835, 6.06717, 6.5665)
 
 [node name="Area3D" type="Area3D" parent="Map"]
 
@@ -720,55 +717,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer"]
+[node name="IconSlotContainer" type="GridContainer" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 5
+script = ExtResource("26_ype4i")
+icon_slot_prefab = ExtResource("27_riyl1")
 
-[node name="ProvinceBuildingSlot" type="Control" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(75, 75)
+[node name="IconSlot" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/IconSlotContainer" instance=ExtResource("27_riyl1")]
+visible = false
 layout_mode = 2
-mouse_filter = 2
-script = ExtResource("25_obt1j")
-
-[node name="Panel" type="Panel" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Button" type="Button" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ProvinceBuildingIcon" type="TextureRect" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-expand_mode = 1
-
-[node name="UIHoverArea" type="Control" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot" node_paths=PackedStringArray("target")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("27_id0nj")
-target = NodePath("..")
 
 [node name="Misc" type="Control" parent="UI/Control"]
 anchors_preset = 0
@@ -964,10 +923,10 @@ text = "Give armies 100 troops"
 [node name="test" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 344.0
-offset_top = 253.0
-offset_right = 690.0
-offset_bottom = 564.0
+offset_left = 96.0
+offset_top = 328.0
+offset_right = 442.0
+offset_bottom = 639.0
 mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="UI/test"]
@@ -1037,9 +996,116 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[connection signal="pressed" from="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot/Button" to="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot" method="_on_button_pressed"]
-[connection signal="mouse_entered" from="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot/UIHoverArea" to="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot/UIHoverArea" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot/UIHoverArea" to="UI/Control/Province/ProvinceBuildings/ScrollContainer/GridContainer/ProvinceBuildingSlot/UIHoverArea" method="_on_mouse_exited"]
+[node name="ResearchMenu" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 563.0
+offset_top = 155.0
+offset_right = 1494.0
+offset_bottom = 582.0
+
+[node name="Panel" type="Panel" parent="UI/ResearchMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowDragger" type="Control" parent="UI/ResearchMenu" node_paths=PackedStringArray("target")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -395.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 6
+script = ExtResource("27_nu31w")
+target = NodePath("..")
+
+[node name="Panel2" type="Panel" parent="UI/ResearchMenu/WindowDragger"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/ResearchMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 38.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ResearchMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResearchTier" type="Control" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer" node_paths=PackedStringArray("icon_slot_container", "tier_text")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("31_1q667")
+icon_slot_container = NodePath("Panel/HBoxContainer/ScrollContainer/IconSlotContainer")
+tier_text = NodePath("Panel/HBoxContainer/Panel/TierText")
+
+[node name="Panel" type="Panel" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="TierText" type="RichTextLabel" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tier 1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="IconSlotContainer" type="GridContainer" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+script = ExtResource("26_ype4i")
+
+[node name="IconSlot" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer/ScrollContainer/IconSlotContainer" instance=ExtResource("27_riyl1")]
+layout_mode = 2
+
+[node name="Node3D" type="Node3D" parent="."]
+
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceNamesToggle" to="UI/Control/MapViews" method="_on_province_names_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceIDsToggle" to="UI/Control/MapViews" method="_on_province_ids_toggle_pressed"]
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/NationNamesToggle" to="UI/Control/MapViews" method="_on_nation_names_toggle_pressed"]
@@ -1054,3 +1120,4 @@ mouse_filter = 2
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GenerateArmy" to="UI/Control/DevConsole" method="_on_generate_army_pressed"]
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GiveArmyTroops" to="UI/Control/DevConsole" method="_on_give_army_troops_pressed"]
 [connection signal="gui_input" from="UI/test/WindowDragger" to="UI/test/WindowDragger" method="_on_gui_input"]
+[connection signal="gui_input" from="UI/ResearchMenu/WindowDragger" to="UI/ResearchMenu/WindowDragger" method="_on_gui_input"]

@@ -11,7 +11,6 @@ func tick():
 	owner = get_owner();
 	if (not owner):
 		return;
-	get_owner().science += 1;
 	
 	effect_context = EffectContext.new();
 	effect_context.nation = owner;

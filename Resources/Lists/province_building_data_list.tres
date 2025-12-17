@@ -18,7 +18,7 @@ metadata/_custom_type_script = "uid://d3a757kkafwlt"
 
 [sub_resource type="Resource" id="Resource_j37t3"]
 script = ExtResource("1_xt2an")
-building_name = "marketplace"
+building_name = "building_marketplace"
 display_name = "Marketplace"
 on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_b7r25")])
 turn_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_ipry3")])

@@ -10,20 +10,16 @@ func display_province_buildings(province_id: int):
 		var d: ProvinceBuildingData;
 		
 		add_building(n);
-		#d = GameGlobal.get_province_building_data_by_name(s);
 		
 
 func reset_buildings():
-	for t in $ScrollContainer/GridContainer.get_children():
-		if (t.name != "ProvinceBuildingSlot"):
-			t.queue_free();
+	var icon_slot_container: IconSlotContainer;
+	
+	icon_slot_container = $ScrollContainer/IconSlotContainer;
+	icon_slot_container.reset_icons();
 
 func add_building(n: String):
-	var temp: ProvinceBuildingSlot;
+	var icon_slot_container: IconSlotContainer;
 	
-	temp = $ScrollContainer/GridContainer/ProvinceBuildingSlot.duplicate();
-	temp.building_name = n;
-	temp.update();
-	temp.visible = true;
-	
-	$ScrollContainer/GridContainer.add_child(temp);
+	icon_slot_container = $ScrollContainer/IconSlotContainer;
+	icon_slot_container.add_icon(n);

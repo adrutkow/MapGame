@@ -18,6 +18,12 @@ var lag: bool = false;
 # great people, can assign to province, give stat to province
 # vsauce +20% science to province
 
+# Trade:
+# Encourage sending resources, sending resources to other
+# nations gives "trade power", exchange trade power for resources,
+# or giga trade power = force trade routes
+# trade reliablity stat
+
 func _process(delta: float) -> void:
 	timer += 1;
 	if (timer > 60 and start):

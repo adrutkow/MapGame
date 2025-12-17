@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="TechDataList" load_steps=9 format=3 uid="uid://dehsef0gw2des"]
+
+[ext_resource type="Script" uid="uid://cjol0hn1em5cq" path="res://Scripts/Resources/tech_data_list.gd" id="1_osll3"]
+[ext_resource type="Script" uid="uid://civflpqvki2vd" path="res://Scripts/Resources/tech_data.gd" id="2_7s71r"]
+[ext_resource type="Texture2D" uid="uid://bnumrlcbkvufu" path="res://Assets/Images/Techs/Latin_workshop.png" id="3_j2j1m"]
+[ext_resource type="Script" uid="uid://dpqvg5ygvxa22" path="res://Scripts/Resources/effect.gd" id="4_gf3iy"]
+[ext_resource type="Script" uid="uid://d3a757kkafwlt" path="res://Scripts/Effects/e_give_gold.gd" id="5_b12fb"]
+
+[sub_resource type="Resource" id="Resource_8bbva"]
+script = ExtResource("5_b12fb")
+intensity = 5.0
+metadata/_custom_type_script = "uid://d3a757kkafwlt"
+
+[sub_resource type="Resource" id="Resource_8i3mf"]
+script = ExtResource("5_b12fb")
+intensity = 10.0
+metadata/_custom_type_script = "uid://d3a757kkafwlt"
+
+[sub_resource type="Resource" id="Resource_tor0o"]
+script = ExtResource("2_7s71r")
+tech_name = "tech_workshop"
+display_name = "Workshop"
+on_researched_effects = Array[ExtResource("4_gf3iy")]([SubResource("Resource_8bbva")])
+turn_effects = Array[ExtResource("4_gf3iy")]([SubResource("Resource_8i3mf")])
+icon = ExtResource("3_j2j1m")
+tier = 1
+metadata/_custom_type_script = "uid://civflpqvki2vd"
+
+[resource]
+script = ExtResource("1_osll3")
+tech_list = Array[ExtResource("2_7s71r")]([SubResource("Resource_tor0o")])
+metadata/_custom_type_script = "uid://cjol0hn1em5cq"

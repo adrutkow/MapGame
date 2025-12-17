@@ -1,11 +1,12 @@
 extends Resource
-class_name ProvinceBuildingData;
+class_name TechData;
 
-@export var building_name: String = "default_building";
-@export var display_name: String = "Default building";
-@export var on_built_effects: Array[Effect];
+@export var tech_name: String = "tech_default";
+@export var display_name: String = "Default Technology";
+@export var on_researched_effects: Array[Effect];
 @export var turn_effects: Array[Effect];
 @export var icon: Texture2D;
+@export var tier: int = 1;
 
 func get_description(ctx: EffectContext):
 	var s: String;
@@ -13,8 +14,8 @@ func get_description(ctx: EffectContext):
 	s = "";
 	s += display_name;
 	s += "\n\n";
-	s += "WHEN BUILT:\n";
-	for e: Effect in on_built_effects:
+	s += "WHEN RESEARCHED:\n";
+	for e: Effect in on_researched_effects:
 		s += "- ";
 		s += e.get_description(ctx);
 		s += "\n";

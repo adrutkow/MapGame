@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdp5nw4dqcro1"]
+
+[ext_resource type="Script" uid="uid://1ari7td3uomn" path="res://Scripts/icon_slot.gd" id="1_h060v"]
+[ext_resource type="Script" uid="uid://ishxob6mrgpf" path="res://ui_hover_area.gd" id="2_e222e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h060v"]
+
+[node name="IconSlot" type="Control"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_h060v")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="IconTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+
+[node name="UIHoverArea" type="Control" parent="." node_paths=PackedStringArray("target")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("2_e222e")
+target = NodePath("..")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h060v")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h060v")
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
