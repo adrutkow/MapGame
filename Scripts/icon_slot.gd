@@ -16,6 +16,11 @@ func update():
 		if (tech_data):
 			set_texture(tech_data.icon);
 		return;
+	if ("gp_" in key):
+		var gp_data: GreatPersonData = GameGlobal.get_great_person_data_by_name(key);
+		if (gp_data):
+			set_texture(gp_data.icon);
+		return;
 
 func set_texture(texture: Texture2D = null):
 	$IconTexture.texture = texture;
@@ -52,6 +57,10 @@ func get_hover_text() -> String:
 		var tech_data: TechData = GameGlobal.get_tech_data_by_name(key);
 		if (tech_data):
 			return (tech_data.get_description(effect_context));
+	if ("gp_" in key):
+		var gp_data: GreatPersonData = GameGlobal.get_great_person_data_by_name(key);
+		if (gp_data):
+			return (gp_data.get_description(effect_context));
 	return ("");
 
 

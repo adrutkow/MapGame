@@ -3,6 +3,7 @@ class_name ProvinceState;
 
 var province_data: ProvinceData;
 var buildings: Array[String];
+var great_people: Array[String];
 
 func tick():
 	var owner: Nation;
@@ -48,5 +49,11 @@ func add_building(n: String):
 	for e: Effect in b_data.on_built_effects:
 		e.tick(effect_context);
 
+func add_great_person(n: String):
+	great_people.append(n);
+
 func get_buildings() -> Array[String]:
 	return (buildings);
+
+func get_great_people() -> Array[String]:
+	return (great_people);

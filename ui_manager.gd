@@ -47,6 +47,7 @@ func on_right_clicked_province(province_id: int):
 	if (province_id != -1):
 		var p: ProvinceState = GameInstance.game_instance.get_province_by_id(province_id);
 		p.add_building("building_marketplace");
+		p.add_great_person("gp_leon-whitefungus");
 		
 func show_province_info(province_id: int):
 	var province_data: ProvinceData;
@@ -63,7 +64,7 @@ func show_province_info(province_id: int):
 	$Control/Province/RichTextLabel3.text = "river access: " + str(province_data.river_access);
 	$Control/Province/ProvinceID.text = str(province_data.id);
 	$Control/Province/ProvinceBuildings.display_province_buildings(province_id);
-	
+	$Control/Province/ProvinceGreatPeople.display_province_gp(province_id);
 	
 func select_army(army_id: int):
 	selected_army_id = army_id;

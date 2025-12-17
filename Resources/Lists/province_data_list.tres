@@ -325,7 +325,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_p7xci"]
 script = ExtResource("1_5xjdf")
-name = "Dust Breaker"
+name = "Goodington"
 id = 32
 heatmap_color = Vector3i(102, 144, 196)
 ocean_access = true
@@ -345,7 +345,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_vhrtp"]
 script = ExtResource("1_5xjdf")
-name = "Spood0"
+name = "Spodiro"
 id = 34
 heatmap_color = Vector3i(0, 122, 28)
 ocean_access = true
@@ -355,7 +355,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_bb0ia"]
 script = ExtResource("1_5xjdf")
-name = "Spood1"
+name = "Pepiro"
 id = 35
 heatmap_color = Vector3i(0, 56, 14)
 ocean_access = true
@@ -365,7 +365,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_ibhp7"]
 script = ExtResource("1_5xjdf")
-name = "Spood2"
+name = "Korobus"
 id = 36
 heatmap_color = Vector3i(0, 107, 26)
 ocean_access = true
@@ -375,7 +375,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_cv42e"]
 script = ExtResource("1_5xjdf")
-name = "Spood3"
+name = "Brimbus"
 id = 37
 heatmap_color = Vector3i(0, 76, 19)
 ocean_access = false
@@ -385,7 +385,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_120ip"]
 script = ExtResource("1_5xjdf")
-name = "Spood4"
+name = "Ratichki"
 id = 38
 heatmap_color = Vector3i(0, 38, 38)
 ocean_access = true
@@ -615,7 +615,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_koinb"]
 script = ExtResource("1_5xjdf")
-name = "Griddy Gear"
+name = "Happyington"
 id = 61
 heatmap_color = Vector3i(242, 255, 132)
 ocean_access = false
@@ -665,7 +665,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_4buer"]
 script = ExtResource("1_5xjdf")
-name = "Rattichky"
+name = "Griddy Gear"
 id = 66
 heatmap_color = Vector3i(0, 255, 33)
 ocean_access = false
@@ -685,7 +685,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_sv5x6"]
 script = ExtResource("1_5xjdf")
-name = "Sabaton"
+name = "Gladington"
 id = 68
 heatmap_color = Vector3i(142, 255, 132)
 ocean_access = false

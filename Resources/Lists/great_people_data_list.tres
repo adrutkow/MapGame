@@ -1,0 +1,221 @@
+[gd_resource type="Resource" script_class="GreatPeopleDataList" load_steps=47 format=3 uid="uid://bkxl1ryr0nmij"]
+
+[ext_resource type="Script" uid="uid://bfj6l868ymn18" path="res://Scripts/Resources/great_person_data.gd" id="1_63vfs"]
+[ext_resource type="Texture2D" uid="uid://ba6aumrr0uavy" path="res://Assets/Images/GreatPeople/adamthefirst.png" id="2_48d3j"]
+[ext_resource type="Script" uid="uid://dpqvg5ygvxa22" path="res://Scripts/Resources/effect.gd" id="2_kpejn"]
+[ext_resource type="Script" uid="uid://byn0bh0ygolau" path="res://Scripts/Resources/great_people_data_list.gd" id="2_oeiwk"]
+[ext_resource type="Texture2D" uid="uid://bd1we12s5xxnx" path="res://Assets/Images/GreatPeople/leon-whitefungus.png" id="3_48d3j"]
+[ext_resource type="Texture2D" uid="uid://biohdx8c2cki1" path="res://Assets/Images/GreatPeople/anton-the-first.png" id="4_on5cy"]
+[ext_resource type="Texture2D" uid="uid://cydfgf6ujil2m" path="res://Assets/Images/GreatPeople/antosha.png" id="5_5xo52"]
+[ext_resource type="Texture2D" uid="uid://cydrq5m7j3vxj" path="res://Assets/Images/GreatPeople/guston-face-reveal.png" id="6_amax6"]
+[ext_resource type="Texture2D" uid="uid://dvx3b8cvh7a6e" path="res://Assets/Images/GreatPeople/vova.png" id="7_6qyju"]
+[ext_resource type="Texture2D" uid="uid://bkfnoy6s4kdls" path="res://Assets/Images/GreatPeople/village-elder.png" id="8_5xo52"]
+[ext_resource type="Script" uid="uid://d3a757kkafwlt" path="res://Scripts/Effects/e_give_gold.gd" id="8_6gbbj"]
+[ext_resource type="Texture2D" uid="uid://dw2cc24ppgtxt" path="res://Assets/Images/GreatPeople/lukas.png" id="9_amax6"]
+[ext_resource type="Texture2D" uid="uid://cwqp0n8gla3uw" path="res://Assets/Images/GreatPeople/ajonjon.png" id="12_6gbbj"]
+[ext_resource type="Texture2D" uid="uid://bng1bhl8ngu06" path="res://Assets/Images/GreatPeople/andrew.png" id="13_fqve3"]
+[ext_resource type="Texture2D" uid="uid://epynbtv4hjpp" path="res://Assets/Images/GreatPeople/anton-the-second.png" id="14_mcdgf"]
+[ext_resource type="Texture2D" uid="uid://bom348fwhi2bt" path="res://Assets/Images/GreatPeople/don-jone.png" id="15_hi7aj"]
+[ext_resource type="Texture2D" uid="uid://e54s0jx3rnrr" path="res://Assets/Images/GreatPeople/goldus-armor.png" id="16_u0uhe"]
+[ext_resource type="Texture2D" uid="uid://c10bcwrpb5o60" path="res://Assets/Images/GreatPeople/heartworth.png" id="17_kl4qs"]
+[ext_resource type="Texture2D" uid="uid://bbrxuuc2870q6" path="res://Assets/Images/GreatPeople/im-all-ears.png" id="18_8jnkf"]
+[ext_resource type="Texture2D" uid="uid://hsb2il704ik" path="res://Assets/Images/GreatPeople/jew-jewson.png" id="19_d3k56"]
+[ext_resource type="Texture2D" uid="uid://h65uyc3iqbf3" path="res://Assets/Images/GreatPeople/mikael.png" id="20_nfcdk"]
+[ext_resource type="Texture2D" uid="uid://7h52kam8tb0g" path="res://Assets/Images/GreatPeople/neegus.png" id="21_a05qb"]
+[ext_resource type="Texture2D" uid="uid://ddhafwbrd1v28" path="res://Assets/Images/GreatPeople/thomas.png" id="22_w5ixb"]
+[ext_resource type="Texture2D" uid="uid://bljbyvnagd5eh" path="res://Assets/Images/GreatPeople/nika.png" id="23_mcdgf"]
+
+[sub_resource type="Resource" id="Resource_2eimx"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_adam-the-first"
+display_name = "Adam I"
+icon = ExtResource("2_48d3j")
+description = "The first leader of Speedland"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_oeiwk"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_leon-whitefungus"
+display_name = "Leon Whitefungus"
+icon = ExtResource("3_48d3j")
+description = "The first minister of defense in Speedland"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_kpejn"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_anton-the-first"
+display_name = "Anton I"
+icon = ExtResource("4_on5cy")
+description = "The first leader of Antonland"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_6gbbj"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_antosha"
+display_name = "Antosha"
+icon = ExtResource("5_5xo52")
+description = "Local celebrity from Antonland"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_kig0q"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_guston-face-reveal"
+display_name = "Guston face reveal 50k subs - explorer"
+icon = ExtResource("6_amax6")
+description = "Guston face reveal 50k subs - explorer"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_nniii"]
+script = ExtResource("8_6gbbj")
+intensity = 10.0
+metadata/_custom_type_script = "uid://d3a757kkafwlt"
+
+[sub_resource type="Resource" id="Resource_lmn65"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_vova"
+display_name = "Vova"
+icon = ExtResource("7_6qyju")
+description = "Great artist from Antonland"
+effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_nniii")])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_amax6"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_village-elder"
+display_name = "Village Elder"
+icon = ExtResource("8_5xo52")
+description = "Village Elder from Antonland"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_6qyju"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_lukas"
+display_name = "Lukas"
+icon = ExtResource("9_amax6")
+description = "Military general from Antonland"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_n3rqs"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_ajonjon"
+display_name = "Ajonjon bon Clash Royeaux"
+icon = ExtResource("12_6gbbj")
+description = "Antonlandian judge"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_j58ov"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_andrew"
+display_name = "Andrew"
+icon = ExtResource("13_fqve3")
+description = "A normal cow"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_g2seq"]
+script = ExtResource("8_6gbbj")
+intensity = 999.0
+metadata/_custom_type_script = "uid://d3a757kkafwlt"
+
+[sub_resource type="Resource" id="Resource_bsgcj"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_anton-the-second"
+display_name = "Anton II"
+icon = ExtResource("14_mcdgf")
+description = "The second leader of Antonland"
+effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_g2seq")])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_4un0h"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_don-jone"
+display_name = "Don Jone"
+icon = ExtResource("15_hi7aj")
+description = "Czarnuch"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_d1cn8"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_goldus-armor"
+display_name = "Goldus"
+icon = ExtResource("16_u0uhe")
+description = "Goldus empowered with Speedlandian armor. He's also a cuck"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_o7p7o"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_heatworth"
+display_name = "Heatworth"
+icon = ExtResource("17_kl4qs")
+description = "Fatass"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_64ihk"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_im-all-ears"
+display_name = "Im all ears"
+icon = ExtResource("18_8jnkf")
+description = "Still waiting at Gogapolis' gates"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_uguoq"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_jew-jewson"
+display_name = "Jew Jewson"
+icon = ExtResource("19_d3k56")
+description = "Striving for greater power"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_hycbi"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_mikael"
+display_name = "Mikael"
+icon = ExtResource("20_nfcdk")
+description = "A true Antonan"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_p4gyr"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_neegus"
+display_name = "Neegus"
+icon = ExtResource("21_a05qb")
+description = "Cold blooded killer"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_0lwjg"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_thomas"
+display_name = "Thomas"
+icon = ExtResource("22_w5ixb")
+description = "Richest Antonian"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_homdk"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_nika"
+display_name = "Nika"
+icon = ExtResource("23_mcdgf")
+description = "Nika Rutkowski"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[resource]
+script = ExtResource("2_oeiwk")
+gp_list = Array[ExtResource("1_63vfs")]([SubResource("Resource_2eimx"), SubResource("Resource_oeiwk"), SubResource("Resource_kpejn"), SubResource("Resource_6gbbj"), SubResource("Resource_kig0q"), SubResource("Resource_lmn65"), SubResource("Resource_amax6"), SubResource("Resource_6qyju"), SubResource("Resource_n3rqs"), SubResource("Resource_j58ov"), SubResource("Resource_bsgcj"), SubResource("Resource_4un0h"), SubResource("Resource_d1cn8"), SubResource("Resource_o7p7o"), SubResource("Resource_64ihk"), SubResource("Resource_uguoq"), SubResource("Resource_hycbi"), SubResource("Resource_p4gyr"), SubResource("Resource_0lwjg"), SubResource("Resource_homdk")])
+metadata/_custom_type_script = "uid://byn0bh0ygolau"

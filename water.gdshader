@@ -9,8 +9,10 @@ uniform vec2 wave_direction = vec2(2.0, 0.0);
 uniform vec2 wave_direction2 = vec2(-1.0, -1.0);
 uniform float time_scale: hint_range(0.0, 0.2, 0.005) = 0.025;
 
+
+
 void vertex() {
-	// Called for every vertex the material is visible on.
+
 }
 
 void fragment() {

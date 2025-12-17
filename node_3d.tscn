@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=64 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://bpu2l45wnmixw" path="res://icon_slot_container.gd" id="26_ype4i"]
 [ext_resource type="Script" uid="uid://bgcewtnl13o0o" path="res://window_dragger.gd" id="27_nu31w"]
 [ext_resource type="PackedScene" uid="uid://cdp5nw4dqcro1" path="res://Prefabs/icon_slot.tscn" id="27_riyl1"]
+[ext_resource type="Script" uid="uid://w27vc1uyccyq" path="res://ui_province_great_people.gd" id="29_riyl1"]
 [ext_resource type="Script" uid="uid://ch38vaoagj850" path="res://ui_research_tier.gd" id="31_1q667"]
 [ext_resource type="PackedScene" uid="uid://c36wkifj71gdw" path="res://Assets/Models/hello_kitty_speed_good.fbx" id="31_ype4i"]
 
@@ -55,8 +56,36 @@ resource_local_to_scene = true
 background_mode = 2
 background_energy_multiplier = 1.46
 
-[sub_resource type="QuadMesh" id="QuadMesh_i5arm"]
-size = Vector2(15, 15)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tcnuu"]
+noise_type = 3
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tuemg"]
+as_normal_map = true
+bump_strength = 10.2
+noise = SubResource("FastNoiseLite_tcnuu")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tuemg"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i0g27"]
+as_normal_map = true
+bump_strength = 15.2
+noise = SubResource("FastNoiseLite_tuemg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ype4i"]
+render_priority = 0
+shader = ExtResource("4_tcnuu")
+shader_parameter/c = Color(1.97336e-06, 0.462885, 0, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.843
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_tuemg")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_i0g27")
+shader_parameter/albedo_texture = ExtResource("5_i0g27")
+shader_parameter/ratio = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_riyl1"]
+size = Vector2(5, 4.82)
 subdivide_width = 200
 subdivide_depth = 200
 orientation = 1
@@ -81,6 +110,24 @@ seamless = true
 as_normal_map = true
 bump_strength = 1.5
 noise = SubResource("FastNoiseLite_jsk3o")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pb8dk"]
+render_priority = 0
+shader = ExtResource("7_wc5p8")
+shader_parameter/c = Color(0, 0.254902, 0.960784, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.054
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_jsk3o")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_4arys")
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.025
+
+[sub_resource type="QuadMesh" id="QuadMesh_i5arm"]
+size = Vector2(15, 15)
+subdivide_width = 200
+subdivide_depth = 200
+orientation = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jsk3o"]
 render_priority = 0
@@ -123,6 +170,7 @@ shader_parameter/roughness = 0.938
 shader_parameter/texture_normal = SubResource("NoiseTexture2D_jsnrv")
 shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_s0gvp")
 shader_parameter/albedo_texture = SubResource("CompressedTexture2D_i0g27")
+shader_parameter/ratio = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jka67"]
 render_priority = 0
@@ -156,7 +204,7 @@ heatmap = ExtResource("5_i0g27")
 [node name="MapViews" type="Node3D" parent="Map"]
 
 [node name="Nations" type="Sprite3D" parent="Map/MapViews"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.50582, 0.0260158, 2.41655)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.50582, 0.0587707, 2.41655)
 
 [node name="ProvinceNames" type="Node3D" parent="Map/MapViews"]
 
@@ -325,11 +373,19 @@ skeleton = NodePath("../..")
 environment = SubResource("Environment_wc5p8")
 
 [node name="Land" type="Sprite3D" parent="Map/Decoratives/Terrain"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.506, 0.02, 2.417)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.506, 0.0389008, 2.417)
 material_override = ExtResource("4_tuemg")
 texture = ExtResource("5_i0g27")
 script = ExtResource("5_3v7ru")
 heatmap = ExtResource("5_i0g27")
+
+[node name="Land2" type="MeshInstance3D" parent="Map/Decoratives/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.505, -0.00183898, 2.409)
+visible = false
+material_override = SubResource("ShaderMaterial_ype4i")
+mesh = SubResource("QuadMesh_riyl1")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_pb8dk")
 
 [node name="Water" type="MeshInstance3D" parent="Map/Decoratives/Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20999, 0.0153482, 1.50061)
@@ -363,7 +419,7 @@ transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_wc5p8")
 
 [node name="Borders" type="Sprite3D" parent="Map"]
-transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, 2.506, 0.022, 2.417)
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, 2.506, 0.0460183, 2.417)
 texture = ExtResource("3_i5arm")
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -733,6 +789,41 @@ icon_slot_prefab = ExtResource("27_riyl1")
 
 [node name="IconSlot" parent="UI/Control/Province/ProvinceBuildings/ScrollContainer/IconSlotContainer" instance=ExtResource("27_riyl1")]
 visible = false
+layout_mode = 2
+
+[node name="ProvinceGreatPeople" type="Control" parent="UI/Control/Province"]
+anchors_preset = 0
+offset_left = 149.0
+offset_top = 47.0
+offset_right = 466.0
+offset_bottom = 244.0
+script = ExtResource("29_riyl1")
+
+[node name="Panel" type="Panel" parent="UI/Control/Province/ProvinceGreatPeople"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Control/Province/ProvinceGreatPeople"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IconSlotContainer" type="GridContainer" parent="UI/Control/Province/ProvinceGreatPeople/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+script = ExtResource("26_ype4i")
+icon_slot_prefab = ExtResource("27_riyl1")
+
+[node name="IconSlot" parent="UI/Control/Province/ProvinceGreatPeople/ScrollContainer/IconSlotContainer" instance=ExtResource("27_riyl1")]
 layout_mode = 2
 
 [node name="Misc" type="Control" parent="UI/Control"]

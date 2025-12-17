@@ -7,8 +7,11 @@ uniform sampler2D texture_normal;
 uniform sampler2D texture_normal2;
 uniform sampler2D albedo_texture;
 
+uniform sampler2D heightmap;
+uniform float ratio = 1.0;
+
 void vertex() {
-	// Called for every vertex the material is visible on.
+		//VERTEX.y = texture(heightmap, UV).r * ratio;
 }
 
 void fragment() {

@@ -5,6 +5,7 @@ extends Node
 @export var province_data_list: ProvinceDataList;
 @export var province_building_data_list: ProvinceBuildingDataList;
 @export var tech_data_list: TechDataList;
+@export var gp_data_list: GreatPeopleDataList;
 
 enum GAME_ACTION {
 	UPGRADE_PROVINCE,
@@ -30,4 +31,10 @@ func get_tech_data_by_name(n: String) -> TechData:
 	for t: TechData in tech_data_list.tech_list:
 		if (t.tech_name == n):
 			return (t);
+	return (null);
+	
+func get_great_person_data_by_name(n: String) -> GreatPersonData:
+	for gp: GreatPersonData in gp_data_list.gp_list:
+		if (gp.gp_name == n):
+			return (gp);
 	return (null);
