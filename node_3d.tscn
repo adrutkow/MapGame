@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=56 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dv600tyxh1qhh" path="res://Screenshot 2025-11-15 042842.png" id="9_4arys"]
 [ext_resource type="Script" uid="uid://cqxhlqnjji4jf" path="res://army_arrow.gd" id="9_j3e5s"]
 [ext_resource type="Texture2D" uid="uid://bdxv7tkkhj8yq" path="res://Assets/Icons/science.png" id="10_6iypd"]
+[ext_resource type="PackedScene" uid="uid://cxwuad3lqkn5x" path="res://Assets/Models/mikui/hachune_miku_doll.glb" id="10_ype4i"]
 [ext_resource type="Texture2D" uid="uid://djkn6fam336ky" path="res://Assets/Icons/culture.png" id="11_wlxy5"]
 [ext_resource type="Texture2D" uid="uid://bxtex6og3mkq3" path="res://Assets/Icons/gold.png" id="12_3v7ru"]
 [ext_resource type="Texture2D" uid="uid://cvno6vxc7t0wl" path="res://Assets/Icons/happiness.png" id="13_tcnuu"]
@@ -222,6 +223,7 @@ script = ExtResource("6_vxd74")
 
 [node name="Mesh" type="MeshInstance3D" parent="Map/MapViews/Military/ArmyCube"]
 transform = Transform3D(0.05, 0, 0, 0, 0.25, 0, 0, 0, 0.05, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_s0gvp")
 skeleton = NodePath("../..")
 
@@ -241,6 +243,10 @@ outline_size = 6
 
 [node name="hello_kitty_speed_good" parent="Map/MapViews/Military/ArmyCube" instance=ExtResource("31_ype4i")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+visible = false
+
+[node name="Miku" parent="Map/MapViews/Military/ArmyCube" instance=ExtResource("10_ype4i")]
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0, 0)
 
 [node name="ArmyArrow" type="Node3D" parent="Map/MapViews/Military"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
