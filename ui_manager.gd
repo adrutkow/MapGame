@@ -46,8 +46,7 @@ func on_right_clicked_province(province_id: int):
 	
 	if (province_id != -1):
 		var p: ProvinceState = GameInstance.game_instance.get_province_by_id(province_id);
-		p.add_building("building_marketplace");
-		p.add_great_person("gp_leon-whitefungus");
+		p.add_great_person("gp_antonian-immigrants");
 		
 func show_province_info(province_id: int):
 	var province_data: ProvinceData;
