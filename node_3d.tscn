@@ -10,8 +10,8 @@
 [ext_resource type="Script" uid="uid://f4qad80giudw" path="res://land.gd" id="5_3v7ru"]
 [ext_resource type="Texture2D" uid="uid://bn2a3apdp0b2r" path="res://test34.png" id="5_i0g27"]
 [ext_resource type="Script" uid="uid://ba3w4sn76i5je" path="res://combat_visual.gd" id="6_5t8nk"]
-[ext_resource type="Texture2D" uid="uid://cw81d5rdlynfc" path="res://icon.svg" id="6_dhlwf"]
 [ext_resource type="Script" uid="uid://vxtf8rgy6xn2" path="res://army_cube.gd" id="6_vxd74"]
+[ext_resource type="Texture2D" uid="uid://c454ij3nrvnuq" path="res://Assets/UI/GREENBUBBLE.png" id="7_riyl1"]
 [ext_resource type="Shader" uid="uid://cph51f8vu2m17" path="res://water.gdshader" id="7_wc5p8"]
 [ext_resource type="Script" uid="uid://b70riu7gbpbvf" path="res://game_instance.gd" id="8_jsk3o"]
 [ext_resource type="Texture2D" uid="uid://dv600tyxh1qhh" path="res://Screenshot 2025-11-15 042842.png" id="9_4arys"]
@@ -209,12 +209,13 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.5058
 [node name="ProvinceNames" type="Node3D" parent="Map/MapViews"]
 
 [node name="ProvinceNameLabel" type="Label3D" parent="Map/MapViews/ProvinceNames"]
+pixel_size = 0.001
 billboard = 1
 no_depth_test = true
 render_priority = 4
 text = "Province name
 "
-font_size = 10
+font_size = 64
 
 [node name="NationNames" type="Node3D" parent="Map/MapViews"]
 
@@ -230,13 +231,14 @@ font_size = 24
 [node name="ProvinceIDs" type="Node3D" parent="Map/MapViews"]
 
 [node name="ProvinceIDLabel" type="Label3D" parent="Map/MapViews/ProvinceIDs"]
+pixel_size = 0.001
 billboard = 1
 no_depth_test = true
 render_priority = 4
 modulate = Color(0.270588, 1, 1, 1)
 text = "Province name
 "
-font_size = 12
+font_size = 64
 
 [node name="ProvinceConnections" type="Node3D" parent="Map/MapViews"]
 
@@ -261,10 +263,11 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.5058
 script = ExtResource("6_5t8nk")
 
 [node name="Sprite3D" type="Sprite3D" parent="Map/MapViews/Military/CombatVisual"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 billboard = 1
 no_depth_test = true
-texture = ExtResource("6_dhlwf")
+render_priority = 13
+texture = ExtResource("7_riyl1")
 
 [node name="ArmyCube" type="Node3D" parent="Map/MapViews/Military"]
 script = ExtResource("6_vxd74")
@@ -276,17 +279,18 @@ mesh = SubResource("BoxMesh_s0gvp")
 skeleton = NodePath("../..")
 
 [node name="TroopCount" type="Label3D" parent="Map/MapViews/Military/ArmyCube"]
-transform = Transform3D(1, 0, 0, 0, 0.683325, 0.730115, 0, -0.730115, 0.683325, 0, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 0.683325, 0.730115, 0, -0.730115, 0.683325, 0, 0.252378, 0)
+pixel_size = 0.001
 no_depth_test = true
 text = "10000"
-font_size = 20
+font_size = 64
 
 [node name="IsDefeated" type="Label3D" parent="Map/MapViews/Military/ArmyCube/TroopCount"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0672156, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, -0.0502529, -0.00470673)
+pixel_size = 0.001
 no_depth_test = true
 modulate = Color(1, 0, 0, 1)
 text = "Defeated"
-font_size = 8
 outline_size = 6
 
 [node name="hello_kitty_speed_good" parent="Map/MapViews/Military/ArmyCube" instance=ExtResource("31_ype4i")]
