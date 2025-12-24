@@ -30,20 +30,22 @@ func _process(delta):
 	var s: float = 0.05;
 	
 	if Input.is_action_pressed("move_forward"):
-		position += Vector3(0, 0, -1) * s;
+		#position += Vector3(0, 0, -1) * s;
+		dir += transform.basis.y * s
 	if Input.is_action_pressed("move_backward"):
-		position += Vector3(0, 0, 1) * s;
+		#position += Vector3(0, 0, 1) * s;
+		dir -= transform.basis.y * s
 	if Input.is_action_pressed("move_left"):
-		dir -= transform.basis.x
+		dir -= transform.basis.x * s
 	if Input.is_action_pressed("move_right"):
-		dir += transform.basis.x
+		dir += transform.basis.x * s
 	if Input.is_action_just_pressed("scroll_up"):
 		dir -= transform.basis.z * 1;
 	if Input.is_action_just_pressed("scroll_down"):
 		dir += transform.basis.z * 1;
 
 	if dir != Vector3.ZERO:
-		dir = dir.normalized()
+		#dir = dir.normalized()
 		global_position += dir * move_speed * delta * 5
 
 func raycast_heatmap(mouse_pos: Vector2):

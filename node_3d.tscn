@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=66 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -33,22 +33,8 @@
 [ext_resource type="Script" uid="uid://w27vc1uyccyq" path="res://ui_province_great_people.gd" id="29_riyl1"]
 [ext_resource type="Script" uid="uid://ch38vaoagj850" path="res://ui_research_tier.gd" id="31_1q667"]
 [ext_resource type="PackedScene" uid="uid://c36wkifj71gdw" path="res://Assets/Models/hello_kitty_speed_good.fbx" id="31_ype4i"]
-
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lggff"]
-shading_mode = 0
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_s0gvp"]
-resource_local_to_scene = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_lggff"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_s0gvp"]
-resource_local_to_scene = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_vxd74"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_dhlwf"]
+[ext_resource type="Script" uid="uid://cn10l4wfw3rdn" path="res://toggle_menu_button.gd" id="32_pb8dk"]
+[ext_resource type="Texture2D" uid="uid://cw81d5rdlynfc" path="res://icon.svg" id="33_2mu51"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jka67"]
 
@@ -182,6 +168,22 @@ render_priority = 0
 shader = ExtResource("3_jka67")
 shader_parameter/c = Color(0.04, 0.04, 0.04, 1)
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lggff"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_s0gvp"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_lggff"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s0gvp"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_vxd74"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_dhlwf"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="GameInstance" type="Node3D" parent="."]
@@ -200,117 +202,6 @@ script = ExtResource("3_a0tk4")
 [node name="Map" type="Node3D" parent="."]
 script = ExtResource("2_i0g27")
 heatmap = ExtResource("5_i0g27")
-
-[node name="MapViews" type="Node3D" parent="Map"]
-
-[node name="Nations" type="Sprite3D" parent="Map/MapViews"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.50582, 0.0587707, 2.41655)
-
-[node name="ProvinceNames" type="Node3D" parent="Map/MapViews"]
-
-[node name="ProvinceNameLabel" type="Label3D" parent="Map/MapViews/ProvinceNames"]
-pixel_size = 0.001
-billboard = 1
-no_depth_test = true
-render_priority = 4
-text = "Province name
-"
-font_size = 64
-
-[node name="NationNames" type="Node3D" parent="Map/MapViews"]
-
-[node name="NationNameLabel" type="Label3D" parent="Map/MapViews/NationNames"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46663, 0, 0)
-billboard = 1
-no_depth_test = true
-render_priority = 10
-text = "Province name
-"
-font_size = 24
-
-[node name="ProvinceIDs" type="Node3D" parent="Map/MapViews"]
-
-[node name="ProvinceIDLabel" type="Label3D" parent="Map/MapViews/ProvinceIDs"]
-pixel_size = 0.001
-billboard = 1
-no_depth_test = true
-render_priority = 4
-modulate = Color(0.270588, 1, 1, 1)
-text = "Province name
-"
-font_size = 64
-
-[node name="ProvinceConnections" type="Node3D" parent="Map/MapViews"]
-
-[node name="ProvinceConnectionLine" type="MeshInstance3D" parent="Map/MapViews/ProvinceConnections"]
-material_override = SubResource("ORMMaterial3D_lggff")
-mesh = SubResource("ImmediateMesh_s0gvp")
-skeleton = NodePath("../../../..")
-
-[node name="ProvinceCenterDot" type="MeshInstance3D" parent="Map/MapViews/ProvinceConnections"]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -5.65668, 0, 1.74136)
-material_override = SubResource("ORMMaterial3D_lggff")
-mesh = SubResource("SphereMesh_lggff")
-
-[node name="HighlightProvinces" type="Node3D" parent="Map/MapViews"]
-
-[node name="Image" type="Sprite3D" parent="Map/MapViews/HighlightProvinces"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.50582, 0.0260158, 2.41655)
-
-[node name="Military" type="Node3D" parent="Map/MapViews"]
-
-[node name="CombatVisual" type="Node3D" parent="Map/MapViews/Military"]
-script = ExtResource("6_5t8nk")
-
-[node name="Sprite3D" type="Sprite3D" parent="Map/MapViews/Military/CombatVisual"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-billboard = 1
-no_depth_test = true
-render_priority = 13
-texture = ExtResource("7_riyl1")
-
-[node name="ArmyCube" type="Node3D" parent="Map/MapViews/Military"]
-script = ExtResource("6_vxd74")
-
-[node name="Mesh" type="MeshInstance3D" parent="Map/MapViews/Military/ArmyCube"]
-transform = Transform3D(0.05, 0, 0, 0, 0.25, 0, 0, 0, 0.05, 0, 0, 0)
-visible = false
-mesh = SubResource("BoxMesh_s0gvp")
-skeleton = NodePath("../..")
-
-[node name="TroopCount" type="Label3D" parent="Map/MapViews/Military/ArmyCube"]
-transform = Transform3D(1, 0, 0, 0, 0.683325, 0.730115, 0, -0.730115, 0.683325, 0, 0.252378, 0)
-pixel_size = 0.001
-no_depth_test = true
-text = "10000"
-font_size = 64
-
-[node name="IsDefeated" type="Label3D" parent="Map/MapViews/Military/ArmyCube/TroopCount"]
-transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, -0.0502529, -0.00470673)
-pixel_size = 0.001
-no_depth_test = true
-modulate = Color(1, 0, 0, 1)
-text = "Defeated"
-outline_size = 6
-
-[node name="hello_kitty_speed_good" parent="Map/MapViews/Military/ArmyCube" instance=ExtResource("31_ype4i")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
-visible = false
-
-[node name="Miku" parent="Map/MapViews/Military/ArmyCube" instance=ExtResource("10_ype4i")]
-transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0, 0)
-
-[node name="ArmyArrow" type="Node3D" parent="Map/MapViews/Military"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-script = ExtResource("9_j3e5s")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/MapViews/Military/ArmyArrow"]
-transform = Transform3D(0.3, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
-mesh = SubResource("BoxMesh_vxd74")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/MapViews/Military/ArmyArrow"]
-transform = Transform3D(1.17022e-08, 0.155, -3.49691e-09, 0, -6.77527e-09, -0.08, -0.155, 1.17022e-08, -2.64009e-16, 0.193, 0, 0)
-mesh = SubResource("PrismMesh_dhlwf")
 
 [node name="Decoratives" type="Node3D" parent="Map"]
 
@@ -425,6 +316,118 @@ material_override = SubResource("ShaderMaterial_wc5p8")
 [node name="Borders" type="Sprite3D" parent="Map"]
 transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, 2.506, 0.0460183, 2.417)
 texture = ExtResource("3_i5arm")
+
+[node name="MapViews" type="Node3D" parent="Map"]
+
+[node name="Nations" type="Sprite3D" parent="Map/MapViews"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.50582, 0.0587707, 2.41655)
+sorting_offset = -500.0
+
+[node name="ProvinceNames" type="Node3D" parent="Map/MapViews"]
+
+[node name="ProvinceNameLabel" type="Label3D" parent="Map/MapViews/ProvinceNames"]
+pixel_size = 0.001
+billboard = 1
+no_depth_test = true
+render_priority = 4
+text = "Province name
+"
+
+[node name="ProvinceIDs" type="Node3D" parent="Map/MapViews"]
+
+[node name="ProvinceIDLabel" type="Label3D" parent="Map/MapViews/ProvinceIDs"]
+pixel_size = 0.001
+billboard = 1
+no_depth_test = true
+render_priority = 4
+modulate = Color(0.270588, 1, 1, 1)
+text = "Province name
+"
+font_size = 64
+
+[node name="ProvinceConnections" type="Node3D" parent="Map/MapViews"]
+
+[node name="ProvinceConnectionLine" type="MeshInstance3D" parent="Map/MapViews/ProvinceConnections"]
+material_override = SubResource("ORMMaterial3D_lggff")
+mesh = SubResource("ImmediateMesh_s0gvp")
+skeleton = NodePath("../../../..")
+
+[node name="ProvinceCenterDot" type="MeshInstance3D" parent="Map/MapViews/ProvinceConnections"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -5.65668, 0, 1.74136)
+material_override = SubResource("ORMMaterial3D_lggff")
+mesh = SubResource("SphereMesh_lggff")
+
+[node name="HighlightProvinces" type="Node3D" parent="Map/MapViews"]
+
+[node name="Image" type="Sprite3D" parent="Map/MapViews/HighlightProvinces"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.50582, 0.0260158, 2.41655)
+
+[node name="Military" type="Node3D" parent="Map/MapViews"]
+
+[node name="CombatVisual" type="Node3D" parent="Map/MapViews/Military"]
+script = ExtResource("6_5t8nk")
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/MapViews/Military/CombatVisual"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+billboard = 1
+no_depth_test = true
+render_priority = 13
+texture = ExtResource("7_riyl1")
+
+[node name="ArmyCube" type="Node3D" parent="Map/MapViews/Military"]
+script = ExtResource("6_vxd74")
+
+[node name="Mesh" type="MeshInstance3D" parent="Map/MapViews/Military/ArmyCube"]
+transform = Transform3D(0.05, 0, 0, 0, 0.25, 0, 0, 0, 0.05, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_s0gvp")
+skeleton = NodePath("../..")
+
+[node name="TroopCount" type="Label3D" parent="Map/MapViews/Military/ArmyCube"]
+transform = Transform3D(1, 0, 0, 0, 0.683325, 0.730115, 0, -0.730115, 0.683325, 0, 0.252378, 0)
+pixel_size = 0.001
+no_depth_test = true
+text = "10000"
+font_size = 64
+
+[node name="IsDefeated" type="Label3D" parent="Map/MapViews/Military/ArmyCube/TroopCount"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, -0.0502529, -0.00470673)
+pixel_size = 0.001
+no_depth_test = true
+modulate = Color(1, 0, 0, 1)
+text = "Defeated"
+outline_size = 6
+
+[node name="hello_kitty_speed_good" parent="Map/MapViews/Military/ArmyCube" instance=ExtResource("31_ype4i")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+visible = false
+
+[node name="Miku" parent="Map/MapViews/Military/ArmyCube" instance=ExtResource("10_ype4i")]
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0, 0)
+
+[node name="ArmyArrow" type="Node3D" parent="Map/MapViews/Military"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("9_j3e5s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/MapViews/Military/ArmyArrow"]
+transform = Transform3D(0.3, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("BoxMesh_vxd74")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/MapViews/Military/ArmyArrow"]
+transform = Transform3D(1.17022e-08, 0.155, -3.49691e-09, 0, -6.77527e-09, -0.08, -0.155, 1.17022e-08, -2.64009e-16, 0.193, 0, 0)
+mesh = SubResource("PrismMesh_dhlwf")
+
+[node name="NationNames" type="Node3D" parent="Map/MapViews"]
+
+[node name="NationNameLabel" type="Label3D" parent="Map/MapViews/NationNames"]
+billboard = 1
+no_depth_test = true
+render_priority = 20
+outline_render_priority = 10
+modulate = Color(1, 1, 1, 0.478431)
+text = "Province name
+"
+font_size = 24
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("15_lggff")
@@ -1021,13 +1024,61 @@ layout_mode = 2
 focus_mode = 0
 text = "Give armies 100 troops"
 
+[node name="Control" type="Control" parent="UI/Control"]
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 251.0
+offset_right = 70.0
+offset_bottom = 737.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToggleMenuButton" type="Control" parent="UI/Control/Control/VBoxContainer" node_paths=PackedStringArray("target")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("32_pb8dk")
+target = NodePath("../../../../ResearchMenu")
+
+[node name="Panel" type="Panel" parent="UI/Control/Control/VBoxContainer/ToggleMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/Control/VBoxContainer/ToggleMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("33_2mu51")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="UI/Control/Control/VBoxContainer/ToggleMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="test" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 96.0
 offset_top = 328.0
-offset_right = 442.0
-offset_bottom = 639.0
+offset_right = 202.0
+offset_bottom = 412.0
 mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="UI/test"]
@@ -1220,5 +1271,6 @@ layout_mode = 2
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/ToggleLag" to="UI/Control/DevConsole" method="_on_toggle_lag_pressed"]
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GenerateArmy" to="UI/Control/DevConsole" method="_on_generate_army_pressed"]
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GiveArmyTroops" to="UI/Control/DevConsole" method="_on_give_army_troops_pressed"]
+[connection signal="pressed" from="UI/Control/Control/VBoxContainer/ToggleMenuButton/Button" to="UI/Control/Control/VBoxContainer/ToggleMenuButton" method="_on_button_pressed"]
 [connection signal="gui_input" from="UI/test/WindowDragger" to="UI/test/WindowDragger" method="_on_gui_input"]
 [connection signal="gui_input" from="UI/ResearchMenu/WindowDragger" to="UI/ResearchMenu/WindowDragger" method="_on_gui_input"]

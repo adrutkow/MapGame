@@ -5,9 +5,12 @@ class_name Map;
 var heatmap_image: Image;
 var heatmap_image_texture: ImageTexture;
 static var map_instance: Map;
+static var map_cache: MapCache = null;
 var heatmap_size: Vector2;
 var selected_province_id: int = -1;
-var cached_province_centers: Array[Vector2i];
+var heatmap_data: PackedByteArray;
+var start_time;
+var end_time;
 
 var mesh: ImmediateMesh;
 var mat: ORMMaterial3D;
@@ -21,6 +24,7 @@ func _enter_tree() -> void:
 	heatmap_size = heatmap.get_size();
 
 func _ready() -> void:
+	#delete_map_cache()
 	init_cache();
 	mesh = ImmediateMesh.new();
 	mat = ORMMaterial3D.new();
@@ -31,10 +35,18 @@ func _ready() -> void:
 	generate_mapview_diplomacy();
 	generate_mapview_military();
 	
-	
 func init_cache():
-	for i in range(0, len(GameGlobal.province_data_list.province_list)):
-		cached_province_centers.append(Vector2i(-1, -1));
+	load_map_cache();
+	
+	if (not Map.map_cache):
+		print("Map cache not found, building new map cache");
+		save_map_cache(build_map_cache());
+	
+	load_map_cache();
+	print(len(Map.map_cache.province_centers));
+	
+	if (not Map.map_cache):
+		print("What");
 	
 func get_heatmap_image() -> Image:
 	return (heatmap_image);
@@ -88,14 +100,30 @@ func generate_bitmap(colors: Array[Color] = [], nations: Array[int] = [], provin
 			continue;
 		p = GameGlobal.province_data_list.province_list[pid];
 		valid_colors.append(vector3i_to_color(p.heatmap_color));
-		
+	
 	for y in range(0, heatmap_image.get_height()):
 		for x in range(0, heatmap_image.get_width()):
 			temp_c = heatmap_image.get_pixel(x, y);
 			if (temp_c in valid_colors):
 				bitmap.set_bit(x, y, true);
-				
+	
 	return (bitmap);
+		
+
+
+func get_color_from_heatmap_data_index(index: int) -> Color:
+	var c: Color;
+	var r;
+	var g;
+	var b;
+	var a;
+	
+	r = heatmap_data[index];
+	g = heatmap_data[index + 1];
+	b = heatmap_data[index + 2];
+	a = heatmap_data[index + 3];
+	c = Color8(r, g, b, a);
+	return (c);
 
 func get_province_data_by_color(c: Color) -> ProvinceData:
 	for p: ProvinceData in GameGlobal.province_data_list.province_list:
@@ -151,9 +179,12 @@ func get_province_center(province_id: int):
 	var bitmap: BitMap;
 	var output: Vector2i;
 	
-	if (cached_province_centers[province_id].x != -1):
-		print("used cache")
-		return (cached_province_centers[province_id]);
+	if (Map.map_cache):
+		if (Map.map_cache.province_centers[province_id].x != -1):
+			return (Map.map_cache.province_centers[province_id]);
+	
+	#if (cached_province_centers[province_id].x != -1):
+	#	return (cached_province_centers[province_id]);
 	
 	for p: ProvinceData in GameGlobal.province_data_list.province_list:
 		if (p.id == province_id):
@@ -163,7 +194,7 @@ func get_province_center(province_id: int):
 		return (null);
 	bitmap = generate_bitmap([vector3i_to_color(province.heatmap_color)]);
 	output = Utils.get_bitmap_center(bitmap)
-	Map.map_instance.cached_province_centers[province_id] = output;
+	#Map.map_instance.cached_province_centers[province_id] = output;
 	return (output);
 
 func get_nation_center(nation_id: int):
@@ -195,6 +226,8 @@ func generate_mapview_nation_names():
 	var center: Vector2;
 	var temp: Label3D;
 	
+	start_test();
+	
 	for n: Nation in GameInstance.game_instance.get_nations():
 		center = get_nation_center(n.get_nation_id());
 		temp = $MapViews/NationNames/NationNameLabel.duplicate();
@@ -202,6 +235,8 @@ func generate_mapview_nation_names():
 		temp.position = Vector3(float(center[0]) / 100.0, 0.0, float(center[1]) / 100.0);
 		temp.text = n.nation_name;
 		$MapViews/NationNames.add_child(temp);
+	
+	end_test("mapview_nation_names")
 	
 func generate_mapview_province_ids():
 	var center: Vector2i;
@@ -390,6 +425,13 @@ func update_armycube_visual():
 		if (ac.army_id == UIManager.instance.selected_army_id):
 			ac.draw_selected();
 			
+func start_test():
+	start_time = Time.get_ticks_usec();
+			
+func end_test(test_name: String):
+	end_time = Time.get_ticks_usec() - start_time;
+	print(test_name, " took ", end_time / 1000.0, " ms");
+			
 func pathfind(prov1: int, prov2: int) -> Array[int]:
 	var paths: Array = [];
 	var target: int;
@@ -431,6 +473,56 @@ func draw_path(t: Array[int]):
 				
 		Map.map_instance.add_line(p1, p2)
 		Map.map_instance.add_ball(p1)
+
+func build_map_cache() -> MapCache:
+	var mp = MapCache.new();
+	
+	start_test();
+	# Init empty province centers
+	
+	mp.province_centers.resize(len(GameGlobal.province_data_list.province_list));
+	for i in range(0, len(GameGlobal.province_data_list.province_list)):
+		mp.province_centers[i] = Vector2i(-1, -1);
+	
+	# Fill centers
+	for i in range(0, len(GameGlobal.province_data_list.province_list)):
+		mp.province_centers[i] = get_province_center(i);
+	
+	end_test("map_cache_build")
+	return (mp);
+	
+func save_map_cache(mp: MapCache):
+	var path := get_map_cache_path();
+	var err := ResourceSaver.save(mp, path);
+	if (err != OK):
+		push_error("Failed to save map cache");
+		return;
+	print("Map cache saved successfully");
+
+func load_map_cache():
+	var path := get_map_cache_path();
+	if (not FileAccess.file_exists(path)):
+		print("Map cache not found");
+		return (null);
+	
+	var cache := load(path);
+	if (cache is MapCache):
+		print("Loaded map cache successfully");
+		Map.map_cache = cache;
+	
+func delete_map_cache():
+	var path := get_map_cache_path();
+	
+	if (FileAccess.file_exists(path)):
+		var err := DirAccess.remove_absolute(path);
+		if (err != OK):
+			push_error("Failed to delete map cache");
+	else:
+		push_error("Map cache not found in path");
+	Map.map_cache = null;
+
+func get_map_cache_path() -> String:
+	return ("user://map_cache.res");
 
 static func is_vector3_color(v: Vector3i, c: Color) -> bool:
 	return ((v.x == c.r8) and (v.y == c.g8) and (v.z == c.b8));

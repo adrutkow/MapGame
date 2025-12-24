@@ -11,6 +11,17 @@ func _init() -> void:
 func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("Space")):
 		GameInstance.game_instance.tick();
+	if (Input.is_action_just_pressed("test")):
+		var pos: Vector2;
+		var world_pos: Vector3;
+		var screen_pos: Vector2;
+		
+		pos = Map.map_instance.get_province_center(0);
+		world_pos = Map.bitmap_vector_to_world(pos);
+		
+		screen_pos = $"../Camera3D".unproject_position(world_pos);
+		
+		$test.position = screen_pos;
 	$FloatingText.position = get_viewport().get_mouse_position();
 
 func tick():
