@@ -8,3 +8,5 @@ func _ready() -> void:
 func get_nation() -> Nation:
 	return (GameInstance.game_instance.get_nations()[nation_id]);
 	
+func get_nation_id() -> int:
+	return (nation_id);

@@ -2,6 +2,19 @@ extends Node
 
 const SERVER_PORT: int = 25565;
 
+enum COMMAND_TYPE
+{
+	BUY_PROVINCE,
+	MOVE_TROOP,
+}
+
+var default_command: Dictionary = {
+	"type": COMMAND_TYPE.BUY_PROVINCE,			# COMMAND TYPE ID
+	"source": -1, 								# NATION ID
+	"target": -1,								# NATION TARGET
+	"context": {},								# ANY EXTRA CONTEXT NEEDED
+}
+
 var game_commands: Array[Dictionary] = [];
 var remote_players: Array[RemotePlayer] = [];
 
@@ -29,7 +42,7 @@ func send_clients_commands(commands: Array[Dictionary]):
 	for rp: RemotePlayer in remote_players:
 		rpc_id(rp.peer_id, "receive_commands_as_client", commands);
 
-@rpc("any_peer")
+@rpc("any_peer", "call_local")
 func receive_command_as_host(command: Dictionary):
 	DevConsole.instance.add_line("Received command");
 	game_commands.append(command);
@@ -74,9 +87,6 @@ func send_commands_to_clients():
 	DevConsole.instance.add_line("Sending commands to clients");
 	
 func send_command_to_host(command: Dictionary):
-	command = {
-		"n": "XD",
-	}
 	rpc_id(1, "receive_command_as_host", command);
 
 func create_remote_player(id: int):
@@ -125,3 +135,6 @@ func _on_player_disconnected(id: int):
 	DevConsole.instance.add_line("A player left the lobby");
 	if (multiplayer.is_server()):
 		remove_remote_player(id);
+
+func get_default_command() -> Dictionary:
+	return (default_command);

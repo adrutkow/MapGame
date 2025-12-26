@@ -1,10 +1,10 @@
-[gd_scene load_steps=66 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=67 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
 [ext_resource type="Script" uid="uid://x07fpdyp3ula" path="res://camera_3d.gd" id="3_a0tk4"]
 [ext_resource type="Texture2D" uid="uid://bfj2c750ck3do" path="res://outlinetest2.png" id="3_i5arm"]
-[ext_resource type="Shader" uid="uid://dobsawhhyrgag" path="res://black_transparent.gdshader" id="3_jka67"]
+[ext_resource type="Shader" path="res://black_transparent.gdshader" id="3_jka67"]
 [ext_resource type="Shader" uid="uid://c2dxkamyikwk7" path="res://land.gdshader" id="4_tcnuu"]
 [ext_resource type="Material" uid="uid://d4nvr5op0ya5v" path="res://Assets/Materials/land.tres" id="4_tuemg"]
 [ext_resource type="Script" uid="uid://f4qad80giudw" path="res://land.gd" id="5_3v7ru"]
@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://djkn6fam336ky" path="res://Assets/Icons/culture.png" id="11_wlxy5"]
 [ext_resource type="Texture2D" uid="uid://bxtex6og3mkq3" path="res://Assets/Icons/gold.png" id="12_3v7ru"]
 [ext_resource type="Texture2D" uid="uid://cvno6vxc7t0wl" path="res://Assets/Icons/happiness.png" id="13_tcnuu"]
-[ext_resource type="Script" uid="uid://w03ck8mg66te" path="res://savefile.gd" id="14_lggff"]
+[ext_resource type="Script" path="res://savefile.gd" id="14_lggff"]
 [ext_resource type="Texture2D" uid="uid://cj21y8gwic7rh" path="res://Assets/Icons/power.png" id="14_tuemg"]
 [ext_resource type="Script" uid="uid://drko2snt08yh3" path="res://ui_manager.gd" id="15_lggff"]
 [ext_resource type="Script" uid="uid://cand4yd5hgw84" path="res://map_views_ui.gd" id="22_s0gvp"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://c36wkifj71gdw" path="res://Assets/Models/hello_kitty_speed_good.fbx" id="31_ype4i"]
 [ext_resource type="Script" uid="uid://cn10l4wfw3rdn" path="res://toggle_menu_button.gd" id="32_pb8dk"]
 [ext_resource type="Texture2D" uid="uid://cw81d5rdlynfc" path="res://icon.svg" id="33_2mu51"]
+[ext_resource type="Script" uid="uid://ci7xq1j5ogy7i" path="res://ui_province_purchase_prompt.gd" id="36_vmvb8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jka67"]
 
@@ -833,6 +834,14 @@ icon_slot_prefab = ExtResource("27_riyl1")
 [node name="IconSlot" parent="UI/Control/Province/ProvinceGreatPeople/ScrollContainer/IconSlotContainer" instance=ExtResource("27_riyl1")]
 layout_mode = 2
 
+[node name="OwnerText" type="RichTextLabel" parent="UI/Control/Province"]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 6.0
+offset_right = 834.0
+offset_bottom = 51.0
+text = "Owner: Default"
+
 [node name="Misc" type="Control" parent="UI/Control"]
 anchors_preset = 0
 offset_left = 159.0
@@ -1256,6 +1265,54 @@ script = ExtResource("26_ype4i")
 [node name="IconSlot" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer/ScrollContainer/IconSlotContainer" instance=ExtResource("27_riyl1")]
 layout_mode = 2
 
+[node name="ProvincePurchase" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProvincePurchasePrompt" type="Control" parent="UI/ProvincePurchase"]
+custom_minimum_size = Vector2(150, 100)
+anchors_preset = 0
+offset_left = -197.0
+offset_top = 201.0
+offset_right = -47.0
+offset_bottom = 301.0
+script = ExtResource("36_vmvb8")
+
+[node name="Panel" type="Panel" parent="UI/ProvincePurchase/ProvincePurchasePrompt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="UI/ProvincePurchase/ProvincePurchasePrompt"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Purchase
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/ProvincePurchase/ProvincePurchasePrompt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PRICE:
+9999999"
+horizontal_alignment = 1
+
 [node name="Node3D" type="Node3D" parent="."]
 
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceNamesToggle" to="UI/Control/MapViews" method="_on_province_names_toggle_pressed"]
@@ -1274,3 +1331,4 @@ layout_mode = 2
 [connection signal="pressed" from="UI/Control/Control/VBoxContainer/ToggleMenuButton/Button" to="UI/Control/Control/VBoxContainer/ToggleMenuButton" method="_on_button_pressed"]
 [connection signal="gui_input" from="UI/test/WindowDragger" to="UI/test/WindowDragger" method="_on_gui_input"]
 [connection signal="gui_input" from="UI/ResearchMenu/WindowDragger" to="UI/ResearchMenu/WindowDragger" method="_on_gui_input"]
+[connection signal="pressed" from="UI/ProvincePurchase/ProvincePurchasePrompt/Button" to="UI/ProvincePurchase/ProvincePurchasePrompt" method="_on_button_pressed"]

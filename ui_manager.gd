@@ -12,16 +12,11 @@ func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("Space")):
 		GameInstance.game_instance.tick();
 	if (Input.is_action_just_pressed("test")):
-		var pos: Vector2;
-		var world_pos: Vector3;
-		var screen_pos: Vector2;
+		add_province_buy_prompt(65);
 		
-		pos = Map.map_instance.get_province_center(0);
-		world_pos = Map.bitmap_vector_to_world(pos);
-		
-		screen_pos = $"../Camera3D".unproject_position(world_pos);
-		
-		$test.position = screen_pos;
+	
+	
+	
 	$FloatingText.position = get_viewport().get_mouse_position();
 
 func tick():
@@ -61,10 +56,13 @@ func on_right_clicked_province(province_id: int):
 		
 func show_province_info(province_id: int):
 	var province_data: ProvinceData;
+	var province_owner: Nation = null;
 	
 	if (province_id == -1):
 		$Control/Province.visible = false;
 		return;
+		
+	province_owner = GameInstance.game_instance.get_province_owner(province_id);
 		
 	province_data = Map.map_instance.get_province_data_by_id(province_id);
 	$Control/Province.visible = true;
@@ -75,6 +73,22 @@ func show_province_info(province_id: int):
 	$Control/Province/ProvinceID.text = str(province_data.id);
 	$Control/Province/ProvinceBuildings.display_province_buildings(province_id);
 	$Control/Province/ProvinceGreatPeople.display_province_gp(province_id);
+	if (province_owner):
+		$Control/Province/OwnerText.text = "Owner: " + str(province_owner.nation_name);
+	else:
+		$Control/Province/OwnerText.text = "Owner: " + "None";
+		
+		
+func add_province_buy_prompt(province_id: int):
+	var temp: UIProvincePurchasePrompt = $ProvincePurchase/ProvincePurchasePrompt.duplicate();
+	var pos: Vector2;
+	
+	pos = get_province_ui_position(province_id);
+	temp.global_position = pos;
+	temp.target_province = province_id;
+	
+	$ProvincePurchase.add_child(temp);
+	
 	
 func select_army(army_id: int):
 	selected_army_id = army_id;
@@ -119,4 +133,15 @@ func activate_floating_text(s: String):
 	
 func disable_floating_text():
 	$FloatingText.visible = false;
+	
+func get_province_ui_position(province_id: int) -> Vector2:
+	var pos: Vector2;
+	var world_pos: Vector3;
+	var screen_pos: Vector2;
+	
+	pos = Map.map_instance.get_province_center(province_id);
+	world_pos = Map.bitmap_vector_to_world(pos);
+	screen_pos = $"../Camera3D".unproject_position(world_pos);
+	return (screen_pos);
+	
 	

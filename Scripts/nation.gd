@@ -38,3 +38,6 @@ func get_nation_id() -> int:
 	
 func give_gold(amount: float):
 	gold += amount;
+
+func give_province(province_id: int):
+	owned_provinces.append(province_id);

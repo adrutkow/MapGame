@@ -5,6 +5,7 @@ enum UI_CONTEXT
 {
 	RESEARCH,
 	PROVINCE_BUILDINGS,
+	BUY_PROVINCE,
 }
 
 @export var ui_context: Array[UI_CONTEXT] = [];

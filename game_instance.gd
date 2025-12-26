@@ -74,9 +74,29 @@ func host_tick():
 
 func tick_commands():
 	for c in NetworkManager.game_commands:
-		get_nations()[0].power += 1;
-		DevConsole.instance.add_line("Processed command");
+		tick_command(c);
 	NetworkManager.game_commands = [];
+
+
+func tick_command(command: Dictionary):
+	var source: Nation = null;
+	var target: Nation = null;
+	var type: NetworkManager.COMMAND_TYPE;
+	
+	if (command["source"] != -1):
+		source = GameInstance.game_instance.get_nation_by_id(command["source"]);
+	if (command["target"] != -1):
+		target = GameInstance.game_instance.get_nation_by_id(command["target"]);
+	type = command["type"];
+	if (type == NetworkManager.COMMAND_TYPE.BUY_PROVINCE):
+		var target_province: int = command["context"].province_id;
+		source.give_province(target_province);
+		
+		DevConsole.instance.add_line("Ticked buy province command");
+		Map.map_instance.generate_mapview_diplomacy();
+	
+	
+	
 
 func tick_armies():
 	for a: Army in get_armies():
@@ -207,3 +227,9 @@ func summon_army(province_id: int, nation_owner_id: int):
 
 func get_province_by_id(i: int) -> ProvinceState:
 	return (provinces[i]);
+
+func get_province_owner(province_id: int) -> Nation:
+	for n: Nation in get_nations():
+		if (province_id in n.get_owned_provinces_id()):
+			return (n);
+	return (null);
