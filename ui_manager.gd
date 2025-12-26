@@ -12,7 +12,12 @@ func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("Space")):
 		GameInstance.game_instance.tick();
 	if (Input.is_action_just_pressed("test")):
-		add_province_buy_prompt(65);
+		var t: Array[int];
+		
+		reset_province_buy_prompts();
+		t = Client.get_nation().get_purchasable_provinces();
+		for i in t:
+			add_province_buy_prompt(i);
 		
 	
 	
@@ -86,9 +91,16 @@ func add_province_buy_prompt(province_id: int):
 	pos = get_province_ui_position(province_id);
 	temp.global_position = pos;
 	temp.target_province = province_id;
+	temp.price = 800;
+	temp.update();
 	
 	$ProvincePurchase.add_child(temp);
 	
+func reset_province_buy_prompts():
+	for temp in $ProvincePurchase.get_children():
+		if (temp is UIProvincePurchasePrompt):
+			if (temp.name != "ProvincePurchasePrompt"):
+				temp.queue_free();
 	
 func select_army(army_id: int):
 	selected_army_id = army_id;

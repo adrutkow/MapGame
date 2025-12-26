@@ -40,4 +40,21 @@ func give_gold(amount: float):
 	gold += amount;
 
 func give_province(province_id: int):
+	if (GameInstance.game_instance.get_province_owner(province_id) != null):
+		return;
 	owned_provinces.append(province_id);
+
+func get_purchasable_provinces() -> Array[int]:
+	var output: Array[int] = [];
+	
+	for p_id: int in get_owned_provinces_id():
+		var adj: Array[int];
+		
+		adj = GameGlobal.get_province_adjacencies(p_id);
+		for _p_id: int in adj:
+			if (GameInstance.game_instance.get_province_owner(_p_id) == null):
+				output.append(_p_id);
+	
+	return (output);
+	
+	
