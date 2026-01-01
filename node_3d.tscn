@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
 [ext_resource type="Script" uid="uid://x07fpdyp3ula" path="res://camera_3d.gd" id="3_a0tk4"]
 [ext_resource type="Texture2D" uid="uid://bfj2c750ck3do" path="res://outlinetest2.png" id="3_i5arm"]
-[ext_resource type="Shader" path="res://black_transparent.gdshader" id="3_jka67"]
+[ext_resource type="Shader" uid="uid://dobsawhhyrgag" path="res://black_transparent.gdshader" id="3_jka67"]
 [ext_resource type="Shader" uid="uid://c2dxkamyikwk7" path="res://land.gdshader" id="4_tcnuu"]
 [ext_resource type="Material" uid="uid://d4nvr5op0ya5v" path="res://Assets/Materials/land.tres" id="4_tuemg"]
 [ext_resource type="Script" uid="uid://f4qad80giudw" path="res://land.gd" id="5_3v7ru"]
@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://djkn6fam336ky" path="res://Assets/Icons/culture.png" id="11_wlxy5"]
 [ext_resource type="Texture2D" uid="uid://bxtex6og3mkq3" path="res://Assets/Icons/gold.png" id="12_3v7ru"]
 [ext_resource type="Texture2D" uid="uid://cvno6vxc7t0wl" path="res://Assets/Icons/happiness.png" id="13_tcnuu"]
-[ext_resource type="Script" path="res://savefile.gd" id="14_lggff"]
+[ext_resource type="Script" uid="uid://w03ck8mg66te" path="res://savefile.gd" id="14_lggff"]
 [ext_resource type="Texture2D" uid="uid://cj21y8gwic7rh" path="res://Assets/Icons/power.png" id="14_tuemg"]
 [ext_resource type="Script" uid="uid://drko2snt08yh3" path="res://ui_manager.gd" id="15_lggff"]
 [ext_resource type="Script" uid="uid://cand4yd5hgw84" path="res://map_views_ui.gd" id="22_s0gvp"]
@@ -35,7 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://c36wkifj71gdw" path="res://Assets/Models/hello_kitty_speed_good.fbx" id="31_ype4i"]
 [ext_resource type="Script" uid="uid://cn10l4wfw3rdn" path="res://toggle_menu_button.gd" id="32_pb8dk"]
 [ext_resource type="Texture2D" uid="uid://cw81d5rdlynfc" path="res://icon.svg" id="33_2mu51"]
-[ext_resource type="Script" uid="uid://ci7xq1j5ogy7i" path="res://ui_province_purchase_prompt.gd" id="36_vmvb8"]
+[ext_resource type="Script" path="res://ui_province_purchase_prompt.gd" id="36_vmvb8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jka67"]
 

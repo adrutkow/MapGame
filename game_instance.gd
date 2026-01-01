@@ -24,6 +24,9 @@ var lag: bool = false;
 # or giga trade power = force trade routes
 # trade reliablity stat
 
+# Youssef sAYS
+# random event, about a man of death, some call him deathman
+
 func _process(delta: float) -> void:
 	timer += 1;
 	if (timer > 60 and start):
@@ -49,16 +52,11 @@ func _ready() -> void:
 	for gp: GreatPersonData in GameGlobal.gp_data_list.gp_list:
 		p.add_great_person(gp.gp_name);
 	
-	
 	p = get_province_by_id(6);
-	
-	
 	p.add_great_person("gp_village-elder");
 	p.add_great_person("gp_vova");
 	p.add_great_person("gp_lukas");
-	
-	
-	
+
 
 func host_tick():
 	if (not multiplayer.is_server()):

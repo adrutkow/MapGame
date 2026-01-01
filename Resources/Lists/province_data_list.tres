@@ -435,7 +435,7 @@ metadata/_custom_type_script = "uid://bbkxm05urcupl"
 
 [sub_resource type="Resource" id="Resource_wpr4j"]
 script = ExtResource("1_5xjdf")
-name = "Abno4"
+name = "Dick Capital"
 id = 43
 heatmap_color = Vector3i(0, 158, 158)
 ocean_access = true

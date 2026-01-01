@@ -19,9 +19,6 @@ func _process(delta: float) -> void:
 		for i in t:
 			add_province_buy_prompt(i);
 		
-	
-	
-	
 	$FloatingText.position = get_viewport().get_mouse_position();
 
 func tick():
@@ -48,6 +45,7 @@ func on_clicked_province(province_id: int):
 		select_army(armies_in_province[index]);
 	else:
 		select_army(armies_in_province[0]);
+		
 	
 func on_right_clicked_province(province_id: int):
 	if (selected_army_id != -1):
@@ -58,6 +56,10 @@ func on_right_clicked_province(province_id: int):
 	if (province_id != -1):
 		var p: ProvinceState = GameInstance.game_instance.get_province_by_id(province_id);
 		p.add_great_person("gp_antonian-immigrants");
+		
+	if (GameInstance.game_instance.get_province_owner(province_id)):
+		Client.change_nation(GameInstance.game_instance.get_nation_id(GameInstance.game_instance.get_province_owner(province_id)));
+		
 		
 func show_province_info(province_id: int):
 	var province_data: ProvinceData;
@@ -109,6 +111,9 @@ func select_army(army_id: int):
 func get_client_nation() -> Nation:
 	return (Client.get_nation());
 	
+func get_client_nation_id() -> int:
+	return (GameInstance.game_instance.get_nation_id(Client.get_nation()));
+	
 func update_resources():
 	var nation: Nation;
 	
@@ -123,9 +128,19 @@ func update_nation_info():
 	if (not get_client_nation()):
 		return;
 	update_name(get_client_nation().nation_name);
+	#TODO: TEMP AF
+	var t: Texture2D = get_client_nation().flag;
+	update_flag(t);
 	
 func update_name(s: String):
 	$Control/Misc/RichTextLabel.text = s;
+	
+func update_flag(t: Texture2D):
+	if (not t):
+		var p = load("res://Assets/Images/Flags/default_flag.png");
+		$Control/TextureButton.texture_normal = p;
+		return;
+	$Control/TextureButton.texture_normal = t;
 	
 func update_science(i: int):
 	$Control/Mana/VBoxContainer/Science/Control/RichTextLabel.text = str(i);

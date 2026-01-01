@@ -11,6 +11,7 @@ var gold: float = 0;
 var happiness: float = 0;
 var power: float = 0;
 var allied_nations: Array[int] = [];
+var flag: Texture2D;
 
 func set_values_from_nation_data(nation_data: NationData):
 	owned_provinces = nation_data.owned_provinces.duplicate();
@@ -21,6 +22,7 @@ func set_values_from_nation_data(nation_data: NationData):
 	gold = nation_data.start_gold;
 	happiness = nation_data.start_happiness;
 	power = nation_data.start_power;
+	flag = nation_data.nation_flag;
 
 
 func get_owned_provinces_id() -> Array[int]:

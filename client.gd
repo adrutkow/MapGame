@@ -10,3 +10,8 @@ func get_nation() -> Nation:
 	
 func get_nation_id() -> int:
 	return (nation_id);
+
+func change_nation(n: int):
+	nation_id = n;
+	UIManager.instance.tick();
+	

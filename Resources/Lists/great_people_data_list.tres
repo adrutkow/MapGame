@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GreatPeopleDataList" load_steps=79 format=3 uid="uid://bkxl1ryr0nmij"]
+[gd_resource type="Resource" script_class="GreatPeopleDataList" load_steps=83 format=3 uid="uid://bkxl1ryr0nmij"]
 
 [ext_resource type="Script" uid="uid://bfj6l868ymn18" path="res://Scripts/Resources/great_person_data.gd" id="1_63vfs"]
 [ext_resource type="Texture2D" uid="uid://ba6aumrr0uavy" path="res://Assets/Images/GreatPeople/adamthefirst.png" id="2_48d3j"]
@@ -39,6 +39,8 @@
 [ext_resource type="Texture2D" uid="uid://c65tx5xw6occg" path="res://Assets/Images/GreatPeople/LeanKingdom/old-man-papalopoudistri.png" id="36_uguoq"]
 [ext_resource type="Texture2D" uid="uid://bhh8ajk2gkghb" path="res://Assets/Images/GreatPeople/LeanKingdom/petros.png" id="37_hycbi"]
 [ext_resource type="Texture2D" uid="uid://ceasov4emqshh" path="res://Assets/Images/GreatPeople/LeanKingdom/sponge-dragonball.png" id="38_p4gyr"]
+[ext_resource type="Texture2D" uid="uid://cpcjoalna28t" path="res://Assets/Images/GreatPeople/Dick/bozodar3.png" id="39_uguoq"]
+[ext_resource type="Texture2D" uid="uid://c8n3c4pa366ig" path="res://Assets/Images/GreatPeople/Dick/krieg2.png" id="40_hycbi"]
 
 [sub_resource type="Resource" id="Resource_2eimx"]
 script = ExtResource("1_63vfs")
@@ -375,7 +377,25 @@ description = "Mysterious warrior"
 effects = Array[ExtResource("2_kpejn")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
+[sub_resource type="Resource" id="Resource_b0gl1"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_bozodar"
+display_name = "Bozodar III"
+icon = ExtResource("39_uguoq")
+description = "Oh yeah"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_phbwm"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_krieg"
+display_name = "Krieg II"
+icon = ExtResource("40_hycbi")
+description = "Thats' gopod"
+effects = Array[ExtResource("2_kpejn")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
 [resource]
 script = ExtResource("2_oeiwk")
-gp_list = Array[ExtResource("1_63vfs")]([SubResource("Resource_2eimx"), SubResource("Resource_oeiwk"), SubResource("Resource_kpejn"), SubResource("Resource_6gbbj"), SubResource("Resource_kig0q"), SubResource("Resource_lmn65"), SubResource("Resource_amax6"), SubResource("Resource_6qyju"), SubResource("Resource_n3rqs"), SubResource("Resource_j58ov"), SubResource("Resource_bsgcj"), SubResource("Resource_4un0h"), SubResource("Resource_d1cn8"), SubResource("Resource_o7p7o"), SubResource("Resource_64ihk"), SubResource("Resource_uguoq"), SubResource("Resource_hycbi"), SubResource("Resource_p4gyr"), SubResource("Resource_0lwjg"), SubResource("Resource_homdk"), SubResource("Resource_mcdgf"), SubResource("Resource_kl4qs"), SubResource("Resource_nfcdk"), SubResource("Resource_a05qb"), SubResource("Resource_w5ixb"), SubResource("Resource_k7tqd"), SubResource("Resource_5vciw"), SubResource("Resource_xvt2l"), SubResource("Resource_4mkdn"), SubResource("Resource_toigd"), SubResource("Resource_hxrsw"), SubResource("Resource_5n8jr"), SubResource("Resource_s2tv8"), SubResource("Resource_0fnyi"), SubResource("Resource_j5f3l")])
+gp_list = Array[ExtResource("1_63vfs")]([SubResource("Resource_2eimx"), SubResource("Resource_oeiwk"), SubResource("Resource_kpejn"), SubResource("Resource_6gbbj"), SubResource("Resource_kig0q"), SubResource("Resource_lmn65"), SubResource("Resource_amax6"), SubResource("Resource_6qyju"), SubResource("Resource_n3rqs"), SubResource("Resource_j58ov"), SubResource("Resource_bsgcj"), SubResource("Resource_4un0h"), SubResource("Resource_d1cn8"), SubResource("Resource_o7p7o"), SubResource("Resource_64ihk"), SubResource("Resource_uguoq"), SubResource("Resource_hycbi"), SubResource("Resource_p4gyr"), SubResource("Resource_0lwjg"), SubResource("Resource_homdk"), SubResource("Resource_mcdgf"), SubResource("Resource_kl4qs"), SubResource("Resource_nfcdk"), SubResource("Resource_a05qb"), SubResource("Resource_w5ixb"), SubResource("Resource_k7tqd"), SubResource("Resource_5vciw"), SubResource("Resource_xvt2l"), SubResource("Resource_4mkdn"), SubResource("Resource_toigd"), SubResource("Resource_hxrsw"), SubResource("Resource_5n8jr"), SubResource("Resource_s2tv8"), SubResource("Resource_0fnyi"), SubResource("Resource_j5f3l"), SubResource("Resource_b0gl1"), SubResource("Resource_phbwm")])
 metadata/_custom_type_script = "uid://byn0bh0ygolau"
