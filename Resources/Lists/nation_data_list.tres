@@ -62,7 +62,7 @@ metadata/_custom_type_script = "uid://ddfi2rm22du0m"
 
 [sub_resource type="Resource" id="Resource_6evap"]
 script = ExtResource("1_c73x0")
-nation_name = "Dubstep"
+nation_name = "Dubstepland"
 nation_color = Color(0.536162, 0.749488, 1, 1)
 nation_flag = ExtResource("4_qdu77")
 owned_provinces = Array[int]([29, 30, 31, 32, 33])
