@@ -12,6 +12,7 @@ var happiness: float = 0;
 var power: float = 0;
 var allied_nations: Array[int] = [];
 var flag: Texture2D;
+var currencies: Dictionary;
 
 func set_values_from_nation_data(nation_data: NationData):
 	owned_provinces = nation_data.owned_provinces.duplicate();
@@ -42,7 +43,31 @@ func give_gold(amount: float):
 	gold += amount;
 
 func give_currency(currency_name: String, amount: float):
-	pass;
+	if (currency_name == "currency_science"):
+		science += amount;
+	if (currency_name == "currency_culture"):
+		culture += amount;
+	if (currency_name == "currency_gold"):
+		gold += amount;
+	if (currency_name == "currency_power"):
+		power += amount;
+	if (currency_name == "currency_happiness"):
+		happiness += amount;
+
+func get_currency_amount_by_name(currency_name: String) -> float:
+	if (currency_name == "currency_science"):
+		return (science);
+	if (currency_name == "currency_culture"):
+		return (culture);
+	if (currency_name == "currency_gold"):
+		return (gold);
+	if (currency_name == "currency_power"):
+		return (power);
+	if (currency_name == "currency_happiness"):
+		return (happiness);
+	if (currencies.has(currency_name)):
+		return (currencies[currency_name]);
+	return (0);
 
 func give_province(province_id: int):
 	if (GameInstance.game_instance.get_province_owner(province_id) != null):

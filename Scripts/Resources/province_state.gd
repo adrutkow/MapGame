@@ -25,6 +25,12 @@ func tick():
 			continue;
 		for e: Effect in b_data.turn_effects:
 			e.tick(effect_context);
+	
+	var currencies = ["currency_gold", "currency_science", "currency_culture",
+						"currency_power", "currency_happiness"];
+
+	for c: String in currencies:
+		owner.give_currency(c, get_currency_income(c));
 
 func get_owner() -> Nation:
 	var id: int;
@@ -57,3 +63,16 @@ func get_buildings() -> Array[String]:
 
 func get_great_people() -> Array[String]:
 	return (great_people);
+
+func get_currency_income(currency_name: String) -> float:
+	var output: float = 0;
+	var building_data: ProvinceBuildingData;
+	
+	for building_name: String in get_buildings():
+		building_data = GameGlobal.get_province_building_data_by_name(building_name);
+		for e: Effect in building_data.on_built_effects:
+			if (e is EGiveCurrency):
+				if (e.currency_name == currency_name and e.daily):
+					output += e.intensity
+
+	return (output);

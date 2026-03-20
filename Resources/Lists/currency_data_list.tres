@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CurrencyDataList" load_steps=13 format=3 uid="uid://c3b1ksb8kvtwa"]
+[gd_resource type="Resource" script_class="CurrencyDataList" load_steps=15 format=3 uid="uid://c3b1ksb8kvtwa"]
 
 [ext_resource type="Script" uid="uid://cq0gq6pl0h057" path="res://Scripts/Resources/currency_data.gd" id="1_kvyd4"]
 [ext_resource type="Script" uid="uid://cjrrx1pmgcfe3" path="res://Scripts/Resources/Lists/currency_data_list.gd" id="2_cm4qy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://djkn6fam336ky" path="res://Assets/Icons/culture.png" id="4_h1pfh"]
 [ext_resource type="Texture2D" uid="uid://cvno6vxc7t0wl" path="res://Assets/Icons/happiness.png" id="5_hor57"]
 [ext_resource type="Texture2D" uid="uid://cj21y8gwic7rh" path="res://Assets/Icons/power.png" id="6_iwcla"]
+[ext_resource type="Texture2D" uid="uid://k6vw03il1kxy" path="res://Assets/Icons/energy.png" id="7_iwcla"]
 
 [sub_resource type="Resource" id="Resource_h1pfh"]
 script = ExtResource("1_kvyd4")
@@ -24,7 +25,7 @@ metadata/_custom_type_script = "uid://cq0gq6pl0h057"
 
 [sub_resource type="Resource" id="Resource_hor57"]
 script = ExtResource("1_kvyd4")
-currency_name = "currency_cultuire"
+currency_name = "currency_culture"
 display_name = "Culture"
 currency_icon = ExtResource("4_h1pfh")
 metadata/_custom_type_script = "uid://cq0gq6pl0h057"
@@ -43,7 +44,14 @@ display_name = "Power"
 currency_icon = ExtResource("6_iwcla")
 metadata/_custom_type_script = "uid://cq0gq6pl0h057"
 
+[sub_resource type="Resource" id="Resource_jkmxa"]
+script = ExtResource("1_kvyd4")
+currency_name = "currency_energy"
+display_name = "Energy"
+currency_icon = ExtResource("7_iwcla")
+metadata/_custom_type_script = "uid://cq0gq6pl0h057"
+
 [resource]
 script = ExtResource("2_cm4qy")
-list = Array[ExtResource("1_kvyd4")]([SubResource("Resource_h1pfh"), SubResource("Resource_bpmgb"), SubResource("Resource_hor57"), SubResource("Resource_3af6g"), SubResource("Resource_oooob")])
+list = Array[ExtResource("1_kvyd4")]([SubResource("Resource_h1pfh"), SubResource("Resource_bpmgb"), SubResource("Resource_hor57"), SubResource("Resource_3af6g"), SubResource("Resource_oooob"), SubResource("Resource_jkmxa")])
 metadata/_custom_type_script = "uid://cjrrx1pmgcfe3"

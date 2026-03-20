@@ -6,13 +6,19 @@ class_name ProvinceBuildingData;
 @export var on_built_effects: Array[Effect];
 @export var turn_effects: Array[Effect];
 @export var icon: Texture2D;
+@export var costs: Array[Cost];
 
 func get_description(ctx: EffectContext):
 	var s: String;
 	
 	s = "";
 	s += display_name;
-	s += "\n\n";
+	s += "\n";
+	s += "COST:"
+	for c: Cost in costs:
+		s += c.generate_description(ctx.nation);
+		s += " ";
+	s += "\n";
 	s += "WHEN BUILT:\n";
 	for e: Effect in on_built_effects:
 		s += "- ";

@@ -29,6 +29,12 @@ var lag: bool = false;
 
 # Diversity civic, the more unique buildings, the happier ppl
 
+# Will to expand currency:
+# If high, more happiness when expanding/building
+# Makes going tall gooding
+
+# dubstepland generation of power: hamster wheels
+
 func _process(delta: float) -> void:
 	timer += 1;
 	if (timer > 60 and start):
