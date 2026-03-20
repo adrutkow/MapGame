@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ddfi2rm22du0m" path="res://Scripts/Resources/nation_data.gd" id="1_c73x0"]
 [ext_resource type="Texture2D" uid="uid://c7qkb0qmhci1r" path="res://Assets/Images/Flags/speedland.png" id="2_dp6g1"]
 [ext_resource type="Texture2D" uid="uid://eihx64cjhb5p" path="res://Assets/Images/Flags/lean_kingdom.png" id="2_qdu77"]
-[ext_resource type="Script" uid="uid://be3c56o2tjrk0" path="res://Scripts/Resources/nation_data_list.gd" id="2_wnqie"]
+[ext_resource type="Script" uid="uid://be3c56o2tjrk0" path="res://Scripts/Resources/Lists/nation_data_list.gd" id="2_wnqie"]
 [ext_resource type="Texture2D" uid="uid://bh0fsnd0qrl63" path="res://Assets/Images/Flags/Dick.png" id="3_igt2k"]
 [ext_resource type="Texture2D" uid="uid://bxxwonmdpjtqd" path="res://Assets/Images/Flags/Antonland.png" id="3_qdu77"]
 [ext_resource type="Texture2D" uid="uid://ga18yixstq8s" path="res://Assets/Images/Flags/dubstepland.png" id="4_qdu77"]

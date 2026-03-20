@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TechDataList" load_steps=9 format=3 uid="uid://dehsef0gw2des"]
 
-[ext_resource type="Script" uid="uid://cjol0hn1em5cq" path="res://Scripts/Resources/tech_data_list.gd" id="1_osll3"]
+[ext_resource type="Script" uid="uid://cjol0hn1em5cq" path="res://Scripts/Resources/Lists/tech_data_list.gd" id="1_osll3"]
 [ext_resource type="Script" uid="uid://civflpqvki2vd" path="res://Scripts/Resources/tech_data.gd" id="2_7s71r"]
 [ext_resource type="Texture2D" uid="uid://bnumrlcbkvufu" path="res://Assets/Images/Techs/Latin_workshop.png" id="3_j2j1m"]
 [ext_resource type="Script" uid="uid://dpqvg5ygvxa22" path="res://Scripts/Resources/effect.gd" id="4_gf3iy"]

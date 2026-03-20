@@ -71,3 +71,17 @@ func get_bitmap_center(bitmap: BitMap) -> Vector2i:
 	
 	return (top_left + offset);
 	
+static func ui_icon_gold() -> String:
+	return ("[img=16x16]res://Assets/Icons/gold.png[/img]");
+	
+static func ui_icon_science() -> String:
+	return ("[img=16x16]res://Assets/Icons/science.png[/img]")
+	
+static func ui_icon_culture() -> String:
+	return ("[img=16x16]res://Assets/Icons/culture.png[/img]")
+		
+static func ui_icon_power() -> String:
+	return ("[img=16x16]res://Assets/Icons/power.png[/img]")
+
+static func ui_icon_happiness() -> String:
+	return ("[img=16x16]res://Assets/Icons/happiness.png[/img]")

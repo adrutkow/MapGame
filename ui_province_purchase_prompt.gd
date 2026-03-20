@@ -25,7 +25,7 @@ func on_pressed():
 func update():
 	if (target_province == -1):
 		return;
-	$RichTextLabel.text = "PRICE:\n" + str(price);
+	$RichTextLabel.text = "PRICE:\n" + str(price) + Utils.ui_icon_gold();
 	global_position = UIManager.instance.get_province_ui_position(target_province);
 
 func _on_button_pressed() -> void:

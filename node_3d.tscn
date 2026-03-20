@@ -35,7 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://c36wkifj71gdw" path="res://Assets/Models/hello_kitty_speed_good.fbx" id="31_ype4i"]
 [ext_resource type="Script" uid="uid://cn10l4wfw3rdn" path="res://toggle_menu_button.gd" id="32_pb8dk"]
 [ext_resource type="Texture2D" uid="uid://cw81d5rdlynfc" path="res://icon.svg" id="33_2mu51"]
-[ext_resource type="Script" path="res://ui_province_purchase_prompt.gd" id="36_vmvb8"]
+[ext_resource type="Script" uid="uid://ci7xq1j5ogy7i" path="res://ui_province_purchase_prompt.gd" id="36_vmvb8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jka67"]
 
@@ -1322,6 +1322,7 @@ offset_right = 39.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+bbcode_enabled = true
 text = "PRICE:
 9999999"
 horizontal_alignment = 1

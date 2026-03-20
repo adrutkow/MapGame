@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bfj6l868ymn18" path="res://Scripts/Resources/great_person_data.gd" id="1_63vfs"]
 [ext_resource type="Texture2D" uid="uid://ba6aumrr0uavy" path="res://Assets/Images/GreatPeople/adamthefirst.png" id="2_48d3j"]
 [ext_resource type="Script" uid="uid://dpqvg5ygvxa22" path="res://Scripts/Resources/effect.gd" id="2_kpejn"]
-[ext_resource type="Script" uid="uid://byn0bh0ygolau" path="res://Scripts/Resources/great_people_data_list.gd" id="2_oeiwk"]
+[ext_resource type="Script" uid="uid://byn0bh0ygolau" path="res://Scripts/Resources/Lists/great_people_data_list.gd" id="2_oeiwk"]
 [ext_resource type="Texture2D" uid="uid://bd1we12s5xxnx" path="res://Assets/Images/GreatPeople/leon-whitefungus.png" id="3_48d3j"]
 [ext_resource type="Texture2D" uid="uid://biohdx8c2cki1" path="res://Assets/Images/GreatPeople/anton-the-first.png" id="4_on5cy"]
 [ext_resource type="Texture2D" uid="uid://cydfgf6ujil2m" path="res://Assets/Images/GreatPeople/antosha.png" id="5_5xo52"]

@@ -5,6 +5,7 @@ extends Node
 @export var province_data_list: ProvinceDataList;
 @export var province_building_data_list: ProvinceBuildingDataList;
 @export var tech_data_list: TechDataList;
+@export var currency_data_list: CurrencyDataList;
 @export var gp_data_list: GreatPeopleDataList;
 
 enum GAME_ACTION {
