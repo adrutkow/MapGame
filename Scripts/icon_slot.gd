@@ -1,11 +1,13 @@
 extends UIElement
 class_name IconSlot;
 
-var key: String = "";
+@export var key: String = "";
 
 func update():
 	if (key.is_empty()):
 		return ("");
+	if ("buy_" in key):
+		set_texture(load("res://Assets/UI/icon_add.png"));
 	if ("building_" in key):
 		var building_data: ProvinceBuildingData = GameGlobal.get_province_building_data_by_name(key);
 		if (building_data):
@@ -39,6 +41,18 @@ func on_unhovered():
 func on_pressed():
 	if (UIElement.UI_CONTEXT.RESEARCH in get_ui_context()):
 		DevConsole.instance.add_line("RESEARCH!");
+	if (UIElement.UI_CONTEXT.BUY_BUILDING in get_ui_context()):
+		var province_id: int;
+		var building_name: String;
+		
+		if ("buy_" in key):
+			MenuBuyBuilding.instance.toggle();
+			return;
+		
+		province_id = UIManager.instance.get_selected_province();
+		building_name = key;
+		DevConsole.instance.add_line("BUY BUILDING!");
+		Player.instance.buy_building(province_id, building_name);
 
 func _on_button_pressed() -> void:
 	on_pressed();

@@ -27,6 +27,8 @@ var lag: bool = false;
 # Youssef sAYS
 # random event, about a man of death, some call him deathman
 
+# Diversity civic, the more unique buildings, the happier ppl
+
 func _process(delta: float) -> void:
 	timer += 1;
 	if (timer > 60 and start):
@@ -94,7 +96,12 @@ func tick_command(command: Dictionary):
 		Map.map_instance.generate_mapview_diplomacy();
 	
 	
-	
+	if (type == NetworkManager.COMMAND_TYPE.BUY_BUILDING):
+		var target_province: int = command["context"].province_id;
+		var building_name: String = command["context"].building_name;
+		var province: ProvinceState =  get_province_by_id(target_province);
+
+		province.add_building(building_name);
 
 func tick_armies():
 	for a: Army in get_armies():

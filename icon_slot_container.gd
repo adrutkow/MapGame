@@ -11,8 +11,8 @@ func reset_icons():
 		if (i is IconSlot):
 			i.queue_free();
 
-func add_icon(n: String, ui_context: Array[UIElement.UI_CONTEXT] = []):
-	var temp: IconSlot;
+func add_icon(n: String, ui_context: Array[UIElement.UI_CONTEXT] = []) -> IconSlot:
+	var temp: IconSlot = null;
 	
 	temp = icon_slot_prefab.instantiate();
 	temp.key = n;
@@ -21,3 +21,4 @@ func add_icon(n: String, ui_context: Array[UIElement.UI_CONTEXT] = []):
 	for u: UIElement.UI_CONTEXT in ui_context:
 		temp.ui_context.append(u);
 	add_child(temp);
+	return (temp);

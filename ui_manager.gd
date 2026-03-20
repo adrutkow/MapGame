@@ -114,6 +114,9 @@ func get_client_nation() -> Nation:
 func get_client_nation_id() -> int:
 	return (GameInstance.game_instance.get_nation_id(Client.get_nation()));
 	
+func get_selected_province() -> int:
+	return (selected_province);
+
 func update_resources():
 	var nation: Nation;
 	
