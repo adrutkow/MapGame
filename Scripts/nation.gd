@@ -41,6 +41,9 @@ func get_nation_id() -> int:
 func give_gold(amount: float):
 	gold += amount;
 
+func give_currency(currency_name: String, amount: float):
+	pass;
+
 func give_province(province_id: int):
 	if (GameInstance.game_instance.get_province_owner(province_id) != null):
 		return;

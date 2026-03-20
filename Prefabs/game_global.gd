@@ -39,3 +39,9 @@ func get_great_person_data_by_name(n: String) -> GreatPersonData:
 		if (gp.gp_name == n):
 			return (gp);
 	return (null);
+
+func get_currency_data_by_name(n: String) -> CurrencyData:
+	for cd: CurrencyData in currency_data_list.list:
+		if (cd.currency_name == n):
+			return (cd);
+	return (null);

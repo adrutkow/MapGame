@@ -1,5 +1,5 @@
 extends Resource
-class_name Currency
+class_name CurrencyData
 
 @export var currency_name: String = "currency_default";
 @export var display_name: String = "Default currency";
