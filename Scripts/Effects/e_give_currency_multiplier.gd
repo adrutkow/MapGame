@@ -20,8 +20,8 @@ func get_description(ctx: EffectContext) -> String:
 		return ("Invalid context");
 	currency_data = GameGlobal.get_currency_data_by_name(currency_name);
 	if (currency_data):
-		c_name = currency_data.get_display_name_with_icon();
+		c_name = currency_data.get_display_icon();
 	if (ctx.nation):
 		nation_name = ctx.nation.nation_name;
-	return (currency_data.get_display_name_with_icon() + " generated: "
-		+ TextUtils.color_number(percentage, false, true));
+	return (c_name + " generated: " +
+		TextUtils.color_number(percentage, false, true));

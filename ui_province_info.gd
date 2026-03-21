@@ -14,8 +14,8 @@ func get_hover_text(province_id: int):
 		var currency_data: CurrencyData;
 		
 		currency_data = GameGlobal.get_currency_data_by_name(key);
-		s += "+" + str(province.last_generated_currency[key]);
-		s += " " + currency_data.get_display_name_with_icon();
+		s += TextUtils.color_number(province.last_generated_currency[key]);
+		s += " " + currency_data.get_display_icon();
 		s += "\n";
 	
 	return (s);

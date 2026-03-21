@@ -5,6 +5,8 @@ var green_color: Color;
 var red_color: Color;
 var yellow_color: Color;
 var orange_color: Color;
+var gray_color: Color;
+
 
 func _init() -> void:
 	white_color = Color.WHITE;
@@ -12,6 +14,7 @@ func _init() -> void:
 	red_color = Color.DARK_RED;
 	yellow_color = Color.YELLOW;
 	orange_color = Color.DARK_ORANGE;
+	gray_color = Color.DIM_GRAY;
 	
 func bb_white_color() -> String:
 	return ("[color=" + white_color.to_html() + "]");
@@ -28,6 +31,9 @@ func bb_yellow_color() -> String:
 func bb_orange_color() -> String:
 	return ("[color=" + orange_color.to_html() + "]");
 	
+func bb_gray_color() -> String:
+	return ("[color=" + gray_color.to_html() + "]");
+	
 func bb_end_color() -> String:
 	return ("[/color]");
 	
@@ -35,6 +41,22 @@ func orange_color_text(s: String) -> String:
 	var output: String = "";
 	
 	output += bb_orange_color();
+	output += s;
+	output += bb_end_color();
+	return (output);
+	
+func yellow_color_text(s: String) -> String:
+	var output: String = "";
+	
+	output += bb_yellow_color();
+	output += s;
+	output += bb_end_color();
+	return (output);
+	
+func gray_color_text(s: String) -> String:
+	var output: String = "";
+	
+	output += bb_gray_color();
 	output += s;
 	output += bb_end_color();
 	return (output);

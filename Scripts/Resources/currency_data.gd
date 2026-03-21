@@ -17,8 +17,11 @@ func get_icon_path() -> String:
 func get_display_name() -> String:
 	return (display_name);
 
-func get_display_name_with_icon() -> String:
+func get_display_icon() -> String:
 	return ("[img=16x16]"+ get_icon_path() +"[/img]");
+
+func get_display_name_with_icon() -> String:
+	return ("[img=16x16]" + get_icon_path() +"[/img] " + get_display_name());
 
 func get_description() -> String:
 	return (description);

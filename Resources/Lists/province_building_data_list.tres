@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProvinceBuildingDataList" load_steps=21 format=3 uid="uid://dhpyrgmooa0bt"]
+[gd_resource type="Resource" script_class="ProvinceBuildingDataList" load_steps=24 format=3 uid="uid://dhpyrgmooa0bt"]
 
 [ext_resource type="Script" uid="uid://c1hbldg12ywh6" path="res://Scripts/Resources/province_building_data.gd" id="1_xt2an"]
 [ext_resource type="Script" uid="uid://bjg088yerlvkq" path="res://Scripts/Resources/cost.gd" id="2_1o6sb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://qw3ufq7u7dbk" path="res://Assets/Images/Buildings/science_generator.png" id="5_joh2t"]
 [ext_resource type="Script" uid="uid://btjna5qecowba" path="res://Scripts/Resources/Lists/province_building_data_list.gd" id="5_kqprt"]
 [ext_resource type="Script" uid="uid://toxksbosf5j1" path="res://Scripts/Effects/e_give_currency.gd" id="5_md74t"]
+[ext_resource type="Script" uid="uid://p5feq0vmr5ku" path="res://Scripts/Effects/e_give_currency_multiplier.gd" id="6_djx28"]
 [ext_resource type="Texture2D" uid="uid://dt1vvhgom6460" path="res://Assets/Images/Buildings/town_hall.png" id="8_djx28"]
 
 [sub_resource type="Resource" id="Resource_djx28"]
@@ -21,11 +22,24 @@ currency_name = "currency_culture"
 amount = 50.0
 metadata/_custom_type_script = "uid://bjg088yerlvkq"
 
+[sub_resource type="Resource" id="Resource_05trf"]
+script = ExtResource("5_md74t")
+currency_name = "currency_gold"
+intensity = 0.1
+daily = true
+metadata/_custom_type_script = "uid://toxksbosf5j1"
+
+[sub_resource type="Resource" id="Resource_kisv0"]
+script = ExtResource("6_djx28")
+currency_name = "currency_gold"
+percentage = 15.0
+metadata/_custom_type_script = "uid://p5feq0vmr5ku"
+
 [sub_resource type="Resource" id="Resource_j37t3"]
 script = ExtResource("1_xt2an")
 building_name = "building_marketplace"
 display_name = "Marketplace"
-on_built_effects = Array[ExtResource("2_3imoi")]([null])
+on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_05trf"), SubResource("Resource_kisv0")])
 turn_effects = Array[ExtResource("2_3imoi")]([])
 icon = ExtResource("2_euutm")
 costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_djx28"), SubResource("Resource_wspn1")])

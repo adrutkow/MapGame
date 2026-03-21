@@ -11,9 +11,9 @@ func get_description(ctx: EffectContext):
 	var s: String;
 	
 	s = "";
-	s += display_name;
+	s += TextUtils.yellow_color_text(display_name);
 	s += "\n";
-	s += description;
+	s += TextUtils.gray_color_text(description);
 	if (len(effects) == 0):
 		return(s);
 	s += "\n";

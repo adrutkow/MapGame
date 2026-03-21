@@ -24,8 +24,11 @@ func get_description(ctx: EffectContext) -> String:
 		c_name = currency_data.get_display_name_with_icon();
 	if (ctx.nation):
 		nation_name = ctx.nation.nation_name;
-	s += currency_data.get_display_name_with_icon();
 	if (daily):
+		s += currency_data.get_display_icon();
 		s += " per day: ";
+	else:
+		s += currency_data.get_display_name_with_icon();
+		s += ": "
 	s += TextUtils.color_number(intensity);
 	return (s);

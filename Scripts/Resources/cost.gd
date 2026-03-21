@@ -17,7 +17,7 @@ func generate_description(nation: Nation = null) -> String:
 	
 	c = GameGlobal.get_currency_data_by_name(currency_name);
 	if (c):
-		n = c.get_display_name_with_icon();
+		n = c.get_display_icon();
 	a = get_amount(nation);
 	
-	return (n + " " + str(a));
+	return (n + " " + str(int(a)));
