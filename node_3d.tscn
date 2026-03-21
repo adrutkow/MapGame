@@ -1156,8 +1156,10 @@ offset_right = 938.0
 offset_bottom = -608.0
 grow_vertical = 0
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/FloatingText"]
+clip_contents = false
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 2
@@ -1173,14 +1175,29 @@ text = "This is test text
 fit_content = true
 scroll_active = false
 
-[node name="Panel" type="Panel" parent="UI/FloatingText/RichTextLabel"]
-z_index = -1
+[node name="MarginContainer" type="MarginContainer" parent="UI/FloatingText/RichTextLabel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = -50
+theme_override_constants/margin_top = -20
+theme_override_constants/margin_right = -50
+theme_override_constants/margin_bottom = -20
+
+[node name="Panel" type="Panel" parent="UI/FloatingText/RichTextLabel/MarginContainer"]
+modulate = Color(0.33, 0.33, 0.33, 1)
+z_index = -1
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel2" type="Panel" parent="UI/FloatingText/RichTextLabel/MarginContainer"]
+modulate = Color(0.16, 0.16, 0.16, 1)
+z_index = -1
+layout_mode = 2
 mouse_filter = 2
 
 [node name="ResearchMenu" type="Control" parent="UI"]

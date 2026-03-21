@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 		for i in t:
 			add_province_buy_prompt(i);
 		
-	$FloatingText.position = get_viewport().get_mouse_position();
+	var off: Vector2 = Vector2(75, 50);
+	$FloatingText.position = get_viewport().get_mouse_position() + off;
 
 func tick():
 	update_resources();

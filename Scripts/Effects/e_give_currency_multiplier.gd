@@ -23,4 +23,5 @@ func get_description(ctx: EffectContext) -> String:
 		c_name = currency_data.get_display_name_with_icon();
 	if (ctx.nation):
 		nation_name = ctx.nation.nation_name;
-	return ("Generate +" + currency_data.get_display_name_with_icon());
+	return (currency_data.get_display_name_with_icon() + " generated: "
+		+ TextUtils.color_number(percentage, false, true));

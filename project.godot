@@ -21,6 +21,7 @@ GameGlobal="*res://Prefabs/GameGlobal.tscn"
 Utils="*res://Scripts/utils.gd"
 NetworkManager="*res://Scripts/network_manager.gd"
 Client="*res://Prefabs/Client.tscn"
+TextUtils="*res://Scripts/text_utils.gd"
 
 [display]
 

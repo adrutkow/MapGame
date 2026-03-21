@@ -18,9 +18,10 @@ func get_description(ctx: EffectContext):
 		return(s);
 	s += "\n";
 	s += "\n";
-	s += "EFFECTS:\n";
+	s += TextUtils.effects_text();
+	s += "\n";
 	for e: Effect in effects:
-		s += "- ";
+		s += "	";
 		s += e.get_description(ctx);
 		s += "\n";
 	

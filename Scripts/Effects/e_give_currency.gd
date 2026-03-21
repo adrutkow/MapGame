@@ -15,6 +15,7 @@ func get_description(ctx: EffectContext) -> String:
 	var nation_name: String = "?";
 	var currency_data: CurrencyData;
 	var c_name: String = "?";
+	var s: String = "";
 	
 	if (not ctx):
 		return ("Invalid context");
@@ -23,8 +24,8 @@ func get_description(ctx: EffectContext) -> String:
 		c_name = currency_data.get_display_name_with_icon();
 	if (ctx.nation):
 		nation_name = ctx.nation.nation_name;
+	s += currency_data.get_display_name_with_icon();
 	if (daily):
-		return ("Receive +" + TextUtils.instance.color_number(intensity) +
-			c_name + " per day");
-	return ("Receive +" + TextUtils.instance.color_number(intensity)
-		+ c_name);
+		s += " per day: ";
+	s += TextUtils.color_number(intensity);
+	return (s);

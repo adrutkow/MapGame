@@ -12,16 +12,19 @@ func get_description(ctx: EffectContext):
 	var s: String;
 	
 	s = "";
+	s += TextUtils.bb_yellow_color();
 	s += display_name;
+	s += TextUtils.bb_end_color();
 	s += "\n";
-	s += "COST:"
+	#s += "Cost:\n";
 	for c: Cost in costs:
 		s += c.generate_description(ctx.nation);
 		s += " ";
+	s += "\n\n";
+	s += TextUtils.effects_text();
 	s += "\n";
-	s += "WHEN BUILT:\n";
 	for e: Effect in on_built_effects:
-		s += "- ";
+		s += "	";
 		s += e.get_description(ctx);
 		s += "\n";
 	# dog

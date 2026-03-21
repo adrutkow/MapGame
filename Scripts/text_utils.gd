@@ -1,7 +1,5 @@
-extends Resource
-class_name TextUtils;
+extends Node
 
-static var instance: TextUtils;
 var white_color: Color;
 var green_color: Color;
 var red_color: Color;
@@ -9,7 +7,6 @@ var yellow_color: Color;
 var orange_color: Color;
 
 func _init() -> void:
-	instance = self;
 	white_color = Color.WHITE;
 	green_color = Color.LIME_GREEN;
 	red_color = Color.DARK_RED;
@@ -33,6 +30,23 @@ func bb_orange_color() -> String:
 	
 func bb_end_color() -> String:
 	return ("[/color]");
+	
+func orange_color_text(s: String) -> String:
+	var output: String = "";
+	
+	output += bb_orange_color();
+	output += s;
+	output += bb_end_color();
+	return (output);
+	
+func effects_text() -> String:
+	var output: String = "";
+	
+	output += bb_orange_color();
+	output += "Effects:";
+	output += bb_end_color();
+	
+	return (output);
 	
 func color_number(n: float, higher_worse: bool = false,
 		percent: bool = false) -> String:
