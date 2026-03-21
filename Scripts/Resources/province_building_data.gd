@@ -24,7 +24,7 @@ func get_description(ctx: EffectContext):
 		s += "- ";
 		s += e.get_description(ctx);
 		s += "\n";
-	s += "PER DAY:\n";
+	# dog
 	for e: Effect in turn_effects:
 		s += "- ";
 		s += e.get_description(ctx);

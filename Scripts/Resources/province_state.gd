@@ -4,6 +4,7 @@ class_name ProvinceState;
 var province_data: ProvinceData;
 var buildings: Array[String];
 var great_people: Array[String];
+var last_generated_currency: Dictionary;
 
 func tick():
 	var owner: Nation;
@@ -67,12 +68,31 @@ func get_great_people() -> Array[String]:
 func get_currency_income(currency_name: String) -> float:
 	var output: float = 0;
 	var building_data: ProvinceBuildingData;
+	var great_person_data: GreatPersonData;
+	var bonus: float = 0;
 	
 	for building_name: String in get_buildings():
 		building_data = GameGlobal.get_province_building_data_by_name(building_name);
 		for e: Effect in building_data.on_built_effects:
 			if (e is EGiveCurrency):
 				if (e.currency_name == currency_name and e.daily):
-					output += e.intensity
+					output += e.intensity;
 
+			if (e is EGiveCurrencyMultiplier):
+				if (e.currency_name == currency_name):
+					bonus += e.percentage;
+					
+	for great_person_name: String in get_great_people():
+		great_person_data = GameGlobal.get_great_person_data_by_name(great_person_name);
+		for e: Effect in great_person_data.effects:
+			if (e is EGiveCurrency):
+				if (e.currency_name == currency_name and e.daily):
+					output += e.intensity;
+			
+			if (e is EGiveCurrencyMultiplier):
+				if (e.currency_name == currency_name):
+					bonus += e.percentage;
+		
+	output += output * bonus/100;
+	last_generated_currency[currency_name] = output;
 	return (output);

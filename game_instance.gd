@@ -27,6 +27,9 @@ var lag: bool = false;
 # Youssef sAYS
 # random event, about a man of death, some call him deathman
 
+# Youssed says again:
+# random event, tel aviv falls, good event. this is goated.
+
 # Diversity civic, the more unique buildings, the happier ppl
 
 # Will to expand currency:

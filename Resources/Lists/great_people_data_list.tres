@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GreatPeopleDataList" load_steps=83 format=3 uid="uid://bkxl1ryr0nmij"]
+[gd_resource type="Resource" script_class="GreatPeopleDataList" load_steps=87 format=3 uid="uid://bkxl1ryr0nmij"]
 
 [ext_resource type="Script" uid="uid://bfj6l868ymn18" path="res://Scripts/Resources/great_person_data.gd" id="1_63vfs"]
 [ext_resource type="Texture2D" uid="uid://ba6aumrr0uavy" path="res://Assets/Images/GreatPeople/adamthefirst.png" id="2_48d3j"]
@@ -7,10 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://bd1we12s5xxnx" path="res://Assets/Images/GreatPeople/leon-whitefungus.png" id="3_48d3j"]
 [ext_resource type="Texture2D" uid="uid://biohdx8c2cki1" path="res://Assets/Images/GreatPeople/anton-the-first.png" id="4_on5cy"]
 [ext_resource type="Texture2D" uid="uid://cydfgf6ujil2m" path="res://Assets/Images/GreatPeople/antosha.png" id="5_5xo52"]
+[ext_resource type="Script" uid="uid://p5feq0vmr5ku" path="res://Scripts/Effects/e_give_currency_multiplier.gd" id="6_0lwjg"]
 [ext_resource type="Texture2D" uid="uid://cydrq5m7j3vxj" path="res://Assets/Images/GreatPeople/guston-face-reveal.png" id="6_amax6"]
 [ext_resource type="Texture2D" uid="uid://dvx3b8cvh7a6e" path="res://Assets/Images/GreatPeople/vova.png" id="7_6qyju"]
 [ext_resource type="Texture2D" uid="uid://bkfnoy6s4kdls" path="res://Assets/Images/GreatPeople/village-elder.png" id="8_5xo52"]
 [ext_resource type="Script" uid="uid://d3a757kkafwlt" path="res://Scripts/Effects/e_give_gold.gd" id="8_6gbbj"]
+[ext_resource type="Script" uid="uid://toxksbosf5j1" path="res://Scripts/Effects/e_give_currency.gd" id="8_p4gyr"]
 [ext_resource type="Texture2D" uid="uid://dw2cc24ppgtxt" path="res://Assets/Images/GreatPeople/lukas.png" id="9_amax6"]
 [ext_resource type="Texture2D" uid="uid://cwqp0n8gla3uw" path="res://Assets/Images/GreatPeople/ajonjon.png" id="12_6gbbj"]
 [ext_resource type="Texture2D" uid="uid://bng1bhl8ngu06" path="res://Assets/Images/GreatPeople/andrew.png" id="13_fqve3"]
@@ -51,13 +53,19 @@ description = "The first leader of Speedland"
 effects = Array[ExtResource("2_kpejn")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
+[sub_resource type="Resource" id="Resource_piea2"]
+script = ExtResource("6_0lwjg")
+currency_name = "currency_power"
+percentage = 20.0
+metadata/_custom_type_script = "uid://p5feq0vmr5ku"
+
 [sub_resource type="Resource" id="Resource_oeiwk"]
 script = ExtResource("1_63vfs")
 gp_name = "gp_leon-whitefungus"
 display_name = "Leon Whitefungus"
 icon = ExtResource("3_48d3j")
 description = "The first minister of defense in Speedland"
-effects = Array[ExtResource("2_kpejn")]([])
+effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_piea2")])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_kpejn"]
@@ -69,13 +77,19 @@ description = "The first leader of Antonland"
 effects = Array[ExtResource("2_kpejn")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
+[sub_resource type="Resource" id="Resource_t7ymy"]
+script = ExtResource("6_0lwjg")
+currency_name = "currency_culture"
+percentage = 20.0
+metadata/_custom_type_script = "uid://p5feq0vmr5ku"
+
 [sub_resource type="Resource" id="Resource_6gbbj"]
 script = ExtResource("1_63vfs")
 gp_name = "gp_antosha"
 display_name = "Antosha"
 icon = ExtResource("5_5xo52")
 description = "Local celebrity from Antonland"
-effects = Array[ExtResource("2_kpejn")]([])
+effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_t7ymy")])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_kig0q"]
@@ -87,10 +101,12 @@ description = "Guston face reveal 50k subs - explorer"
 effects = Array[ExtResource("2_kpejn")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
-[sub_resource type="Resource" id="Resource_nniii"]
-script = ExtResource("8_6gbbj")
-intensity = 10.0
-metadata/_custom_type_script = "uid://d3a757kkafwlt"
+[sub_resource type="Resource" id="Resource_rgjgi"]
+script = ExtResource("8_p4gyr")
+currency_name = "currency_culture"
+intensity = 0.1
+daily = true
+metadata/_custom_type_script = "uid://toxksbosf5j1"
 
 [sub_resource type="Resource" id="Resource_lmn65"]
 script = ExtResource("1_63vfs")
@@ -98,7 +114,7 @@ gp_name = "gp_vova"
 display_name = "Vova"
 icon = ExtResource("7_6qyju")
 description = "Great artist from Antonland"
-effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_nniii")])
+effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_rgjgi")])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_amax6"]

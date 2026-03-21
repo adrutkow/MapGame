@@ -1,15 +1,15 @@
 extends Effect
-class_name EGiveCurrency;
+class_name EGiveCurrencyMultiplier;
 
 @export var currency_name: String = "currency_default";
-@export var intensity: float = 0.0;
-@export var daily: bool = false;
+@export var percentage: float = 0.0;
 
 func tick(ctx: EffectContext):
 	if (not ctx):
 		return;
 	if (not ctx.nation):
 		return;
+	#ctx.nation.give_currency(currency_name, intensity);
 
 func get_description(ctx: EffectContext) -> String:
 	var nation_name: String = "?";
@@ -23,8 +23,4 @@ func get_description(ctx: EffectContext) -> String:
 		c_name = currency_data.get_display_name_with_icon();
 	if (ctx.nation):
 		nation_name = ctx.nation.nation_name;
-	if (daily):
-		return ("Receive +" + TextUtils.instance.color_number(intensity) +
-			c_name + " per day");
-	return ("Receive +" + TextUtils.instance.color_number(intensity)
-		+ c_name);
+	return ("Generate +" + currency_data.get_display_name_with_icon());

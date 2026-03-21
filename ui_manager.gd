@@ -85,6 +85,8 @@ func show_province_info(province_id: int):
 	else:
 		$Control/Province/OwnerText.text = "Owner: " + "None";
 		
+	$Control/Province/ProvinceInfo.update_info();
+		
 		
 func add_province_buy_prompt(province_id: int):
 	var temp: UIProvincePurchasePrompt = $ProvincePurchase/ProvincePurchasePrompt.duplicate();
@@ -126,6 +128,7 @@ func update_resources():
 	update_science(nation.science);
 	update_military(nation.power);
 	update_gold(nation.gold);
+	update_culture(nation.culture);
 	
 func update_nation_info():
 	if (not get_client_nation()):
@@ -147,6 +150,9 @@ func update_flag(t: Texture2D):
 	
 func update_science(i: int):
 	$Control/Mana/VBoxContainer/Science/Control/RichTextLabel.text = str(i);
+
+func update_culture(i: int):
+	$Control/Mana/VBoxContainer/Culture/RichTextLabel.text = str(i);
 
 func update_military(i: int):
 	$Control/Mana/VBoxContainer/Power/RichTextLabel.text = str(i);

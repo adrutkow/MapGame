@@ -14,6 +14,7 @@ script = ExtResource("1_kvyd4")
 currency_name = "currency_gold"
 display_name = "Gold"
 currency_icon = ExtResource("2_rb5jp")
+description = ""
 metadata/_custom_type_script = "uid://cq0gq6pl0h057"
 
 [sub_resource type="Resource" id="Resource_bpmgb"]
@@ -21,6 +22,7 @@ script = ExtResource("1_kvyd4")
 currency_name = "currency_science"
 display_name = "Science"
 currency_icon = ExtResource("3_rb5jp")
+description = ""
 metadata/_custom_type_script = "uid://cq0gq6pl0h057"
 
 [sub_resource type="Resource" id="Resource_hor57"]
@@ -28,6 +30,7 @@ script = ExtResource("1_kvyd4")
 currency_name = "currency_culture"
 display_name = "Culture"
 currency_icon = ExtResource("4_h1pfh")
+description = ""
 metadata/_custom_type_script = "uid://cq0gq6pl0h057"
 
 [sub_resource type="Resource" id="Resource_3af6g"]
@@ -35,6 +38,7 @@ script = ExtResource("1_kvyd4")
 currency_name = "currency_happiness"
 display_name = "Happiness"
 currency_icon = ExtResource("5_hor57")
+description = ""
 metadata/_custom_type_script = "uid://cq0gq6pl0h057"
 
 [sub_resource type="Resource" id="Resource_oooob"]
@@ -42,6 +46,7 @@ script = ExtResource("1_kvyd4")
 currency_name = "currency_power"
 display_name = "Power"
 currency_icon = ExtResource("6_iwcla")
+description = ""
 metadata/_custom_type_script = "uid://cq0gq6pl0h057"
 
 [sub_resource type="Resource" id="Resource_jkmxa"]
@@ -49,6 +54,7 @@ script = ExtResource("1_kvyd4")
 currency_name = "currency_energy"
 display_name = "Energy"
 currency_icon = ExtResource("7_iwcla")
+description = ""
 metadata/_custom_type_script = "uid://cq0gq6pl0h057"
 
 [resource]

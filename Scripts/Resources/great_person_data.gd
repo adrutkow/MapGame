@@ -26,4 +26,3 @@ func get_description(ctx: EffectContext):
 	
 	return (s);
 	
-	
