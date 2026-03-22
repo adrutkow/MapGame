@@ -5,8 +5,9 @@ enum UI_CONTEXT
 {
 	RESEARCH,
 	PROVINCE_BUILDINGS,
-	BUY_PROVINCE,
-	BUY_BUILDING,
+	BUY,
+	ASSIGN_GREAT_PERSON,
+	SELECT_GREAT_PERSON,
 }
 
 @export var ui_context: Array[UI_CONTEXT] = [];
@@ -19,6 +20,13 @@ func on_unhovered():
 
 func on_pressed():
 	pass;
+
+func update():
+	pass;
+
+func prompt():
+	update();
+	visible = true;
 
 func get_ui_context() -> Array[UI_CONTEXT]:
 	return (ui_context);

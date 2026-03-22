@@ -27,11 +27,13 @@ func tick():
 		for e: Effect in b_data.turn_effects:
 			e.tick(effect_context);
 	
-	var currencies = ["currency_gold", "currency_science", "currency_culture",
-						"currency_power", "currency_happiness"];
+	var currencies = [];
+	for c: CurrencyData in GameGlobal.currency_data_list.list:
+		currencies.append(c.currency_name);
 
 	for c: String in currencies:
 		owner.give_currency(c, get_currency_income(c));
+		owner.give_currency(c, -(get_currency_upkeep(c)));
 
 func get_owner() -> Nation:
 	var id: int;
@@ -95,4 +97,27 @@ func get_currency_income(currency_name: String) -> float:
 		
 	output += output * bonus/100;
 	last_generated_currency[currency_name] = output;
+	return (output);
+
+func get_currency_upkeep(currency_name: String) -> float:
+	var output: float = 0;
+	var building_data: ProvinceBuildingData;
+	var great_person_data: GreatPersonData;
+	var bonus: float = 0;
+
+	for building_name: String in get_buildings():
+		building_data = GameGlobal.get_province_building_data_by_name(building_name);
+		for c: Cost in building_data.maintenance_costs:
+			if (c.currency_name == currency_name):
+				output += c.amount;
+
+	for great_person_name: String in get_great_people():
+		great_person_data = GameGlobal.get_great_person_data_by_name(great_person_name);
+		for c: Cost in great_person_data.maintenance_costs:
+			if (c.currency_name == currency_name):
+				output += c.amount;
+		
+	output += output * bonus/100;
+	last_generated_currency[currency_name] = -output;
+
 	return (output);

@@ -110,6 +110,8 @@ func reset_province_buy_prompts():
 func select_army(army_id: int):
 	selected_army_id = army_id;
 	Map.map_instance.update_armycube_visual();
+	MenuArmyView.instance.update();
+	MenuArmyView.instance.visible = true;
 	
 func get_client_nation() -> Nation:
 	return (Client.get_nation());
@@ -126,10 +128,10 @@ func update_resources():
 	nation = Client.get_nation();
 	if (not nation):
 		return;
-	update_science(nation.science);
-	update_military(nation.power);
-	update_gold(nation.gold);
-	update_culture(nation.culture);
+		
+	for c: UICurrencyDisplay in $Control/Mana/VBoxContainer.get_children():
+		c.client_nation_update();
+	return;
 	
 func update_nation_info():
 	if (not get_client_nation()):
@@ -148,18 +150,6 @@ func update_flag(t: Texture2D):
 		$Control/TextureButton.texture_normal = p;
 		return;
 	$Control/TextureButton.texture_normal = t;
-	
-func update_science(i: int):
-	$Control/Mana/VBoxContainer/Science/Control/RichTextLabel.text = str(i);
-
-func update_culture(i: int):
-	$Control/Mana/VBoxContainer/Culture/RichTextLabel.text = str(i);
-
-func update_military(i: int):
-	$Control/Mana/VBoxContainer/Power/RichTextLabel.text = str(i);
-
-func update_gold(i: int):
-	$Control/Mana/VBoxContainer/Gold/RichTextLabel.text = str(i);
 
 func update_day(i: int):
 	$Control/Time/RichTextLabel.text = "Day " + str(i);

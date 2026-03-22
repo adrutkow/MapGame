@@ -8,7 +8,6 @@ func tick(ctx: EffectContext):
 		return;
 	if (not ctx.nation):
 		return;
-	ctx.nation.give_gold(intensity);
 
 func get_description(ctx: EffectContext) -> String:
 	var nation_name: String = "?";

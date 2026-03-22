@@ -76,7 +76,7 @@ func color_number(n: float, higher_worse: bool = false,
 	var sign: String = "+";
 
 	if (n < 0):
-		sign = "-";
+		sign = "";
 
 	if (n > 0):
 		if (higher_worse):

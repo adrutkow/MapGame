@@ -6,7 +6,7 @@ func display_province_buildings(province_id: int):
 	
 	reset_buildings();
 	province = GameInstance.game_instance.get_province_by_id(province_id);
-	add_building_icon("buy_building", [UIElement.UI_CONTEXT.BUY_BUILDING]);
+	add_building_icon("buy_building", [UIElement.UI_CONTEXT.BUY]);
 	for n: String in province.get_buildings():
 		var d: ProvinceBuildingData;
 		

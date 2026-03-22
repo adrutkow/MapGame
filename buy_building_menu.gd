@@ -12,7 +12,7 @@ func update():
 	icon_slot_container = $ScrollContainer/IconSlotContainer;
 	icon_slot_container.reset_icons();
 	for b: ProvinceBuildingData in GameGlobal.province_building_data_list.building_list:
-		icon_slot_container.add_icon(b.building_name, [UIElement.UI_CONTEXT.BUY_BUILDING]);
+		icon_slot_container.add_icon(b.building_name, [UIElement.UI_CONTEXT.BUY]);
 
 func toggle():
 	visible = !visible;

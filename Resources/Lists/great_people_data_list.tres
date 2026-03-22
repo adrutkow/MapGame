@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="GreatPeopleDataList" load_steps=87 format=3 uid="uid://bkxl1ryr0nmij"]
+[gd_resource type="Resource" script_class="GreatPeopleDataList" load_steps=99 format=3 uid="uid://bkxl1ryr0nmij"]
 
 [ext_resource type="Script" uid="uid://bfj6l868ymn18" path="res://Scripts/Resources/great_person_data.gd" id="1_63vfs"]
 [ext_resource type="Texture2D" uid="uid://ba6aumrr0uavy" path="res://Assets/Images/GreatPeople/adamthefirst.png" id="2_48d3j"]
 [ext_resource type="Script" uid="uid://dpqvg5ygvxa22" path="res://Scripts/Resources/effect.gd" id="2_kpejn"]
 [ext_resource type="Script" uid="uid://byn0bh0ygolau" path="res://Scripts/Resources/Lists/great_people_data_list.gd" id="2_oeiwk"]
 [ext_resource type="Texture2D" uid="uid://bd1we12s5xxnx" path="res://Assets/Images/GreatPeople/leon-whitefungus.png" id="3_48d3j"]
+[ext_resource type="Script" uid="uid://bjg088yerlvkq" path="res://Scripts/Resources/cost.gd" id="4_homdk"]
 [ext_resource type="Texture2D" uid="uid://biohdx8c2cki1" path="res://Assets/Images/GreatPeople/anton-the-first.png" id="4_on5cy"]
 [ext_resource type="Texture2D" uid="uid://cydfgf6ujil2m" path="res://Assets/Images/GreatPeople/antosha.png" id="5_5xo52"]
 [ext_resource type="Script" uid="uid://p5feq0vmr5ku" path="res://Scripts/Effects/e_give_currency_multiplier.gd" id="6_0lwjg"]
@@ -43,6 +44,9 @@
 [ext_resource type="Texture2D" uid="uid://ceasov4emqshh" path="res://Assets/Images/GreatPeople/LeanKingdom/sponge-dragonball.png" id="38_p4gyr"]
 [ext_resource type="Texture2D" uid="uid://cpcjoalna28t" path="res://Assets/Images/GreatPeople/Dick/bozodar3.png" id="39_uguoq"]
 [ext_resource type="Texture2D" uid="uid://c8n3c4pa366ig" path="res://Assets/Images/GreatPeople/Dick/krieg2.png" id="40_hycbi"]
+[ext_resource type="Texture2D" uid="uid://cp1jqfvuccour" path="res://Assets/Images/GreatPeople/Neutral/george_droyd.png" id="44_k7tqd"]
+[ext_resource type="Texture2D" uid="uid://beils5iph1xuw" path="res://Assets/Images/GreatPeople/Neutral/enslaved_george_droyd.png" id="45_5vciw"]
+[ext_resource type="Texture2D" uid="uid://vycd7087ygi3" path="res://Assets/Images/GreatPeople/Speedland/speed.png" id="46_xvt2l"]
 
 [sub_resource type="Resource" id="Resource_2eimx"]
 script = ExtResource("1_63vfs")
@@ -51,6 +55,7 @@ display_name = "Adam I"
 icon = ExtResource("2_48d3j")
 description = "The first leader of Speedland"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_piea2"]
@@ -66,6 +71,7 @@ display_name = "Leon Whitefungus"
 icon = ExtResource("3_48d3j")
 description = "The first minister of defense in Speedland"
 effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_piea2")])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_kpejn"]
@@ -75,6 +81,7 @@ display_name = "Anton I"
 icon = ExtResource("4_on5cy")
 description = "The first leader of Antonland"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_t7ymy"]
@@ -90,6 +97,7 @@ display_name = "Antosha"
 icon = ExtResource("5_5xo52")
 description = "Local celebrity from Antonland"
 effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_t7ymy")])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_kig0q"]
@@ -99,6 +107,7 @@ display_name = "Guston face reveal 50k subs - explorer"
 icon = ExtResource("6_amax6")
 description = "Guston face reveal 50k subs - explorer"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_rgjgi"]
@@ -115,6 +124,7 @@ display_name = "Vova"
 icon = ExtResource("7_6qyju")
 description = "Great artist from Antonland"
 effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_rgjgi")])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_amax6"]
@@ -124,6 +134,7 @@ display_name = "Village Elder"
 icon = ExtResource("8_5xo52")
 description = "Village Elder from Antonland"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_6qyju"]
@@ -133,6 +144,7 @@ display_name = "Lukas"
 icon = ExtResource("9_amax6")
 description = "Military general from Antonland"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_n3rqs"]
@@ -142,6 +154,7 @@ display_name = "Ajonjon bon Clash Royeaux"
 icon = ExtResource("12_6gbbj")
 description = "Antonlandian judge"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_j58ov"]
@@ -151,6 +164,7 @@ display_name = "Andrew"
 icon = ExtResource("13_fqve3")
 description = "A normal cow"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_g2seq"]
@@ -165,6 +179,7 @@ display_name = "Anton II"
 icon = ExtResource("14_mcdgf")
 description = "The second leader of Antonland"
 effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_g2seq")])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_4un0h"]
@@ -174,6 +189,7 @@ display_name = "Don Jone"
 icon = ExtResource("15_hi7aj")
 description = "Czarnuch"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_d1cn8"]
@@ -183,6 +199,7 @@ display_name = "Goldus"
 icon = ExtResource("16_u0uhe")
 description = "Goldus empowered with Speedlandian armor. He's also a cuck"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_o7p7o"]
@@ -192,6 +209,7 @@ display_name = "Heatworth"
 icon = ExtResource("17_kl4qs")
 description = "Fatass"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_64ihk"]
@@ -201,6 +219,7 @@ display_name = "Im all ears"
 icon = ExtResource("18_8jnkf")
 description = "Still waiting at Gogapolis' gates"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_uguoq"]
@@ -210,6 +229,7 @@ display_name = "Jew Jewson"
 icon = ExtResource("19_d3k56")
 description = "Striving for greater power"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_hycbi"]
@@ -219,6 +239,7 @@ display_name = "Mikael"
 icon = ExtResource("20_nfcdk")
 description = "A true Antonan"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_p4gyr"]
@@ -228,7 +249,14 @@ display_name = "Neegus"
 icon = ExtResource("21_a05qb")
 description = "Cold blooded killer"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_8cmfq"]
+script = ExtResource("6_0lwjg")
+currency_name = "currency_gold"
+percentage = 20.0
+metadata/_custom_type_script = "uid://p5feq0vmr5ku"
 
 [sub_resource type="Resource" id="Resource_0lwjg"]
 script = ExtResource("1_63vfs")
@@ -236,7 +264,8 @@ gp_name = "gp_thomas"
 display_name = "Thomas"
 icon = ExtResource("22_w5ixb")
 description = "Richest Antonian"
-effects = Array[ExtResource("2_kpejn")]([])
+effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_8cmfq")])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_homdk"]
@@ -246,6 +275,7 @@ display_name = "Nika"
 icon = ExtResource("23_mcdgf")
 description = "Nika Rutkowski"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_mcdgf"]
@@ -255,12 +285,14 @@ display_name = "Antoshkin"
 icon = ExtResource("24_hi7aj")
 description = "Antonian child immigrant"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
-[sub_resource type="Resource" id="Resource_u0uhe"]
-script = ExtResource("8_6gbbj")
-intensity = -10.0
-metadata/_custom_type_script = "uid://d3a757kkafwlt"
+[sub_resource type="Resource" id="Resource_dvel2"]
+script = ExtResource("4_homdk")
+currency_name = "currency_gold"
+amount = 0.1
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
 
 [sub_resource type="Resource" id="Resource_kl4qs"]
 script = ExtResource("1_63vfs")
@@ -268,7 +300,8 @@ gp_name = "gp_antonian-immigrants"
 display_name = "Antonian immigrants"
 icon = ExtResource("25_u0uhe")
 description = "Antonian immigrants seeking refuge"
-effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_u0uhe")])
+effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([SubResource("Resource_dvel2")])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_nfcdk"]
@@ -278,6 +311,7 @@ display_name = "Musta Hardgas"
 icon = ExtResource("26_8jnkf")
 description = "The second minister of defense of Speedland"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_a05qb"]
@@ -287,6 +321,7 @@ display_name = "Krzyk Brzęszczykiewicz"
 icon = ExtResource("27_d3k56")
 description = ""
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_w5ixb"]
@@ -296,6 +331,7 @@ display_name = "Bob The Minion"
 icon = ExtResource("28_d3k56")
 description = "Antoshkin's right hand"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_k7tqd"]
@@ -305,6 +341,7 @@ display_name = "Goksis Mavros"
 icon = ExtResource("29_bsgcj")
 description = "One of the strongest lean warriors and second in power to the king"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_5vciw"]
@@ -314,6 +351,7 @@ display_name = "Jermatidis"
 icon = ExtResource("30_4un0h")
 description = "Lean Kingdom Guard"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_xvt2l"]
@@ -323,6 +361,7 @@ display_name = "Ultra Leanstinct Jew Jewson"
 icon = ExtResource("31_d1cn8")
 description = "The first antonian to reach Ultra Leanstinct"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_1dxd0"]
@@ -337,6 +376,7 @@ display_name = "Lean Midgetidis Slavionas"
 icon = ExtResource("32_o7p7o")
 description = "The God Emperor of the Lean Kingdom"
 effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_1dxd0")])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_toigd"]
@@ -346,6 +386,7 @@ display_name = "Markos Plierepoulos"
 icon = ExtResource("33_64ihk")
 description = "Military Commander in Gokupolis"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_hxrsw"]
@@ -355,6 +396,7 @@ display_name = "Matthaois Patroklus"
 icon = ExtResource("34_uguoq")
 description = "Most trusted researcher and scientist of the Lean Kingdom"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_5n8jr"]
@@ -364,6 +406,7 @@ display_name = "Minion Sinson"
 icon = ExtResource("35_64ihk")
 description = "A psychopath"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_s2tv8"]
@@ -373,6 +416,7 @@ display_name = "Old Man Papalopoudistri"
 icon = ExtResource("36_uguoq")
 description = "Goes hard"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_0fnyi"]
@@ -382,6 +426,7 @@ display_name = "Dwanos \"Petros\" Johnsonopoulos"
 icon = ExtResource("37_hycbi")
 description = "Lead Ambassador of the Lean Kingdom"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_j5f3l"]
@@ -391,6 +436,7 @@ display_name = "?"
 icon = ExtResource("38_p4gyr")
 description = "Mysterious warrior"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_b0gl1"]
@@ -400,6 +446,7 @@ display_name = "Bozodar III"
 icon = ExtResource("39_uguoq")
 description = "Oh yeah"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [sub_resource type="Resource" id="Resource_phbwm"]
@@ -409,9 +456,67 @@ display_name = "Krieg II"
 icon = ExtResource("40_hycbi")
 description = "Thats' gopod"
 effects = Array[ExtResource("2_kpejn")]([])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_ln8dr"]
+script = ExtResource("8_p4gyr")
+currency_name = "currency_power"
+intensity = 0.1
+daily = true
+metadata/_custom_type_script = "uid://toxksbosf5j1"
+
+[sub_resource type="Resource" id="Resource_af3dk"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_george_droyd"
+display_name = "George Droyd"
+icon = ExtResource("44_k7tqd")
+description = "Weaponized and revived George Floyd"
+effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_ln8dr")])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_opshj"]
+script = ExtResource("8_p4gyr")
+currency_name = "currency_slaves"
+intensity = 0.1
+daily = true
+metadata/_custom_type_script = "uid://toxksbosf5j1"
+
+[sub_resource type="Resource" id="Resource_ua3t1"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_george_droyd_enslaved"
+display_name = "Enslaved George Droyd"
+icon = ExtResource("45_5vciw")
+description = "Enslaved George Droyd"
+effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_opshj")])
+maintenance_costs = Array[ExtResource("4_homdk")]([])
+metadata/_custom_type_script = "uid://bfj6l868ymn18"
+
+[sub_resource type="Resource" id="Resource_5pc86"]
+script = ExtResource("8_p4gyr")
+currency_name = "currency_fruits"
+intensity = -0.1
+daily = true
+metadata/_custom_type_script = "uid://toxksbosf5j1"
+
+[sub_resource type="Resource" id="Resource_j2t0d"]
+script = ExtResource("4_homdk")
+currency_name = "currency_fruits"
+amount = 0.1
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_bw8j8"]
+script = ExtResource("1_63vfs")
+gp_name = "gp_strawberry_speed"
+display_name = "Strawberry Speed"
+icon = ExtResource("46_xvt2l")
+description = "He loves strawberries"
+effects = Array[ExtResource("2_kpejn")]([SubResource("Resource_5pc86")])
+maintenance_costs = Array[ExtResource("4_homdk")]([SubResource("Resource_j2t0d")])
 metadata/_custom_type_script = "uid://bfj6l868ymn18"
 
 [resource]
 script = ExtResource("2_oeiwk")
-gp_list = Array[ExtResource("1_63vfs")]([SubResource("Resource_2eimx"), SubResource("Resource_oeiwk"), SubResource("Resource_kpejn"), SubResource("Resource_6gbbj"), SubResource("Resource_kig0q"), SubResource("Resource_lmn65"), SubResource("Resource_amax6"), SubResource("Resource_6qyju"), SubResource("Resource_n3rqs"), SubResource("Resource_j58ov"), SubResource("Resource_bsgcj"), SubResource("Resource_4un0h"), SubResource("Resource_d1cn8"), SubResource("Resource_o7p7o"), SubResource("Resource_64ihk"), SubResource("Resource_uguoq"), SubResource("Resource_hycbi"), SubResource("Resource_p4gyr"), SubResource("Resource_0lwjg"), SubResource("Resource_homdk"), SubResource("Resource_mcdgf"), SubResource("Resource_kl4qs"), SubResource("Resource_nfcdk"), SubResource("Resource_a05qb"), SubResource("Resource_w5ixb"), SubResource("Resource_k7tqd"), SubResource("Resource_5vciw"), SubResource("Resource_xvt2l"), SubResource("Resource_4mkdn"), SubResource("Resource_toigd"), SubResource("Resource_hxrsw"), SubResource("Resource_5n8jr"), SubResource("Resource_s2tv8"), SubResource("Resource_0fnyi"), SubResource("Resource_j5f3l"), SubResource("Resource_b0gl1"), SubResource("Resource_phbwm")])
+gp_list = Array[ExtResource("1_63vfs")]([SubResource("Resource_2eimx"), SubResource("Resource_oeiwk"), SubResource("Resource_kpejn"), SubResource("Resource_6gbbj"), SubResource("Resource_kig0q"), SubResource("Resource_lmn65"), SubResource("Resource_amax6"), SubResource("Resource_6qyju"), SubResource("Resource_n3rqs"), SubResource("Resource_j58ov"), SubResource("Resource_bsgcj"), SubResource("Resource_4un0h"), SubResource("Resource_d1cn8"), SubResource("Resource_o7p7o"), SubResource("Resource_64ihk"), SubResource("Resource_uguoq"), SubResource("Resource_hycbi"), SubResource("Resource_p4gyr"), SubResource("Resource_0lwjg"), SubResource("Resource_homdk"), SubResource("Resource_mcdgf"), SubResource("Resource_kl4qs"), SubResource("Resource_nfcdk"), SubResource("Resource_a05qb"), SubResource("Resource_w5ixb"), SubResource("Resource_k7tqd"), SubResource("Resource_5vciw"), SubResource("Resource_xvt2l"), SubResource("Resource_4mkdn"), SubResource("Resource_toigd"), SubResource("Resource_hxrsw"), SubResource("Resource_5n8jr"), SubResource("Resource_s2tv8"), SubResource("Resource_0fnyi"), SubResource("Resource_j5f3l"), SubResource("Resource_b0gl1"), SubResource("Resource_phbwm"), SubResource("Resource_af3dk"), SubResource("Resource_ua3t1"), SubResource("Resource_bw8j8")])
 metadata/_custom_type_script = "uid://byn0bh0ygolau"

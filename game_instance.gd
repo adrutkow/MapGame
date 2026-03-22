@@ -38,6 +38,8 @@ var lag: bool = false;
 
 # dubstepland generation of power: hamster wheels
 
+#Sending scout on mission? Lucky block events? Chance of dying? 
+
 func _process(delta: float) -> void:
 	timer += 1;
 	if (timer > 60 and start):

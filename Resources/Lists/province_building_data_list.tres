@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProvinceBuildingDataList" load_steps=29 format=3 uid="uid://dhpyrgmooa0bt"]
+[gd_resource type="Resource" script_class="ProvinceBuildingDataList" load_steps=49 format=3 uid="uid://dhpyrgmooa0bt"]
 
 [ext_resource type="Script" uid="uid://c1hbldg12ywh6" path="res://Scripts/Resources/province_building_data.gd" id="1_xt2an"]
 [ext_resource type="Script" uid="uid://bjg088yerlvkq" path="res://Scripts/Resources/cost.gd" id="2_1o6sb"]
@@ -10,6 +10,10 @@
 [ext_resource type="Script" uid="uid://p5feq0vmr5ku" path="res://Scripts/Effects/e_give_currency_multiplier.gd" id="6_djx28"]
 [ext_resource type="Texture2D" uid="uid://dt1vvhgom6460" path="res://Assets/Images/Buildings/town_hall.png" id="8_djx28"]
 [ext_resource type="Texture2D" uid="uid://c3xfk7maw7ud7" path="res://Assets/Images/Buildings/shopping.png" id="9_wspn1"]
+[ext_resource type="Texture2D" uid="uid://cpp10rfdc3ecv" path="res://Assets/Images/Buildings/Latin_cathedral.png" id="10_jh0pk"]
+[ext_resource type="Texture2D" uid="uid://bi6hlujiih8hx" path="res://Assets/Images/Buildings/cotton_farm.png" id="11_calsi"]
+[ext_resource type="Texture2D" uid="uid://cs5e7lmsx6v6o" path="res://Assets/Images/Buildings/lean_lake.png" id="12_0ntvl"]
+[ext_resource type="Texture2D" uid="uid://bvwdcxcq7goui" path="res://Assets/Images/Buildings/polish_mosque.png" id="13_825rc"]
 
 [sub_resource type="Resource" id="Resource_djx28"]
 script = ExtResource("2_1o6sb")
@@ -47,7 +51,7 @@ script = ExtResource("1_xt2an")
 building_name = "building_marketplace"
 display_name = "Marketplace"
 on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_05trf"), SubResource("Resource_kisv0")])
-turn_effects = null
+turn_effects = Array[ExtResource("2_3imoi")]([])
 icon = ExtResource("2_euutm")
 costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_djx28"), SubResource("Resource_wspn1")])
 maintenance_costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_rsxyp")])
@@ -77,10 +81,10 @@ script = ExtResource("1_xt2an")
 building_name = "building_science_generator"
 display_name = "Science Generator"
 on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_joh2t")])
-turn_effects = null
+turn_effects = Array[ExtResource("2_3imoi")]([])
 icon = ExtResource("5_joh2t")
 costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_jh0pk"), SubResource("Resource_calsi")])
-maintenance_costs = null
+maintenance_costs = Array[ExtResource("2_1o6sb")]([])
 metadata/_custom_type_script = "uid://c1hbldg12ywh6"
 
 [sub_resource type="Resource" id="Resource_1o6sb"]
@@ -116,10 +120,10 @@ script = ExtResource("1_xt2an")
 building_name = "building_town_hall"
 display_name = "Town Hall"
 on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_1o6sb"), SubResource("Resource_0ntvl"), SubResource("Resource_825rc"), SubResource("Resource_ogix8")])
-turn_effects = null
+turn_effects = Array[ExtResource("2_3imoi")]([])
 icon = ExtResource("8_djx28")
-costs = null
-maintenance_costs = null
+costs = Array[ExtResource("2_1o6sb")]([])
+maintenance_costs = Array[ExtResource("2_1o6sb")]([])
 metadata/_custom_type_script = "uid://c1hbldg12ywh6"
 
 [sub_resource type="Resource" id="Resource_eyg8x"]
@@ -140,13 +144,134 @@ script = ExtResource("1_xt2an")
 building_name = "building_hamster_wheel"
 display_name = "Hamster wheel"
 on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_myjed")])
-turn_effects = null
+turn_effects = Array[ExtResource("2_3imoi")]([])
 icon = ExtResource("9_wspn1")
 costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_eyg8x")])
-maintenance_costs = null
+maintenance_costs = Array[ExtResource("2_1o6sb")]([])
+metadata/_custom_type_script = "uid://c1hbldg12ywh6"
+
+[sub_resource type="Resource" id="Resource_osdgl"]
+script = ExtResource("2_1o6sb")
+currency_name = "currency_gold"
+amount = 250.0
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_e0y04"]
+script = ExtResource("2_1o6sb")
+currency_name = "currency_gold"
+amount = 0.1
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_dinn3"]
+script = ExtResource("5_md74t")
+currency_name = "currency_faith"
+intensity = 0.2
+daily = true
+metadata/_custom_type_script = "uid://toxksbosf5j1"
+
+[sub_resource type="Resource" id="Resource_6roh1"]
+script = ExtResource("1_xt2an")
+building_name = "building_cathedral"
+display_name = "Cathedral"
+on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_dinn3")])
+turn_effects = Array[ExtResource("2_3imoi")]([])
+icon = ExtResource("10_jh0pk")
+costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_osdgl")])
+maintenance_costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_e0y04")])
+metadata/_custom_type_script = "uid://c1hbldg12ywh6"
+
+[sub_resource type="Resource" id="Resource_1lm32"]
+script = ExtResource("2_1o6sb")
+currency_name = "currency_gold"
+amount = 200.0
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_cnjhv"]
+script = ExtResource("2_1o6sb")
+currency_name = "currency_slaves"
+amount = 0.1
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_xum08"]
+script = ExtResource("5_md74t")
+currency_name = "currency_gold"
+intensity = 0.1
+daily = true
+metadata/_custom_type_script = "uid://toxksbosf5j1"
+
+[sub_resource type="Resource" id="Resource_gyj8l"]
+script = ExtResource("5_md74t")
+currency_name = "currency_trade_value"
+intensity = 0.2
+daily = true
+metadata/_custom_type_script = "uid://toxksbosf5j1"
+
+[sub_resource type="Resource" id="Resource_7p7w6"]
+script = ExtResource("1_xt2an")
+building_name = "building_plantation_cotton"
+display_name = "Coitton farm"
+on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_xum08"), SubResource("Resource_gyj8l")])
+turn_effects = Array[ExtResource("2_3imoi")]([])
+icon = ExtResource("11_calsi")
+costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_1lm32")])
+maintenance_costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_cnjhv")])
+metadata/_custom_type_script = "uid://c1hbldg12ywh6"
+
+[sub_resource type="Resource" id="Resource_qgxg3"]
+script = ExtResource("5_md74t")
+currency_name = "currency_lean"
+intensity = 0.1
+daily = true
+metadata/_custom_type_script = "uid://toxksbosf5j1"
+
+[sub_resource type="Resource" id="Resource_o6j6g"]
+script = ExtResource("1_xt2an")
+building_name = "building_lean_lake"
+display_name = "Lean Lake"
+on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_qgxg3")])
+turn_effects = Array[ExtResource("2_3imoi")]([])
+icon = ExtResource("12_0ntvl")
+costs = Array[ExtResource("2_1o6sb")]([])
+maintenance_costs = Array[ExtResource("2_1o6sb")]([])
+metadata/_custom_type_script = "uid://c1hbldg12ywh6"
+
+[sub_resource type="Resource" id="Resource_bajdc"]
+script = ExtResource("2_1o6sb")
+currency_name = "currency_materials"
+amount = 150.0
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_v0j67"]
+script = ExtResource("2_1o6sb")
+currency_name = "currency_gold"
+amount = 50.0
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_ilfjg"]
+script = ExtResource("2_1o6sb")
+currency_name = "currency_gold"
+amount = 0.1
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_77fwc"]
+script = ExtResource("5_md74t")
+currency_name = "currency_faith"
+intensity = 0.1
+daily = true
+metadata/_custom_type_script = "uid://toxksbosf5j1"
+
+[sub_resource type="Resource" id="Resource_xu84d"]
+script = ExtResource("1_xt2an")
+building_name = "building_polish_mosque"
+display_name = "Polish Mosque"
+on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_77fwc")])
+turn_effects = Array[ExtResource("2_3imoi")]([])
+icon = ExtResource("13_825rc")
+costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_bajdc"), SubResource("Resource_v0j67")])
+maintenance_costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_ilfjg")])
 metadata/_custom_type_script = "uid://c1hbldg12ywh6"
 
 [resource]
 script = ExtResource("5_kqprt")
-building_list = Array[ExtResource("1_xt2an")]([SubResource("Resource_j37t3"), SubResource("Resource_md74t"), SubResource("Resource_sse33"), SubResource("Resource_u3iwv")])
+building_list = Array[ExtResource("1_xt2an")]([SubResource("Resource_j37t3"), SubResource("Resource_md74t"), SubResource("Resource_sse33"), SubResource("Resource_u3iwv"), SubResource("Resource_6roh1"), SubResource("Resource_7p7w6"), SubResource("Resource_o6j6g"), SubResource("Resource_xu84d")])
 metadata/_custom_type_script = "uid://btjna5qecowba"

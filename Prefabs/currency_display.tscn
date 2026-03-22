@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbg47bm614dou"]
+
+[ext_resource type="Script" uid="uid://drfpu74ybvlgi" path="res://ui_currency_display.gd" id="1_2hb2l"]
+[ext_resource type="Texture2D" uid="uid://bdxv7tkkhj8yq" path="res://Assets/Icons/science.png" id="2_qf7tl"]
+
+[node name="CurrencyDisplay" type="Control" node_paths=PackedStringArray("currency_icon", "amount_display")]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_2hb2l")
+currency_icon = NodePath("CurrencyIcon")
+amount_display = NodePath("Control/AmountDisplay")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrencyIcon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -9.5
+offset_right = 24.0
+offset_bottom = 10.5
+grow_vertical = 2
+texture = ExtResource("2_qf7tl")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 31.0
+offset_top = 1.0
+offset_right = 91.0
+offset_bottom = 24.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AmountDisplay" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "0"
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 97.0
+offset_right = 198.0
+offset_bottom = 25.0
+bbcode_enabled = true
+text = "[color=black]+ [/color][color=green]0.1[/color]"
+
+[node name="Panel" type="Panel" parent="RichTextLabel"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -40.0
+grow_horizontal = 2
+grow_vertical = 2

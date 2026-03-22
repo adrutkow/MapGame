@@ -5,6 +5,7 @@ static var armies_created_count: int;
 
 var army_id: int;
 var unit_groups: Dictionary;
+var general: String = "";
 var province_id: int;
 var nation_owner_id: int;
 var desired_path: Array[int] = [];

@@ -20,4 +20,4 @@ func generate_description(nation: Nation = null) -> String:
 		n = c.get_display_icon();
 	a = get_amount(nation);
 	
-	return (n + " " + str(int(a)));
+	return (n + " " + str(a));

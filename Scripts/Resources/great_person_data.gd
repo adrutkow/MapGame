@@ -6,6 +6,7 @@ class_name GreatPersonData;
 @export var icon: Texture2D;
 @export var description: String = "";
 @export var effects: Array[Effect];
+@export var maintenance_costs: Array[Cost];
 
 func get_description(ctx: EffectContext):
 	var s: String;
@@ -14,6 +15,12 @@ func get_description(ctx: EffectContext):
 	s += TextUtils.yellow_color_text(display_name);
 	s += "\n";
 	s += TextUtils.gray_color_text(description);
+	if (not maintenance_costs.is_empty()):
+		s += "\n";
+		s += "Upkeep: ";
+		for c: Cost in maintenance_costs:
+			s += c.generate_description(ctx.nation);
+			s += " ";
 	if (len(effects) == 0):
 		return(s);
 	s += "\n";

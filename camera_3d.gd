@@ -27,6 +27,18 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 		on_right_click(event.position)
 		
+	var dir := Vector3.ZERO;
+	var s: float = 0.05;
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		dir -= transform.basis.z * 2;
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		dir += transform.basis.z * 2;
+
+	if (get_viewport().gui_get_hovered_control() == null):
+		if dir != Vector3.ZERO:
+		#dir = dir.normalized()
+			global_position += dir * move_speed * 0.05;
+
 func _process(delta):
 	var dir := Vector3.ZERO
 	var s: float = 0.05;
@@ -43,14 +55,15 @@ func _process(delta):
 		dir -= transform.basis.x * s
 	if Input.is_action_pressed("move_right"):
 		dir += transform.basis.x * s
-	if Input.is_action_just_pressed("scroll_up"):
-		dir -= transform.basis.z * 2;
-	if Input.is_action_just_pressed("scroll_down"):
-		dir += transform.basis.z * 2;
+	# if Input.is_action_just_pressed("scroll_up"):
+	# 	dir -= transform.basis.z * 2;
+	# if Input.is_action_just_pressed("scroll_down"):
+	# 	dir += transform.basis.z * 2;
 
 	if dir != Vector3.ZERO:
 		#dir = dir.normalized()
 		global_position += dir * move_speed * delta * 5
+
 
 func middle_mouse_moving():
 	if (Input.is_action_just_pressed("middle_mouse_click")):

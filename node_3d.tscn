@@ -17,14 +17,11 @@
 [ext_resource type="Script" uid="uid://b70riu7gbpbvf" path="res://game_instance.gd" id="8_jsk3o"]
 [ext_resource type="Texture2D" uid="uid://dv600tyxh1qhh" path="res://Screenshot 2025-11-15 042842.png" id="9_4arys"]
 [ext_resource type="Script" uid="uid://cqxhlqnjji4jf" path="res://army_arrow.gd" id="9_j3e5s"]
-[ext_resource type="Texture2D" uid="uid://bdxv7tkkhj8yq" path="res://Assets/Icons/science.png" id="10_6iypd"]
 [ext_resource type="PackedScene" uid="uid://cxwuad3lqkn5x" path="res://Assets/Models/mikui/hachune_miku_doll.glb" id="10_ype4i"]
-[ext_resource type="Texture2D" uid="uid://djkn6fam336ky" path="res://Assets/Icons/culture.png" id="11_wlxy5"]
-[ext_resource type="Texture2D" uid="uid://bxtex6og3mkq3" path="res://Assets/Icons/gold.png" id="12_3v7ru"]
-[ext_resource type="Texture2D" uid="uid://cvno6vxc7t0wl" path="res://Assets/Icons/happiness.png" id="13_tcnuu"]
 [ext_resource type="Script" uid="uid://w03ck8mg66te" path="res://savefile.gd" id="14_lggff"]
-[ext_resource type="Texture2D" uid="uid://cj21y8gwic7rh" path="res://Assets/Icons/power.png" id="14_tuemg"]
 [ext_resource type="Script" uid="uid://drko2snt08yh3" path="res://ui_manager.gd" id="15_lggff"]
+[ext_resource type="Script" uid="uid://44isieefm358" path="res://ui_mana.gd" id="22_3s0n5"]
+[ext_resource type="PackedScene" uid="uid://bbg47bm614dou" path="res://Prefabs/currency_display.tscn" id="22_5w2ad"]
 [ext_resource type="Script" uid="uid://cand4yd5hgw84" path="res://map_views_ui.gd" id="22_s0gvp"]
 [ext_resource type="Script" uid="uid://rd225h3pkvvy" path="res://dev_console.gd" id="22_vxd74"]
 [ext_resource type="Script" uid="uid://diby4n0gp5jby" path="res://ui_province_buildings.gd" id="25_2yde8"]
@@ -39,6 +36,9 @@
 [ext_resource type="Texture2D" uid="uid://cw81d5rdlynfc" path="res://icon.svg" id="33_2mu51"]
 [ext_resource type="Script" uid="uid://bqki6dun5b2km" path="res://buy_building_menu.gd" id="36_4i7mf"]
 [ext_resource type="Script" uid="uid://ci7xq1j5ogy7i" path="res://ui_province_purchase_prompt.gd" id="36_vmvb8"]
+[ext_resource type="Script" uid="uid://bmye1io58k57i" path="res://ui_close_window.gd" id="38_qpkl4"]
+[ext_resource type="Script" uid="uid://bplhhawv0kk1p" path="res://assign_great_person_menu.gd" id="39_g4s1x"]
+[ext_resource type="Script" uid="uid://diyq1n4swk5vw" path="res://army_view_menu.gd" id="40_pf4ct"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jka67"]
 
@@ -464,235 +464,24 @@ texture_normal = ExtResource("9_4arys")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Mana" type="Control" parent="UI/Control"]
+[node name="Mana" type="Control" parent="UI/Control" node_paths=PackedStringArray("currency_display_parent")]
 anchors_preset = 0
 offset_top = 105.0
 offset_right = 157.0
 offset_bottom = 353.0
+script = ExtResource("22_3s0n5")
+currency_display_prefab = ExtResource("22_5w2ad")
+currency_display_parent = NodePath("VBoxContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/Mana"]
 layout_mode = 0
 offset_right = 93.0
 offset_bottom = 40.0
 
-[node name="Science" type="Control" parent="UI/Control/Mana/VBoxContainer"]
-custom_minimum_size = Vector2(50, 25)
+[node name="CurrencyDisplay" parent="UI/Control/Mana/VBoxContainer" instance=ExtResource("22_5w2ad")]
+visible = false
 layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Control/Mana/VBoxContainer/Science"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/Control/Mana/VBoxContainer/Science"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = -9.5
-offset_right = 24.0
-offset_bottom = 10.5
-grow_vertical = 2
-texture = ExtResource("10_6iypd")
-stretch_mode = 2
-
-[node name="Control" type="Control" parent="UI/Control/Mana/VBoxContainer/Science"]
-anchors_preset = 0
-offset_left = 31.0
-offset_top = 1.0
-offset_right = 91.0
-offset_bottom = 24.0
-
-[node name="Panel" type="Panel" parent="UI/Control/Mana/VBoxContainer/Science/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/Mana/VBoxContainer/Science/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 12
-text = "0"
-vertical_alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/Mana/VBoxContainer/Science"]
-layout_mode = 0
-offset_left = 97.0
-offset_right = 198.0
-offset_bottom = 25.0
-bbcode_enabled = true
-text = "[color=black]+ [/color][color=green]0.1[/color]"
-
-[node name="Panel" type="Panel" parent="UI/Control/Mana/VBoxContainer/Science/RichTextLabel"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -40.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Culture" type="Control" parent="UI/Control/Mana/VBoxContainer"]
-custom_minimum_size = Vector2(50, 25)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Control/Mana/VBoxContainer/Culture"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/Control/Mana/VBoxContainer/Culture"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = -9.5
-offset_right = 24.0
-offset_bottom = 10.5
-grow_vertical = 2
-texture = ExtResource("11_wlxy5")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/Mana/VBoxContainer/Culture"]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 2.0
-offset_right = 75.0
-offset_bottom = 24.0
-theme_override_font_sizes/normal_font_size = 12
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Gold" type="Control" parent="UI/Control/Mana/VBoxContainer"]
-custom_minimum_size = Vector2(50, 25)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Control/Mana/VBoxContainer/Gold"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/Control/Mana/VBoxContainer/Gold"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = -9.5
-offset_right = 24.0
-offset_bottom = 10.5
-grow_vertical = 2
-texture = ExtResource("12_3v7ru")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/Mana/VBoxContainer/Gold"]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 2.0
-offset_right = 75.0
-offset_bottom = 24.0
-theme_override_font_sizes/normal_font_size = 12
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Happiness" type="Control" parent="UI/Control/Mana/VBoxContainer"]
-custom_minimum_size = Vector2(50, 25)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Control/Mana/VBoxContainer/Happiness"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/Control/Mana/VBoxContainer/Happiness"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = -9.5
-offset_right = 24.0
-offset_bottom = 10.5
-grow_vertical = 2
-texture = ExtResource("13_tcnuu")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/Mana/VBoxContainer/Happiness"]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 2.0
-offset_right = 75.0
-offset_bottom = 24.0
-theme_override_font_sizes/normal_font_size = 12
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Power" type="Control" parent="UI/Control/Mana/VBoxContainer"]
-custom_minimum_size = Vector2(50, 25)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Control/Mana/VBoxContainer/Power"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/Control/Mana/VBoxContainer/Power"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = -9.5
-offset_right = 24.0
-offset_bottom = 10.5
-grow_vertical = 2
-texture = ExtResource("14_tuemg")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/Mana/VBoxContainer/Power"]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 2.0
-offset_right = 75.0
-offset_bottom = 24.0
-theme_override_font_sizes/normal_font_size = 12
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
+key = "currency_science"
 
 [node name="Time" type="Control" parent="UI/Control"]
 anchors_preset = 0
@@ -797,7 +586,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 5
+columns = 4
 script = ExtResource("26_ype4i")
 icon_slot_prefab = ExtResource("27_riyl1")
 
@@ -1060,10 +849,10 @@ text = "Give armies 100 troops"
 
 [node name="Control" type="Control" parent="UI/Control"]
 anchors_preset = 0
-offset_left = 5.0
-offset_top = 251.0
-offset_right = 70.0
-offset_bottom = 737.0
+offset_left = 1.0
+offset_top = 536.0
+offset_right = 162.0
+offset_bottom = 776.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/Control"]
 layout_mode = 1
@@ -1078,7 +867,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 script = ExtResource("32_pb8dk")
-target = NodePath("../../../../ResearchMenu")
+target = NodePath("../../../../Menus/ResearchMenu")
 
 [node name="Panel" type="Panel" parent="UI/Control/Control/VBoxContainer/ToggleMenuButton"]
 layout_mode = 1
@@ -1099,6 +888,105 @@ texture = ExtResource("33_2mu51")
 expand_mode = 1
 
 [node name="Button" type="Button" parent="UI/Control/Control/VBoxContainer/ToggleMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToggleGreatPersonMenu" type="Control" parent="UI/Control/Control/VBoxContainer" node_paths=PackedStringArray("target")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("32_pb8dk")
+target = NodePath("../../../../Menus/AssignGreatPersonMenu")
+
+[node name="Panel" type="Panel" parent="UI/Control/Control/VBoxContainer/ToggleGreatPersonMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/Control/VBoxContainer/ToggleGreatPersonMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("33_2mu51")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="UI/Control/Control/VBoxContainer/ToggleGreatPersonMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToggleBuyBuildingMenu" type="Control" parent="UI/Control/Control/VBoxContainer" node_paths=PackedStringArray("target")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("32_pb8dk")
+target = NodePath("../../../../Menus/BuyBuildingMenu")
+
+[node name="Panel" type="Panel" parent="UI/Control/Control/VBoxContainer/ToggleBuyBuildingMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/Control/VBoxContainer/ToggleBuyBuildingMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("33_2mu51")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="UI/Control/Control/VBoxContainer/ToggleBuyBuildingMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToggleArmyViewMenu" type="Control" parent="UI/Control/Control/VBoxContainer" node_paths=PackedStringArray("target")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("32_pb8dk")
+target = NodePath("../../../../Menus/ArmyViewMenu")
+
+[node name="Panel" type="Panel" parent="UI/Control/Control/VBoxContainer/ToggleArmyViewMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/Control/VBoxContainer/ToggleArmyViewMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("33_2mu51")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="UI/Control/Control/VBoxContainer/ToggleArmyViewMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1200,172 +1088,6 @@ z_index = -1
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ResearchMenu" type="Control" parent="UI"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 563.0
-offset_top = 155.0
-offset_right = 1494.0
-offset_bottom = 582.0
-
-[node name="Panel" type="Panel" parent="UI/ResearchMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="WindowDragger" type="Control" parent="UI/ResearchMenu" node_paths=PackedStringArray("target")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -395.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_default_cursor_shape = 6
-script = ExtResource("27_nu31w")
-target = NodePath("..")
-
-[node name="Panel2" type="Panel" parent="UI/ResearchMenu/WindowDragger"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/ResearchMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 9.0
-offset_top = 38.0
-offset_right = -10.0
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/ResearchMenu/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ResearchTier" type="Control" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer" node_paths=PackedStringArray("icon_slot_container", "tier_text")]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("31_1q667")
-icon_slot_container = NodePath("Panel/HBoxContainer/ScrollContainer/IconSlotContainer")
-tier_text = NodePath("Panel/HBoxContainer/Panel/TierText")
-
-[node name="Panel" type="Panel" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-
-[node name="TierText" type="RichTextLabel" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Tier 1
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="IconSlotContainer" type="GridContainer" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 3
-script = ExtResource("26_ype4i")
-
-[node name="IconSlot" parent="UI/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer/ScrollContainer/IconSlotContainer" instance=ExtResource("27_riyl1")]
-layout_mode = 2
-
-[node name="BuyBuildingMenu" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 483.0
-offset_top = 185.0
-offset_right = 1414.0
-offset_bottom = 612.0
-script = ExtResource("36_4i7mf")
-
-[node name="Panel" type="Panel" parent="UI/BuyBuildingMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="WindowDragger" type="Control" parent="UI/BuyBuildingMenu" node_paths=PackedStringArray("target")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -395.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_default_cursor_shape = 6
-script = ExtResource("27_nu31w")
-target = NodePath("..")
-
-[node name="Panel2" type="Panel" parent="UI/BuyBuildingMenu/WindowDragger"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/BuyBuildingMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 9.0
-offset_top = 38.0
-offset_right = -10.0
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="IconSlotContainer" type="GridContainer" parent="UI/BuyBuildingMenu/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 3
-script = ExtResource("26_ype4i")
-
 [node name="ProvincePurchase" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
@@ -1427,6 +1149,327 @@ text = "PRICE:
 9999999"
 horizontal_alignment = 1
 
+[node name="Menus" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="BuyBuildingMenu" type="Control" parent="UI/Menus"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 483.0
+offset_top = 185.0
+offset_right = 989.0
+offset_bottom = 612.0
+script = ExtResource("36_4i7mf")
+
+[node name="Panel" type="Panel" parent="UI/Menus/BuyBuildingMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowDragger" type="Control" parent="UI/Menus/BuyBuildingMenu" node_paths=PackedStringArray("target")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -395.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 6
+script = ExtResource("27_nu31w")
+target = NodePath("..")
+
+[node name="Panel2" type="Panel" parent="UI/Menus/BuyBuildingMenu/WindowDragger"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Menus/BuyBuildingMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 38.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IconSlotContainer" type="GridContainer" parent="UI/Menus/BuyBuildingMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
+script = ExtResource("26_ype4i")
+
+[node name="AssignGreatPersonMenu" type="Control" parent="UI/Menus"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1004.0
+offset_top = 188.0
+offset_right = 1510.0
+offset_bottom = 615.0
+script = ExtResource("39_g4s1x")
+
+[node name="Panel" type="Panel" parent="UI/Menus/AssignGreatPersonMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowDragger" type="Control" parent="UI/Menus/AssignGreatPersonMenu" node_paths=PackedStringArray("target")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -395.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 6
+script = ExtResource("27_nu31w")
+target = NodePath("..")
+
+[node name="Panel2" type="Panel" parent="UI/Menus/AssignGreatPersonMenu/WindowDragger"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Menus/AssignGreatPersonMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 38.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IconSlotContainer" type="GridContainer" parent="UI/Menus/AssignGreatPersonMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
+script = ExtResource("26_ype4i")
+
+[node name="ArmyViewMenu" type="Control" parent="UI/Menus" node_paths=PackedStringArray("general_icon_slot")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1004.0
+offset_top = 188.0
+offset_right = 1510.0
+offset_bottom = 615.0
+script = ExtResource("40_pf4ct")
+general_icon_slot = NodePath("GeneralIconSlot")
+
+[node name="Panel" type="Panel" parent="UI/Menus/ArmyViewMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowDragger" type="Control" parent="UI/Menus/ArmyViewMenu" node_paths=PackedStringArray("target")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -395.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 6
+script = ExtResource("27_nu31w")
+target = NodePath("..")
+
+[node name="Panel2" type="Panel" parent="UI/Menus/ArmyViewMenu/WindowDragger"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CloseButton" type="Button" parent="UI/Menus/ArmyViewMenu/WindowDragger" node_paths=PackedStringArray("target")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -13.0
+offset_right = -6.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "X"
+script = ExtResource("38_qpkl4")
+target = NodePath("../..")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Menus/ArmyViewMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 38.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IconSlotContainer" type="GridContainer" parent="UI/Menus/ArmyViewMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
+script = ExtResource("26_ype4i")
+
+[node name="GeneralIconSlot" parent="UI/Menus/ArmyViewMenu" instance=ExtResource("27_riyl1")]
+offset_left = 30.0
+offset_top = 66.0
+offset_right = 105.0
+offset_bottom = 141.0
+key = "none"
+ui_context = Array[int]([4])
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Menus/ArmyViewMenu"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 36.0
+offset_right = 103.0
+offset_bottom = 63.0
+text = "General"
+
+[node name="ResearchMenu" type="Control" parent="UI/Menus"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 563.0
+offset_top = 155.0
+offset_right = 1494.0
+offset_bottom = 582.0
+
+[node name="Panel" type="Panel" parent="UI/Menus/ResearchMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowDragger" type="Control" parent="UI/Menus/ResearchMenu" node_paths=PackedStringArray("target")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -395.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 6
+script = ExtResource("27_nu31w")
+target = NodePath("..")
+
+[node name="Panel2" type="Panel" parent="UI/Menus/ResearchMenu/WindowDragger"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Menus/ResearchMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 38.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menus/ResearchMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResearchTier" type="Control" parent="UI/Menus/ResearchMenu/ScrollContainer/HBoxContainer" node_paths=PackedStringArray("icon_slot_container", "tier_text")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("31_1q667")
+icon_slot_container = NodePath("Panel/HBoxContainer/ScrollContainer/IconSlotContainer")
+tier_text = NodePath("Panel/HBoxContainer/Panel/TierText")
+
+[node name="Panel" type="Panel" parent="UI/Menus/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/Menus/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/Menus/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="TierText" type="RichTextLabel" parent="UI/Menus/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tier 1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Menus/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="IconSlotContainer" type="GridContainer" parent="UI/Menus/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+script = ExtResource("26_ype4i")
+
+[node name="IconSlot" parent="UI/Menus/ResearchMenu/ScrollContainer/HBoxContainer/ResearchTier/Panel/HBoxContainer/ScrollContainer/IconSlotContainer" instance=ExtResource("27_riyl1")]
+layout_mode = 2
+
 [node name="Node3D" type="Node3D" parent="."]
 
 [connection signal="pressed" from="UI/Control/MapViews/ToggleMapViewButtons/Panel/VBoxContainer/ProvinceNamesToggle" to="UI/Control/MapViews" method="_on_province_names_toggle_pressed"]
@@ -1443,7 +1486,13 @@ horizontal_alignment = 1
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GenerateArmy" to="UI/Control/DevConsole" method="_on_generate_army_pressed"]
 [connection signal="pressed" from="UI/Control/DebugButtons/Panel/VBoxContainer/GiveArmyTroops" to="UI/Control/DevConsole" method="_on_give_army_troops_pressed"]
 [connection signal="pressed" from="UI/Control/Control/VBoxContainer/ToggleMenuButton/Button" to="UI/Control/Control/VBoxContainer/ToggleMenuButton" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Control/Control/VBoxContainer/ToggleGreatPersonMenu/Button" to="UI/Control/Control/VBoxContainer/ToggleGreatPersonMenu" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Control/Control/VBoxContainer/ToggleBuyBuildingMenu/Button" to="UI/Control/Control/VBoxContainer/ToggleBuyBuildingMenu" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Control/Control/VBoxContainer/ToggleArmyViewMenu/Button" to="UI/Control/Control/VBoxContainer/ToggleArmyViewMenu" method="_on_button_pressed"]
 [connection signal="gui_input" from="UI/test/WindowDragger" to="UI/test/WindowDragger" method="_on_gui_input"]
-[connection signal="gui_input" from="UI/ResearchMenu/WindowDragger" to="UI/ResearchMenu/WindowDragger" method="_on_gui_input"]
-[connection signal="gui_input" from="UI/BuyBuildingMenu/WindowDragger" to="UI/BuyBuildingMenu/WindowDragger" method="_on_gui_input"]
 [connection signal="pressed" from="UI/ProvincePurchase/ProvincePurchasePrompt/Button" to="UI/ProvincePurchase/ProvincePurchasePrompt" method="_on_button_pressed"]
+[connection signal="gui_input" from="UI/Menus/BuyBuildingMenu/WindowDragger" to="UI/Menus/BuyBuildingMenu/WindowDragger" method="_on_gui_input"]
+[connection signal="gui_input" from="UI/Menus/AssignGreatPersonMenu/WindowDragger" to="UI/Menus/AssignGreatPersonMenu/WindowDragger" method="_on_gui_input"]
+[connection signal="gui_input" from="UI/Menus/ArmyViewMenu/WindowDragger" to="UI/Menus/ArmyViewMenu/WindowDragger" method="_on_gui_input"]
+[connection signal="pressed" from="UI/Menus/ArmyViewMenu/WindowDragger/CloseButton" to="UI/Menus/ArmyViewMenu/WindowDragger/CloseButton" method="_on_pressed"]
+[connection signal="gui_input" from="UI/Menus/ResearchMenu/WindowDragger" to="UI/Menus/ResearchMenu/WindowDragger" method="_on_gui_input"]
