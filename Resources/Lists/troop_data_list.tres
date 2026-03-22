@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="TroopDataList" load_steps=8 format=3 uid="uid://j3u0pbs23q7w"]
+
+[ext_resource type="Script" uid="uid://56fj0xb1agny" path="res://Scripts/Resources/Lists/troop_data_list.gd" id="1_ntu3l"]
+[ext_resource type="Script" uid="uid://boc8rr3o6cev2" path="res://Scripts/Resources/troop_data.gd" id="2_11gjn"]
+[ext_resource type="Texture2D" uid="uid://h65uyc3iqbf3" path="res://Assets/Images/GreatPeople/mikael.png" id="3_11gjn"]
+[ext_resource type="Script" uid="uid://bjg088yerlvkq" path="res://Scripts/Resources/cost.gd" id="3_esk3r"]
+
+[sub_resource type="Resource" id="Resource_g1p45"]
+script = ExtResource("3_esk3r")
+currency_name = "currency_power"
+amount = 15.0
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_ffhs0"]
+script = ExtResource("3_esk3r")
+currency_name = "currency_gold"
+amount = 0.01
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_esk3r"]
+script = ExtResource("2_11gjn")
+troop_name = "troop_antonland_barbarian"
+display_name = "Antonlandian barbarian"
+troop_icon = ExtResource("3_11gjn")
+troop_power = 1.0
+troop_costs = Array[ExtResource("3_esk3r")]([SubResource("Resource_g1p45")])
+troop_maintenance = Array[ExtResource("3_esk3r")]([SubResource("Resource_ffhs0")])
+metadata/_custom_type_script = "uid://boc8rr3o6cev2"
+
+[resource]
+script = ExtResource("1_ntu3l")
+troop_list = Array[ExtResource("2_11gjn")]([SubResource("Resource_esk3r")])
+metadata/_custom_type_script = "uid://56fj0xb1agny"

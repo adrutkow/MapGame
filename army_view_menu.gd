@@ -25,3 +25,7 @@ func toggle():
 	visible = !visible;
 	if (visible):
 		update();
+
+func _on_toggle_formation_button_pressed() -> void:
+	$TroopForming.update();
+	$TroopForming.visible = !$TroopForming.visible

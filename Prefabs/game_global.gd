@@ -7,6 +7,7 @@ extends Node
 @export var tech_data_list: TechDataList;
 @export var currency_data_list: CurrencyDataList;
 @export var gp_data_list: GreatPeopleDataList;
+@export var troop_data_list: TroopDataList;
 
 enum GAME_ACTION {
 	UPGRADE_PROVINCE,
@@ -44,4 +45,10 @@ func get_currency_data_by_name(n: String) -> CurrencyData:
 	for cd: CurrencyData in currency_data_list.list:
 		if (cd.currency_name == n):
 			return (cd);
+	return (null);
+
+func get_troop_data_by_name(n : String) -> TroopData:
+	for t: TroopData in troop_data_list.troop_list:
+		if (t.troop_name == n):
+			return (t);
 	return (null);

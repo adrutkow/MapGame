@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProvinceBuildingDataList" load_steps=49 format=3 uid="uid://dhpyrgmooa0bt"]
+[gd_resource type="Resource" script_class="ProvinceBuildingDataList" load_steps=55 format=3 uid="uid://dhpyrgmooa0bt"]
 
 [ext_resource type="Script" uid="uid://c1hbldg12ywh6" path="res://Scripts/Resources/province_building_data.gd" id="1_xt2an"]
 [ext_resource type="Script" uid="uid://bjg088yerlvkq" path="res://Scripts/Resources/cost.gd" id="2_1o6sb"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bi6hlujiih8hx" path="res://Assets/Images/Buildings/cotton_farm.png" id="11_calsi"]
 [ext_resource type="Texture2D" uid="uid://cs5e7lmsx6v6o" path="res://Assets/Images/Buildings/lean_lake.png" id="12_0ntvl"]
 [ext_resource type="Texture2D" uid="uid://bvwdcxcq7goui" path="res://Assets/Images/Buildings/polish_mosque.png" id="13_825rc"]
+[ext_resource type="Script" uid="uid://dcmbrxlx03egp" path="res://Scripts/Effects/e_enable_troop_training.gd" id="14_ogix8"]
+[ext_resource type="Texture2D" uid="uid://14todfn7abak" path="res://Assets/Images/Buildings/Latin_barracks.png" id="14_sse33"]
 
 [sub_resource type="Resource" id="Resource_djx28"]
 script = ExtResource("2_1o6sb")
@@ -271,7 +273,35 @@ costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_bajdc"), SubResourc
 maintenance_costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_ilfjg")])
 metadata/_custom_type_script = "uid://c1hbldg12ywh6"
 
+[sub_resource type="Resource" id="Resource_2iqgx"]
+script = ExtResource("2_1o6sb")
+currency_name = "currency_materials"
+amount = 150.0
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_ciiwu"]
+script = ExtResource("2_1o6sb")
+currency_name = "currency_gold"
+amount = 0.1
+metadata/_custom_type_script = "uid://bjg088yerlvkq"
+
+[sub_resource type="Resource" id="Resource_d7xrx"]
+script = ExtResource("14_ogix8")
+trainable_troops = Array[String](["Barbarian", "Fagot", "Archer or something", "Very very very long text"])
+metadata/_custom_type_script = "uid://dcmbrxlx03egp"
+
+[sub_resource type="Resource" id="Resource_oldrd"]
+script = ExtResource("1_xt2an")
+building_name = "building_barracks"
+display_name = "Barracks"
+on_built_effects = Array[ExtResource("2_3imoi")]([SubResource("Resource_d7xrx")])
+turn_effects = Array[ExtResource("2_3imoi")]([])
+icon = ExtResource("14_sse33")
+costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_2iqgx")])
+maintenance_costs = Array[ExtResource("2_1o6sb")]([SubResource("Resource_ciiwu")])
+metadata/_custom_type_script = "uid://c1hbldg12ywh6"
+
 [resource]
 script = ExtResource("5_kqprt")
-building_list = Array[ExtResource("1_xt2an")]([SubResource("Resource_j37t3"), SubResource("Resource_md74t"), SubResource("Resource_sse33"), SubResource("Resource_u3iwv"), SubResource("Resource_6roh1"), SubResource("Resource_7p7w6"), SubResource("Resource_o6j6g"), SubResource("Resource_xu84d")])
+building_list = Array[ExtResource("1_xt2an")]([SubResource("Resource_j37t3"), SubResource("Resource_md74t"), SubResource("Resource_sse33"), SubResource("Resource_u3iwv"), SubResource("Resource_6roh1"), SubResource("Resource_7p7w6"), SubResource("Resource_o6j6g"), SubResource("Resource_xu84d"), SubResource("Resource_oldrd")])
 metadata/_custom_type_script = "uid://btjna5qecowba"

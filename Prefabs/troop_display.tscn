@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://fy2ldeg4m22q"]
+
+[ext_resource type="Script" uid="uid://ft02lubeu7i1" path="res://ui_troop_display.gd" id="1_wulp2"]
+
+[node name="TroopDisplay" type="Control"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wulp2")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TroopIcon" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TroopName" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "This is a troop name
+"
+vertical_alignment = 1
+
+[node name="TroopPower" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+text = "9999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TroopCount" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+text = "9999"
+horizontal_alignment = 1
+vertical_alignment = 1

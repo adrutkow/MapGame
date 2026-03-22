@@ -8,6 +8,7 @@ enum UI_CONTEXT
 	BUY,
 	ASSIGN_GREAT_PERSON,
 	SELECT_GREAT_PERSON,
+	FORM_TROOP,
 }
 
 @export var ui_context: Array[UI_CONTEXT] = [];

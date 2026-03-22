@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bay5cjhpi13b1"]
+[gd_scene load_steps=73 format=3 uid="uid://bay5cjhpi13b1"]
 
 [ext_resource type="Script" uid="uid://bo6jvfgfjafa8" path="res://map.gd" id="2_i0g27"]
 [ext_resource type="Script" uid="uid://cp8ttl5cyac5s" path="res://sprite_3d.gd" id="2_noarx"]
@@ -38,7 +38,10 @@
 [ext_resource type="Script" uid="uid://ci7xq1j5ogy7i" path="res://ui_province_purchase_prompt.gd" id="36_vmvb8"]
 [ext_resource type="Script" uid="uid://bmye1io58k57i" path="res://ui_close_window.gd" id="38_qpkl4"]
 [ext_resource type="Script" uid="uid://bplhhawv0kk1p" path="res://assign_great_person_menu.gd" id="39_g4s1x"]
+[ext_resource type="Script" uid="uid://ft02lubeu7i1" path="res://ui_troop_display.gd" id="39_pf4ct"]
+[ext_resource type="Script" uid="uid://dp6ku2liaif3w" path="res://troop_forming_menu.gd" id="40_5w2ad"]
 [ext_resource type="Script" uid="uid://diyq1n4swk5vw" path="res://army_view_menu.gd" id="40_pf4ct"]
+[ext_resource type="PackedScene" uid="uid://fy2ldeg4m22q" path="res://Prefabs/troop_display.tscn" id="41_5w2ad"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jka67"]
 
@@ -1192,6 +1195,23 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="CloseButton" type="Button" parent="UI/Menus/BuyBuildingMenu/WindowDragger" node_paths=PackedStringArray("target")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "X"
+script = ExtResource("38_qpkl4")
+target = NodePath("../..")
+
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/Menus/BuyBuildingMenu"]
 layout_mode = 1
 anchors_preset = 15
@@ -1215,9 +1235,9 @@ script = ExtResource("26_ype4i")
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1004.0
+offset_left = 357.0
 offset_top = 188.0
-offset_right = 1510.0
+offset_right = 863.0
 offset_bottom = 615.0
 script = ExtResource("39_g4s1x")
 
@@ -1250,6 +1270,23 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="CloseButton" type="Button" parent="UI/Menus/AssignGreatPersonMenu/WindowDragger" node_paths=PackedStringArray("target")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "X"
+script = ExtResource("38_qpkl4")
+target = NodePath("../..")
+
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/Menus/AssignGreatPersonMenu"]
 layout_mode = 1
 anchors_preset = 15
@@ -1272,10 +1309,10 @@ script = ExtResource("26_ype4i")
 [node name="ArmyViewMenu" type="Control" parent="UI/Menus" node_paths=PackedStringArray("general_icon_slot")]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1004.0
-offset_top = 188.0
-offset_right = 1510.0
-offset_bottom = 615.0
+offset_left = 625.0
+offset_top = 169.0
+offset_right = 1131.0
+offset_bottom = 596.0
 script = ExtResource("40_pf4ct")
 general_icon_slot = NodePath("GeneralIconSlot")
 
@@ -1360,6 +1397,138 @@ offset_top = 36.0
 offset_right = 103.0
 offset_bottom = 63.0
 text = "General"
+
+[node name="TroopList" type="Control" parent="UI/Menus/ArmyViewMenu"]
+anchors_preset = 0
+offset_left = 29.0
+offset_top = 162.0
+offset_right = 493.0
+offset_bottom = 413.0
+
+[node name="Panel" type="Panel" parent="UI/Menus/ArmyViewMenu/TroopList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Menus/ArmyViewMenu/TroopList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menus/ArmyViewMenu/TroopList/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TroopDisplay" type="Control" parent="UI/Menus/ArmyViewMenu/TroopList/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+script = ExtResource("39_pf4ct")
+
+[node name="Button" type="Button" parent="UI/Menus/ArmyViewMenu/TroopList/ScrollContainer/VBoxContainer/TroopDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/Menus/ArmyViewMenu/TroopList/ScrollContainer/VBoxContainer/TroopDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menus/ArmyViewMenu/TroopList/ScrollContainer/VBoxContainer/TroopDisplay"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Menus/ArmyViewMenu/TroopList/ScrollContainer/VBoxContainer/TroopDisplay/HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TroopName" type="RichTextLabel" parent="UI/Menus/ArmyViewMenu/TroopList/ScrollContainer/VBoxContainer/TroopDisplay/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "This is a troop name
+"
+vertical_alignment = 1
+
+[node name="TroopPower" type="RichTextLabel" parent="UI/Menus/ArmyViewMenu/TroopList/ScrollContainer/VBoxContainer/TroopDisplay/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+text = "9999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TroopCount" type="RichTextLabel" parent="UI/Menus/ArmyViewMenu/TroopList/ScrollContainer/VBoxContainer/TroopDisplay/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+text = "9999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ToggleFormationButton" type="Button" parent="UI/Menus/ArmyViewMenu"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 0
+offset_left = 416.0
+offset_top = 66.0
+offset_right = 491.0
+offset_bottom = 141.0
+theme_override_font_sizes/font_size = 48
+text = "+"
+
+[node name="TroopForming" type="Panel" parent="UI/Menus/ArmyViewMenu" node_paths=PackedStringArray("parent")]
+layout_mode = 0
+offset_left = 508.0
+offset_right = 856.0
+offset_bottom = 427.0
+script = ExtResource("40_5w2ad")
+troop_display_prefab = ExtResource("41_5w2ad")
+parent = NodePath("ScrollContainer/VBoxContainer")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Menus/ArmyViewMenu/TroopForming"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 22.0
+offset_right = -30.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menus/ArmyViewMenu/TroopForming/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TroopDisplay" parent="UI/Menus/ArmyViewMenu/TroopForming/ScrollContainer/VBoxContainer" instance=ExtResource("41_5w2ad")]
+layout_mode = 2
 
 [node name="ResearchMenu" type="Control" parent="UI/Menus"]
 visible = false
@@ -1492,7 +1661,10 @@ layout_mode = 2
 [connection signal="gui_input" from="UI/test/WindowDragger" to="UI/test/WindowDragger" method="_on_gui_input"]
 [connection signal="pressed" from="UI/ProvincePurchase/ProvincePurchasePrompt/Button" to="UI/ProvincePurchase/ProvincePurchasePrompt" method="_on_button_pressed"]
 [connection signal="gui_input" from="UI/Menus/BuyBuildingMenu/WindowDragger" to="UI/Menus/BuyBuildingMenu/WindowDragger" method="_on_gui_input"]
+[connection signal="pressed" from="UI/Menus/BuyBuildingMenu/WindowDragger/CloseButton" to="UI/Menus/BuyBuildingMenu/WindowDragger/CloseButton" method="_on_pressed"]
 [connection signal="gui_input" from="UI/Menus/AssignGreatPersonMenu/WindowDragger" to="UI/Menus/AssignGreatPersonMenu/WindowDragger" method="_on_gui_input"]
+[connection signal="pressed" from="UI/Menus/AssignGreatPersonMenu/WindowDragger/CloseButton" to="UI/Menus/AssignGreatPersonMenu/WindowDragger/CloseButton" method="_on_pressed"]
 [connection signal="gui_input" from="UI/Menus/ArmyViewMenu/WindowDragger" to="UI/Menus/ArmyViewMenu/WindowDragger" method="_on_gui_input"]
 [connection signal="pressed" from="UI/Menus/ArmyViewMenu/WindowDragger/CloseButton" to="UI/Menus/ArmyViewMenu/WindowDragger/CloseButton" method="_on_pressed"]
+[connection signal="pressed" from="UI/Menus/ArmyViewMenu/ToggleFormationButton" to="UI/Menus/ArmyViewMenu" method="_on_toggle_formation_button_pressed"]
 [connection signal="gui_input" from="UI/Menus/ResearchMenu/WindowDragger" to="UI/Menus/ResearchMenu/WindowDragger" method="_on_gui_input"]
