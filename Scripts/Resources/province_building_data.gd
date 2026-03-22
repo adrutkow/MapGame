@@ -7,6 +7,7 @@ class_name ProvinceBuildingData;
 @export var turn_effects: Array[Effect];
 @export var icon: Texture2D;
 @export var costs: Array[Cost];
+@export var maintenance_costs: Array[Cost];
 
 func get_description(ctx: EffectContext):
 	var s: String;
@@ -20,6 +21,12 @@ func get_description(ctx: EffectContext):
 	for c: Cost in costs:
 		s += c.generate_description(ctx.nation);
 		s += " ";
+	if (not maintenance_costs.is_empty()):
+		s += "\n";
+		s += "Upkeep: ";
+		for c: Cost in maintenance_costs:
+			s += c.generate_description(ctx.nation);
+			s += " ";
 	s += "\n\n";
 	s += TextUtils.effects_text();
 	s += "\n";

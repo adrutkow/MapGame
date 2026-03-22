@@ -4,6 +4,8 @@ extends Camera3D
 @export var look_sensitivity := 0.2
 
 var _rotation := Vector2.ZERO
+var dragging: bool = false;
+var last_mouse_pos: Vector2;
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -29,6 +31,8 @@ func _process(delta):
 	var dir := Vector3.ZERO
 	var s: float = 0.05;
 	
+	middle_mouse_moving();
+	
 	if Input.is_action_pressed("move_forward"):
 		#position += Vector3(0, 0, -1) * s;
 		dir += transform.basis.y * s
@@ -40,13 +44,30 @@ func _process(delta):
 	if Input.is_action_pressed("move_right"):
 		dir += transform.basis.x * s
 	if Input.is_action_just_pressed("scroll_up"):
-		dir -= transform.basis.z * 1;
+		dir -= transform.basis.z * 2;
 	if Input.is_action_just_pressed("scroll_down"):
-		dir += transform.basis.z * 1;
+		dir += transform.basis.z * 2;
 
 	if dir != Vector3.ZERO:
 		#dir = dir.normalized()
 		global_position += dir * move_speed * delta * 5
+
+func middle_mouse_moving():
+	if (Input.is_action_just_pressed("middle_mouse_click")):
+		dragging = true;
+		last_mouse_pos = get_viewport().get_mouse_position();
+	if (Input.is_action_just_released("middle_mouse_click")):
+		dragging = false;
+	
+	if (dragging):
+		var dir: Vector3 = Vector3.ZERO;
+		var delta = get_viewport().get_mouse_position() - last_mouse_pos;
+		dir -= transform.basis.x * delta.x;
+		dir += transform.basis.y * delta.y;
+		global_position += dir * 0.005
+		last_mouse_pos = get_viewport().get_mouse_position()
+		
+		
 
 func raycast_heatmap(mouse_pos: Vector2):
 	var space_state = get_world_3d().direct_space_state
