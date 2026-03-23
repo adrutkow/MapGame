@@ -113,6 +113,11 @@ func select_army(army_id: int):
 	MenuArmyView.instance.update();
 	MenuArmyView.instance.visible = true;
 	
+func get_current_selected_army() -> Army:
+	if (selected_army_id == -1):
+		return (null);
+	return (GameInstance.game_instance.get_army_by_id(selected_army_id));
+
 func get_client_nation() -> Nation:
 	return (Client.get_nation());
 	

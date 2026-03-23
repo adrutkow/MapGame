@@ -1315,6 +1315,7 @@ offset_right = 1131.0
 offset_bottom = 596.0
 script = ExtResource("40_pf4ct")
 general_icon_slot = NodePath("GeneralIconSlot")
+troop_display_prefab = ExtResource("41_5w2ad")
 
 [node name="Panel" type="Panel" parent="UI/Menus/ArmyViewMenu"]
 layout_mode = 1
@@ -1502,6 +1503,7 @@ theme_override_font_sizes/font_size = 48
 text = "+"
 
 [node name="TroopForming" type="Panel" parent="UI/Menus/ArmyViewMenu" node_paths=PackedStringArray("parent")]
+visible = false
 layout_mode = 0
 offset_left = 508.0
 offset_right = 856.0

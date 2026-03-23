@@ -87,3 +87,42 @@ func is_in_combat() -> bool:
 	
 func is_defeated() -> bool:
 	return (defeated);
+	
+func is_in_own_territory() -> bool:
+	var province: ProvinceState;
+	
+	province = GameInstance.game_instance.get_province_by_id(province_id);
+	if (not province):
+		return (false);
+	if (province.get_owner().get_nation_id() == nation_owner_id):
+		return (true);
+	return (false);
+	
+func get_trainable_troops() -> Array[String]:
+	var output: Array[String] = [];
+	var province: ProvinceState;
+	var buildings: Array[String];
+	
+	province = GameInstance.game_instance.get_province_by_id(province_id);
+	if (not province):
+		return (output);
+	if (not is_in_own_territory()):
+		return (output);
+	buildings = province.get_buildings();
+	for building_name: String in buildings:
+		var building_data: ProvinceBuildingData;
+		
+		building_data = GameGlobal.get_province_building_data_by_name(building_name);
+		for e: Effect in building_data.on_built_effects:
+			if (e is EEnableTroopTraining):
+				for t: String in e.trainable_troops:
+					output.append(t);
+		
+	return (output);
+
+func get_troop_types() -> Array[String]:
+	var output: Array[String] = []
+	
+	for s: String in unit_groups.keys():
+		output.append(s);
+	return (output);

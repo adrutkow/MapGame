@@ -2,7 +2,7 @@ extends UIElement
 class_name UITroopDisplay;
 
 @export var key: String = "";
-var troop_count: int = 0;
+var troop_count: int = 1;
 
 func update():
 	var troop_data: TroopData;
@@ -26,3 +26,10 @@ func update_troop_count(i: int):
 	
 func update_troop_icon(texture: Texture2D):
 	$HBoxContainer/TroopIcon.texture = texture;
+
+func _on_button_pressed() -> void:
+	if (UI_CONTEXT.FORM_TROOP in get_ui_context()):
+		var army: Army;
+		army = UIManager.instance.get_current_selected_army();
+		army.add_unit(key, troop_count);
+		MenuArmyView.instance.update();

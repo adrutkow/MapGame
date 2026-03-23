@@ -40,6 +40,10 @@ var lag: bool = false;
 
 #Sending scout on mission? Lucky block events? Chance of dying? 
 
+# Random event:
+# Strawberry elephant encounter;
+# kill for fruit or somethig else idk
+
 func _process(delta: float) -> void:
 	timer += 1;
 	if (timer > 60 and start):
