@@ -348,8 +348,7 @@ func generate_mapview_military():
 		temp.position = bitmap_vector_to_world(center);
 		
 		var troop_count: int = 0;
-		for k in a.unit_groups.keys():
-			troop_count += a.unit_groups[k];
+		troop_count = a.get_unit_count();
 		temp.set_troop_count_text(troop_count);
 		
 		var c: Color = GameInstance.game_instance.get_nation_by_id(a.nation_owner_id).nation_color;

@@ -4,7 +4,7 @@ class_name Army;
 static var armies_created_count: int;
 
 var army_id: int;
-var unit_groups: Dictionary;
+var troop_groups: Array[Dictionary];
 var general: String = "";
 var province_id: int;
 var nation_owner_id: int;
@@ -13,6 +13,15 @@ var move_target: int = -1;
 var move_progress: float = 0.0;
 var speed: float = 50.0;
 var defeated: bool = false;
+
+# Unit = individual soldier;
+# Troop = group of soldiers;
+
+var default_troop_group = {
+	"troop_name": "troop_default",
+	"unit_count": 0,
+	"troop_morale": 100.0,
+}
 
 func tick_movement():
 	move_progress += speed;
@@ -36,9 +45,9 @@ func start_combat(target_province: int):
 	var temp: Combat;
 	
 	temp = Combat.new();
-	temp.armies.append(self.army_id);
+	temp.attacker_armies.append(self.army_id);
 	for i in GameInstance.game_instance.get_army_ids_in_province(target_province):
-		temp.armies.append(i);
+		temp.defender_armies.append(i);
 	desired_path = [];
 	
 	GameInstance.game_instance.combats.append(temp);
@@ -54,30 +63,58 @@ func get_next_move_target() -> int:
 		return (-1);
 	return (desired_path[current_path_index + 1]);
 	
+func create_troop_dict(troop_name: String,
+	unit_count: int = 1000, morale: float = 100.0) -> Dictionary:
+		var output: Dictionary;
+
+		output = {
+			"troop_name": troop_name,
+			"unit_count": unit_count,
+			"troop_morale": morale,
+		}
+		return (output);
+
+func add_troop(troop_name: String, unit_count: int = 1000, morale: float = 100.0):
+	var new: Dictionary;
+
+	new = create_troop_dict(troop_name, unit_count, morale);
+	troop_groups.append(new);
+
 func add_unit(unit_name: String, count: int):
-	if (not (unit_name in unit_groups.keys())):
-		unit_groups[unit_name] = 0;
-	unit_groups[unit_name] += count;
+	for t in troop_groups:
+		if (count == 0):
+			return;
+		var unit_count: int = t["unit_count"];
+		if (unit_count < 1000):
+			var max_add: int = 1000 - unit_count;
+
+			if (count <= max_add):
+				t["unit_count"] += count;
+				count = 0;
+			else:
+				t["unit_count"] += max_add;
+				count -= max_add;
+	if (count > 0):
+		add_troop(unit_name, count);
 
 func get_unit_count() -> int:
 	var output: int = 0;
 	
-	for k in unit_groups.keys():
-		output += unit_groups[k];
+	for t in troop_groups:
+		output += t["unit_count"];
 	return (output);
 
 func lose_unit(count: int = 0, unit_name: String = ""):
-	if (not (unit_name in unit_groups.keys())):
-		unit_groups[unit_name] = 0;
-		return;
-	if (unit_name == ""):
-		for k in unit_groups.keys():
-			unit_groups[k] -= count;
-		return;
-	unit_groups[unit_name] -= count;
-	if (unit_groups[unit_name] < 0):
-		unit_groups[unit_name] = 0;
-		
+	for t in troop_groups:
+		if (count == 0):
+			return;
+		if (t["troop_name"] == unit_name):
+			if (t["unit_count"] >= count):
+				t["unit_count"] -= count;
+				count = 0;
+			else:
+				count -= t["unit_count"];
+				t["unit_count"] = 0;
 		
 func is_in_combat() -> bool:
 	for c: Combat in GameInstance.game_instance.get_combats():
@@ -123,6 +160,13 @@ func get_trainable_troops() -> Array[String]:
 func get_troop_types() -> Array[String]:
 	var output: Array[String] = []
 	
-	for s: String in unit_groups.keys():
-		output.append(s);
+	for t in troop_groups:
+		output.append(t["troop_name"]);
+	return (output);
+
+func get_total_morale() -> float:
+	var output: float = 0;
+
+	for t in troop_groups:
+		output += t["troop_morale"];
 	return (output);

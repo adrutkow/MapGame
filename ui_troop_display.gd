@@ -31,5 +31,7 @@ func _on_button_pressed() -> void:
 	if (UI_CONTEXT.FORM_TROOP in get_ui_context()):
 		var army: Army;
 		army = UIManager.instance.get_current_selected_army();
+		if (not army):
+			return;
 		army.add_unit(key, troop_count);
 		MenuArmyView.instance.update();

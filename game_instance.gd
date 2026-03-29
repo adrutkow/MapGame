@@ -44,6 +44,19 @@ var lag: bool = false;
 # Strawberry elephant encounter;
 # kill for fruit or somethig else idk
 
+# Add loans, salt says
+
+
+
+# FIGHTS:
+# WHEN FIGHITNG, ARMY GO TO TARGET PROVINCE, NOT SIT NEXT IT
+# REINFORCING ARMIES GET "ABSORED", NOT ALLIES
+# COMBAT WIDTH, YEAH
+# TROOP IN GAME = 1k TROO  PS in EU4;
+# TROOP COUNT IS HEALTH BASICALLY
+
+#troop have firepower, gather firepower, combine, attack enemu ttrrops everyu fight tick
+
 func _process(delta: float) -> void:
 	timer += 1;
 	if (timer > 60 and start):

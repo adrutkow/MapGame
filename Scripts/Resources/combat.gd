@@ -1,53 +1,51 @@
 extends Resource
 class_name Combat;
 
-var armies: Array[int];
+var attacker_armies: Array[int];
+var defender_armies: Array[int];
+var combat_width: int = 20;
+var attacker_line_troops: Array[int] = [];
+var defender_line_troops: Array[int] = [];
+var attacker_morale: float = 100;
+var defender_morale: float = 100;
 
+func init_combat(attackers: Array[int], defenders: Array[int]):
+	attacker_armies.append_array(attackers);
+	defender_armies.append_array(defenders);
 
 func tick():
-	var side_one: Array[int];
-	var side_two: Array[int];
-	var side_one_strength: float = 0;
-	var side_two_strength: float = 0;
+	var attacker_strength: float = 0;
+	var defender_strength: float = 0;
 	
-	if (len(armies) <= 1):
+	if (len(attacker_armies) == 0 or len(defender_armies) == 0):
 		stop();
 		return;
+
+	attacker_strength = get_side_strength(attacker_armies);
+	defender_strength = get_side_strength(defender_armies);
 	
-	for i: int in range(0, len(armies)):
-		var army: Army = GameInstance.game_instance.get_army_by_id(armies[i]);
-		var nation: Nation = GameInstance.game_instance.get_nations()[army.nation_owner_id];
+	var diff = abs(attacker_strength - defender_strength);
+	
+	if (attacker_strength < defender_strength):
+		for a_id: int in attacker_armies:
+			GameInstance.game_instance.get_army_by_id(a_id).lose_unit(50);
+	if (attacker_strength > defender_strength):
+		for a_id: int in defender_armies:
+			GameInstance.game_instance.get_army_by_id(a_id).lose_unit(50);
+	if (attacker_strength == defender_strength):
+		for a_id: int in attacker_armies:
+			GameInstance.game_instance.get_army_by_id(a_id).lose_unit(50);
+		for a_id: int in defender_armies:
+			GameInstance.game_instance.get_army_by_id(a_id).lose_unit(50);
+
+
+	for a_id: int in attacker_armies:
+		var army: Army = GameInstance.game_instance.get_army_by_id(a_id);
 		
-		if (army.is_defeated()):
-			continue;
-		if (i == 0):
-			side_one.append(armies[0]);
-			continue;
-		side_two.append(armies[1]);
+		if (army.get_unit_count() <= 0):
+			army.defeated = true;
 
-	if (len(side_one) == 0 or len(side_two) == 0):
-		stop();
-		return;
-
-	side_one_strength = get_side_strength(side_one);
-	side_two_strength = get_side_strength(side_two);
-	
-	var diff = abs(side_one_strength - side_two_strength);
-	
-	if (side_one_strength < side_two_strength):
-		for a_id: int in side_one:
-			GameInstance.game_instance.get_army_by_id(a_id).lose_unit(50);
-	if (side_one_strength > side_two_strength):
-		for a_id: int in side_two:
-			GameInstance.game_instance.get_army_by_id(a_id).lose_unit(50);
-	if (side_one_strength == side_two_strength):
-		for a_id: int in side_one:
-			GameInstance.game_instance.get_army_by_id(a_id).lose_unit(50);
-		for a_id: int in side_two:
-			GameInstance.game_instance.get_army_by_id(a_id).lose_unit(50);
-
-
-	for a_id: int in armies:
+	for a_id: int in defender_armies:
 		var army: Army = GameInstance.game_instance.get_army_by_id(a_id);
 		
 		if (army.get_unit_count() <= 0):
@@ -55,12 +53,16 @@ func tick():
 
 func get_side_strength(side: Array[int]) -> float:
 	var output: float = 0;
-	
+	var max: int = 0;
+
 	for i: int in side:
 		var army: Army = GameInstance.game_instance.get_army_by_id(i);
 		var nation: Nation = GameInstance.game_instance.get_nations()[army.nation_owner_id];
 
 		output += army.get_unit_count();
+		max += 1;
+		if (max >= combat_width):
+			break;
 	return (output);
 	
 		
@@ -74,6 +76,6 @@ func stop():
 func get_province_id() -> int:
 	var output: int = -1;
 	
-	if (not armies.is_empty()):
-		output = GameInstance.game_instance.get_army_by_id(armies[0]).province_id;
+	if (not defender_armies.is_empty()):
+		output = GameInstance.game_instance.get_army_by_id(defender_armies[0]).province_id;
 	return (output);

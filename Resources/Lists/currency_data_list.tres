@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cxq66rti5yp8u" path="res://Assets/Icons/trade_value.png" id="10_jkmxa"]
 [ext_resource type="Texture2D" uid="uid://bhlal7trv48uy" path="res://Assets/Icons/kebab.png" id="11_x0qk1"]
 [ext_resource type="Texture2D" uid="uid://c0xmgq0jefffy" path="res://Assets/Icons/alloys.png" id="12_wvb66"]
-[ext_resource type="Texture2D" uid="uid://xves3yu6h7hh" path="res://Assets/Icons/stone.png" id="13_88eww"]
+[ext_resource type="Texture2D" uid="uid://cuy406cwaqou8" path="res://Assets/Icons/minerals.png" id="13_04jp6"]
 [ext_resource type="Texture2D" uid="uid://cuedweeweloof" path="res://Assets/Icons/lean.png" id="14_net8p"]
 [ext_resource type="Texture2D" uid="uid://mcb840b1q5k6" path="res://Assets/Icons/fruits.png" id="15_04jp6"]
 
@@ -109,7 +109,7 @@ metadata/_custom_type_script = "uid://cq0gq6pl0h057"
 script = ExtResource("1_kvyd4")
 currency_name = "currency_materials"
 display_name = "Materials"
-currency_icon = ExtResource("13_88eww")
+currency_icon = ExtResource("13_04jp6")
 description = "Basic building materials"
 metadata/_custom_type_script = "uid://cq0gq6pl0h057"
 

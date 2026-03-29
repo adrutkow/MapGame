@@ -29,12 +29,12 @@ func update_troops(army: Army):
 	troops_display_parent = $TroopList/ScrollContainer/VBoxContainer;
 	for c in troops_display_parent.get_children():
 		c.queue_free();
-	for t: String in army.get_troop_types():
+	for t in army.troop_groups:
 		var temp: UITroopDisplay;
 		
 		temp = troop_display_prefab.instantiate();
-		temp.key = t;
-		temp.troop_count = int(army.unit_groups[t]);
+		temp.key = t["troop_name"];
+		temp.troop_count = int(t["unit_count"]);
 		temp.update();
 		troops_display_parent.add_child(temp);
 		
